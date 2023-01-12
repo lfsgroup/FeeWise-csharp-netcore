@@ -26,40 +26,48 @@ using OpenAPIDateConverter = FeeWise.Client.OpenAPIDateConverter;
 namespace FeeWise.Model
 {
     /// <summary>
-    /// Adjust the trust deposit amount 
+    /// StatementResponse
     /// </summary>
-    [DataContract(Name = "adjustTrustDepositAmount_request")]
-    public partial class AdjustTrustDepositAmountRequest : IEquatable<AdjustTrustDepositAmountRequest>, IValidatableObject
+    [DataContract(Name = "StatementResponse")]
+    public partial class StatementResponse : IEquatable<StatementResponse>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="AdjustTrustDepositAmountRequest" /> class.
+        /// Initializes a new instance of the <see cref="StatementResponse" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected AdjustTrustDepositAmountRequest()
+        protected StatementResponse()
         {
             this.AdditionalProperties = new Dictionary<string, object>();
         }
         /// <summary>
-        /// Initializes a new instance of the <see cref="AdjustTrustDepositAmountRequest" /> class.
+        /// Initializes a new instance of the <see cref="StatementResponse" /> class.
         /// </summary>
-        /// <param name="newAmount">The new total amount for the trust deposit. (required).</param>
-        public AdjustTrustDepositAmountRequest(string newAmount = default(string))
+        /// <param name="statement">statement (required).</param>
+        /// <param name="paymentUrl">The URI to get the client payment instructions for this invoice.</param>
+        public StatementResponse(Statement statement = default(Statement), string paymentUrl = default(string))
         {
-            // to ensure "newAmount" is required (not null)
-            if (newAmount == null)
+            // to ensure "statement" is required (not null)
+            if (statement == null)
             {
-                throw new ArgumentNullException("newAmount is a required property for AdjustTrustDepositAmountRequest and cannot be null");
+                throw new ArgumentNullException("statement is a required property for StatementResponse and cannot be null");
             }
-            this.NewAmount = newAmount;
+            this.Statement = statement;
+            this.PaymentUrl = paymentUrl;
             this.AdditionalProperties = new Dictionary<string, object>();
         }
 
         /// <summary>
-        /// The new total amount for the trust deposit.
+        /// Gets or Sets Statement
         /// </summary>
-        /// <value>The new total amount for the trust deposit.</value>
-        [DataMember(Name = "new_amount", IsRequired = true, EmitDefaultValue = true)]
-        public string NewAmount { get; set; }
+        [DataMember(Name = "statement", IsRequired = true, EmitDefaultValue = true)]
+        public Statement Statement { get; set; }
+
+        /// <summary>
+        /// The URI to get the client payment instructions for this invoice
+        /// </summary>
+        /// <value>The URI to get the client payment instructions for this invoice</value>
+        [DataMember(Name = "payment_url", EmitDefaultValue = false)]
+        public string PaymentUrl { get; set; }
 
         /// <summary>
         /// Gets or Sets additional properties
@@ -74,8 +82,9 @@ namespace FeeWise.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class AdjustTrustDepositAmountRequest {\n");
-            sb.Append("  NewAmount: ").Append(NewAmount).Append("\n");
+            sb.Append("class StatementResponse {\n");
+            sb.Append("  Statement: ").Append(Statement).Append("\n");
+            sb.Append("  PaymentUrl: ").Append(PaymentUrl).Append("\n");
             sb.Append("  AdditionalProperties: ").Append(AdditionalProperties).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -97,15 +106,15 @@ namespace FeeWise.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as AdjustTrustDepositAmountRequest);
+            return this.Equals(input as StatementResponse);
         }
 
         /// <summary>
-        /// Returns true if AdjustTrustDepositAmountRequest instances are equal
+        /// Returns true if StatementResponse instances are equal
         /// </summary>
-        /// <param name="input">Instance of AdjustTrustDepositAmountRequest to be compared</param>
+        /// <param name="input">Instance of StatementResponse to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(AdjustTrustDepositAmountRequest input)
+        public bool Equals(StatementResponse input)
         {
             if (input == null)
             {
@@ -113,9 +122,14 @@ namespace FeeWise.Model
             }
             return 
                 (
-                    this.NewAmount == input.NewAmount ||
-                    (this.NewAmount != null &&
-                    this.NewAmount.Equals(input.NewAmount))
+                    this.Statement == input.Statement ||
+                    (this.Statement != null &&
+                    this.Statement.Equals(input.Statement))
+                ) && 
+                (
+                    this.PaymentUrl == input.PaymentUrl ||
+                    (this.PaymentUrl != null &&
+                    this.PaymentUrl.Equals(input.PaymentUrl))
                 )
                 && (this.AdditionalProperties.Count == input.AdditionalProperties.Count && !this.AdditionalProperties.Except(input.AdditionalProperties).Any());
         }
@@ -129,9 +143,13 @@ namespace FeeWise.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.NewAmount != null)
+                if (this.Statement != null)
                 {
-                    hashCode = (hashCode * 59) + this.NewAmount.GetHashCode();
+                    hashCode = (hashCode * 59) + this.Statement.GetHashCode();
+                }
+                if (this.PaymentUrl != null)
+                {
+                    hashCode = (hashCode * 59) + this.PaymentUrl.GetHashCode();
                 }
                 if (this.AdditionalProperties != null)
                 {
