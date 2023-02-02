@@ -234,7 +234,7 @@ catch (ApiException e)
 
 Create an Invoice
 
-Create an invoice for a channel partner.   NB the fields `invoice_id`, `payment_uri` and `status` must NOT be supplied. If supplied, BadResponse will be returned.   These are populated once the invoice has been created and will be available in the response 
+Create an invoice for a channel partner.   NB the fields `invoice_id`, `payment_uri` and `status` must NOT be supplied. If supplied, BadResponse will be returned.   These are populated once the invoice has been created and will be available in the response. The external_id is a unique field, if the same external_id is provided, the matching invoice will be updated instead. 
 
 ### Example
 ```csharp
@@ -434,7 +434,7 @@ catch (ApiException e)
 
 Create a Trust Deposit
 
-Create a trust deposit for a channel partner.   NB the fields trust_deposit_id, payment_uri and status must NOT be supplied. If supplied, BadResponse will be returned.   These are populated once the trust deposit has been created and will be available in the response 
+Create a trust deposit for a channel partner.   NB the fields trust_deposit_id, payment_uri and status must NOT be supplied. If supplied, BadResponse will be returned.   These are populated once the trust deposit has been created and will be available in the response. The external_id is a unique field, if the same external_id is provided, the matching trust deposit will be updated instead. 
 
 ### Example
 ```csharp
