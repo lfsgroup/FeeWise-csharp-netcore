@@ -334,7 +334,7 @@ catch (ApiException e)
 
 
 
-Creates a statement of account, filtered by a debtor ID and an optional matter ID, payable by the client via the returned URL  
+Creates a statement of account, filtered by a debtor ID and an optional matter ID, payable by the client via the returned URL 
 
 ### Example
 ```csharp
