@@ -5,7 +5,8 @@ The matter that payments are regarding.
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ExternalId** | **string** | The id of the matter in the PMS. | [optional] 
+**MatterId** | **Guid** |  | [optional] 
+**ExternalId** | **string** | The id of the matter in the PMS. | 
 **ExternalReference** | **string** | Freeform reference (normally for the PMS) | [optional] 
 **Description** | **string** | A description of the matter | [optional] 
 **Type** | **string** | Free form type of the matter. | [optional] 

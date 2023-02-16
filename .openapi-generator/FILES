@@ -9,6 +9,7 @@ docs/AdjustInvoiceAmountRequest.md
 docs/AdjustTrustDepositAmountRequest.md
 docs/ApiKeyResponse.md
 docs/ApiKeyRotation.md
+docs/Artifact.md
 docs/ArtifactType.md
 docs/BankAccount.md
 docs/BankAccountApi.md
@@ -31,6 +32,8 @@ docs/Invoice.md
 docs/InvoiceResponse.md
 docs/LineItem.md
 docs/Matter.md
+docs/MatterRequest.md
+docs/MatterResponse.md
 docs/Payment.md
 docs/PaymentExternalPayment.md
 docs/PaymentMethod.md
@@ -67,6 +70,7 @@ src/FeeWise.Test/Model/AdjustInvoiceAmountRequestTests.cs
 src/FeeWise.Test/Model/AdjustTrustDepositAmountRequestTests.cs
 src/FeeWise.Test/Model/ApiKeyResponseTests.cs
 src/FeeWise.Test/Model/ApiKeyRotationTests.cs
+src/FeeWise.Test/Model/ArtifactTests.cs
 src/FeeWise.Test/Model/ArtifactTypeTests.cs
 src/FeeWise.Test/Model/BankAccountResponseTests.cs
 src/FeeWise.Test/Model/BankAccountTests.cs
@@ -86,6 +90,8 @@ src/FeeWise.Test/Model/GetMagicLink200ResponseTests.cs
 src/FeeWise.Test/Model/InvoiceResponseTests.cs
 src/FeeWise.Test/Model/InvoiceTests.cs
 src/FeeWise.Test/Model/LineItemTests.cs
+src/FeeWise.Test/Model/MatterRequestTests.cs
+src/FeeWise.Test/Model/MatterResponseTests.cs
 src/FeeWise.Test/Model/MatterTests.cs
 src/FeeWise.Test/Model/PaymentExternalPaymentTests.cs
 src/FeeWise.Test/Model/PaymentMethodTests.cs
@@ -136,6 +142,7 @@ src/FeeWise/Model/AdjustInvoiceAmountRequest.cs
 src/FeeWise/Model/AdjustTrustDepositAmountRequest.cs
 src/FeeWise/Model/ApiKeyResponse.cs
 src/FeeWise/Model/ApiKeyRotation.cs
+src/FeeWise/Model/Artifact.cs
 src/FeeWise/Model/ArtifactType.cs
 src/FeeWise/Model/BankAccount.cs
 src/FeeWise/Model/BankAccountResponse.cs
@@ -156,6 +163,8 @@ src/FeeWise/Model/Invoice.cs
 src/FeeWise/Model/InvoiceResponse.cs
 src/FeeWise/Model/LineItem.cs
 src/FeeWise/Model/Matter.cs
+src/FeeWise/Model/MatterRequest.cs
+src/FeeWise/Model/MatterResponse.cs
 src/FeeWise/Model/Payment.cs
 src/FeeWise/Model/PaymentExternalPayment.cs
 src/FeeWise/Model/PaymentMethod.cs
