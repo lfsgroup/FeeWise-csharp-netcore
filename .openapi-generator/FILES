@@ -34,6 +34,7 @@ docs/LineItem.md
 docs/Matter.md
 docs/MatterRequest.md
 docs/MatterResponse.md
+docs/MatterStatement.md
 docs/Payment.md
 docs/PaymentExternalPayment.md
 docs/PaymentMethod.md
@@ -92,6 +93,7 @@ src/FeeWise.Test/Model/InvoiceTests.cs
 src/FeeWise.Test/Model/LineItemTests.cs
 src/FeeWise.Test/Model/MatterRequestTests.cs
 src/FeeWise.Test/Model/MatterResponseTests.cs
+src/FeeWise.Test/Model/MatterStatementTests.cs
 src/FeeWise.Test/Model/MatterTests.cs
 src/FeeWise.Test/Model/PaymentExternalPaymentTests.cs
 src/FeeWise.Test/Model/PaymentMethodTests.cs
@@ -165,6 +167,7 @@ src/FeeWise/Model/LineItem.cs
 src/FeeWise/Model/Matter.cs
 src/FeeWise/Model/MatterRequest.cs
 src/FeeWise/Model/MatterResponse.cs
+src/FeeWise/Model/MatterStatement.cs
 src/FeeWise/Model/Payment.cs
 src/FeeWise/Model/PaymentExternalPayment.cs
 src/FeeWise/Model/PaymentMethod.cs
