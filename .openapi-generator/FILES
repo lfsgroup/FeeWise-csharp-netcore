@@ -44,8 +44,6 @@ docs/Payout.md
 docs/PayoutAccount.md
 docs/Payouts.md
 docs/PayoutsApi.md
-docs/Statement.md
-docs/StatementResponse.md
 docs/SurchargeChoice.md
 docs/TrustDeposit.md
 docs/TrustDepositResponse.md
@@ -102,8 +100,6 @@ src/FeeWise.Test/Model/PaymentsTests.cs
 src/FeeWise.Test/Model/PayoutAccountTests.cs
 src/FeeWise.Test/Model/PayoutTests.cs
 src/FeeWise.Test/Model/PayoutsTests.cs
-src/FeeWise.Test/Model/StatementResponseTests.cs
-src/FeeWise.Test/Model/StatementTests.cs
 src/FeeWise.Test/Model/SurchargeChoiceTests.cs
 src/FeeWise.Test/Model/TrustDepositResponseTests.cs
 src/FeeWise.Test/Model/TrustDepositTests.cs
@@ -175,8 +171,6 @@ src/FeeWise/Model/Payments.cs
 src/FeeWise/Model/Payout.cs
 src/FeeWise/Model/PayoutAccount.cs
 src/FeeWise/Model/Payouts.cs
-src/FeeWise/Model/Statement.cs
-src/FeeWise/Model/StatementResponse.cs
 src/FeeWise/Model/SurchargeChoice.cs
 src/FeeWise/Model/TrustDeposit.cs
 src/FeeWise/Model/TrustDepositResponse.cs
