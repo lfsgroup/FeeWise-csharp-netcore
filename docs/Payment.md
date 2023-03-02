@@ -5,7 +5,8 @@ Describes a payment coming into the system (client of a firm paying an invoice, 
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**PaymentId** | **Guid** | The unique id of the payment. | 
+**TransactionId** | **Guid** | The unique id of this single transaction in the payout. | 
+**PaymentId** | **Guid** | The id of the payment. nb A single payment may contain multiple transactions and may not be unique. | 
 **PaymentType** | **PaymentMethod** |  | [optional] 
 **ArtifactId** | **Guid** | The artifact (Invoice, TrustDeposit, ...) the payment is in relation to. | 
 **ArtifactType** | **ArtifactType** |  | 
