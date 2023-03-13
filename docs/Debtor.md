@@ -5,6 +5,7 @@ The entity that should be making the payment. This will normally be a client of 
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**DebtorId** | **Guid** | This is the uuid of the debtor in FeeWise. | [optional] 
 **ExternalId** | **string** | ID in the PMS | [optional] 
 **Name** | **string** |  | [optional] 
 **Email** | **string** |  | [optional] 
