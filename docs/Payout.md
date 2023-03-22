@@ -1,5 +1,5 @@
 # FeeWise.Model.Payout
-Describes a payout made by the system to a channel partner
+Describes a payout made by the system to a channel partner's firm
 
 ## Properties
 
@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **PayoutTotal** | **string** | The total paid out to the firm. This is the sum of the transactions paid_out amounts. | 
 **Account** | [**PayoutAccount**](PayoutAccount.md) |  | 
 **FirmId** | **Guid** | The id of the firm the payout was made to. | 
+**Status** | **PayoutStatus** |  | 
 **Transactions** | [**List&lt;Payment&gt;**](Payment.md) | A list of the payments that are included in this payout | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

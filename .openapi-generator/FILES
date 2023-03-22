@@ -26,7 +26,6 @@ docs/ExternalPayment.md
 docs/Firm.md
 docs/FirmApi.md
 docs/FirmResponse.md
-docs/GetChannelPartnerPayoutsAccountParameter.md
 docs/GetMagicLink200Response.md
 docs/Invoice.md
 docs/InvoiceResponse.md
@@ -42,6 +41,7 @@ docs/Payments.md
 docs/PaymentsApi.md
 docs/Payout.md
 docs/PayoutAccount.md
+docs/PayoutStatus.md
 docs/Payouts.md
 docs/PayoutsApi.md
 docs/SurchargeChoice.md
@@ -84,7 +84,6 @@ src/FeeWise.Test/Model/EventsTests.cs
 src/FeeWise.Test/Model/ExternalPaymentTests.cs
 src/FeeWise.Test/Model/FirmResponseTests.cs
 src/FeeWise.Test/Model/FirmTests.cs
-src/FeeWise.Test/Model/GetChannelPartnerPayoutsAccountParameterTests.cs
 src/FeeWise.Test/Model/GetMagicLink200ResponseTests.cs
 src/FeeWise.Test/Model/InvoiceResponseTests.cs
 src/FeeWise.Test/Model/InvoiceTests.cs
@@ -98,6 +97,7 @@ src/FeeWise.Test/Model/PaymentMethodTests.cs
 src/FeeWise.Test/Model/PaymentTests.cs
 src/FeeWise.Test/Model/PaymentsTests.cs
 src/FeeWise.Test/Model/PayoutAccountTests.cs
+src/FeeWise.Test/Model/PayoutStatusTests.cs
 src/FeeWise.Test/Model/PayoutTests.cs
 src/FeeWise.Test/Model/PayoutsTests.cs
 src/FeeWise.Test/Model/SurchargeChoiceTests.cs
@@ -155,7 +155,6 @@ src/FeeWise/Model/Events.cs
 src/FeeWise/Model/ExternalPayment.cs
 src/FeeWise/Model/Firm.cs
 src/FeeWise/Model/FirmResponse.cs
-src/FeeWise/Model/GetChannelPartnerPayoutsAccountParameter.cs
 src/FeeWise/Model/GetMagicLink200Response.cs
 src/FeeWise/Model/Invoice.cs
 src/FeeWise/Model/InvoiceResponse.cs
@@ -170,6 +169,7 @@ src/FeeWise/Model/PaymentMethod.cs
 src/FeeWise/Model/Payments.cs
 src/FeeWise/Model/Payout.cs
 src/FeeWise/Model/PayoutAccount.cs
+src/FeeWise/Model/PayoutStatus.cs
 src/FeeWise/Model/Payouts.cs
 src/FeeWise/Model/SurchargeChoice.cs
 src/FeeWise/Model/TrustDeposit.cs

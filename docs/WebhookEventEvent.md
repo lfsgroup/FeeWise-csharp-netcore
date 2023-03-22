@@ -23,7 +23,7 @@ Name | Type | Description | Notes
 **SurchargeChoiceOverride** | **SurchargeChoice** |  | [optional] 
 **Description** | **string** | Freeform text for channel partner / PMS. | [optional] 
 **PaymentUri** | **string** | The URI to send to customer.    They will follow this link to make a payment.    NB This must not be set when creating an invoice.  | [optional] 
-**Status** | **string** | The status of the trust deposit. This must not be set when creating an trust deposit. | [optional] 
+**Status** | **PayoutStatus** |  | 
 **TrustDepositId** | **Guid** | This is the uuid of the Trust Deposit. This will be used for any &#39;GET&#39; of the Trust Deposit and in webhooks about this Trust Deposit NB this is generated and must not be supplied when creating a Trust Deposit.  | [optional] 
 **TransactionId** | **Guid** | The unique id of this single transaction in the payout. | 
 **PaymentId** | **Guid** | The id of the payment. nb A single payment may contain multiple transactions and may not be unique. | 
