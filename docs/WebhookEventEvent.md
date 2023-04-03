@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **InvoiceId** | **Guid** | This is the uuid of the invoice. This will be used for and &#39;GET&#39; of the invoice and in webhooks about this invoice NB this is generated and must not be supplied when creating an invoice.  | [optional] 
-**FirmId** | **Guid** | The id of the firm the payout was made to. | 
+**FirmId** | **Guid** | The firm ID | 
 **Matter** | [**Matter**](Matter.md) |  | [optional] 
 **Debtor** | [**Debtor**](Debtor.md) |  | [optional] 
 **ExternalId** | **string** | This is the id of the artifact supplied by the channel partner / PMS. | 
@@ -26,7 +26,7 @@ Name | Type | Description | Notes
 **Status** | **PayoutStatus** |  | 
 **TrustDepositId** | **Guid** | This is the uuid of the Trust Deposit. This will be used for any &#39;GET&#39; of the Trust Deposit and in webhooks about this Trust Deposit NB this is generated and must not be supplied when creating a Trust Deposit.  | [optional] 
 **TransactionId** | **Guid** | The unique id of this single transaction in the payout. | 
-**PaymentId** | **Guid** | The id of the payment. nb A single payment may contain multiple transactions and may not be unique. | 
+**PaymentId** | **Guid** | The payment ID | 
 **PaymentType** | **PaymentMethod** |  | [optional] 
 **ArtifactId** | **Guid** | The artifact (Invoice, TrustDeposit, ...) the payment is in relation to. | 
 **ArtifactType** | **ArtifactType** |  | 
@@ -39,6 +39,12 @@ Name | Type | Description | Notes
 **PayoutTotal** | **string** | The total paid out to the firm. This is the sum of the transactions paid_out amounts. | 
 **Account** | [**PayoutAccount**](PayoutAccount.md) |  | 
 **Transactions** | [**List&lt;Payment&gt;**](Payment.md) | A list of the payments that are included in this payout | 
+**Artifacts** | [**List&lt;ArtifactReceipt&gt;**](ArtifactReceipt.md) |  | 
+**AmountPaid** | **string** | The amount paid | 
+**CardPayment** | [**CardPayment**](CardPayment.md) |  | [optional] 
+**DebitPayment** | [**DebitPayment**](DebitPayment.md) |  | [optional] 
+**PaymentMethod** | **PaymentMethod** |  | 
+**PaymentMethodDetail** | **string** | The payment method detail | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
