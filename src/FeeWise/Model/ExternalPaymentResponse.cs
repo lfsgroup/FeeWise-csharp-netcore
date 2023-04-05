@@ -26,40 +26,39 @@ using OpenAPIDateConverter = FeeWise.Client.OpenAPIDateConverter;
 namespace FeeWise.Model
 {
     /// <summary>
-    /// Adjust the invoice amount 
+    /// ExternalPaymentResponse
     /// </summary>
-    [DataContract(Name = "adjustInvoiceAmount_request")]
-    public partial class AdjustInvoiceAmountRequest : IEquatable<AdjustInvoiceAmountRequest>, IValidatableObject
+    [DataContract(Name = "ExternalPaymentResponse")]
+    public partial class ExternalPaymentResponse : IEquatable<ExternalPaymentResponse>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="AdjustInvoiceAmountRequest" /> class.
+        /// Initializes a new instance of the <see cref="ExternalPaymentResponse" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected AdjustInvoiceAmountRequest()
+        protected ExternalPaymentResponse()
         {
             this.AdditionalProperties = new Dictionary<string, object>();
         }
         /// <summary>
-        /// Initializes a new instance of the <see cref="AdjustInvoiceAmountRequest" /> class.
+        /// Initializes a new instance of the <see cref="ExternalPaymentResponse" /> class.
         /// </summary>
-        /// <param name="newAmount">The new total amount for the invoice. (required).</param>
-        public AdjustInvoiceAmountRequest(string newAmount = default(string))
+        /// <param name="artifactDetails">artifactDetails (required).</param>
+        public ExternalPaymentResponse(Artifact artifactDetails = default(Artifact))
         {
-            // to ensure "newAmount" is required (not null)
-            if (newAmount == null)
+            // to ensure "artifactDetails" is required (not null)
+            if (artifactDetails == null)
             {
-                throw new ArgumentNullException("newAmount is a required property for AdjustInvoiceAmountRequest and cannot be null");
+                throw new ArgumentNullException("artifactDetails is a required property for ExternalPaymentResponse and cannot be null");
             }
-            this.NewAmount = newAmount;
+            this.ArtifactDetails = artifactDetails;
             this.AdditionalProperties = new Dictionary<string, object>();
         }
 
         /// <summary>
-        /// The new total amount for the invoice.
+        /// Gets or Sets ArtifactDetails
         /// </summary>
-        /// <value>The new total amount for the invoice.</value>
-        [DataMember(Name = "new_amount", IsRequired = true, EmitDefaultValue = true)]
-        public string NewAmount { get; set; }
+        [DataMember(Name = "artifact_details", IsRequired = true, EmitDefaultValue = true)]
+        public Artifact ArtifactDetails { get; set; }
 
         /// <summary>
         /// Gets or Sets additional properties
@@ -74,8 +73,8 @@ namespace FeeWise.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class AdjustInvoiceAmountRequest {\n");
-            sb.Append("  NewAmount: ").Append(NewAmount).Append("\n");
+            sb.Append("class ExternalPaymentResponse {\n");
+            sb.Append("  ArtifactDetails: ").Append(ArtifactDetails).Append("\n");
             sb.Append("  AdditionalProperties: ").Append(AdditionalProperties).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -97,15 +96,15 @@ namespace FeeWise.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as AdjustInvoiceAmountRequest);
+            return this.Equals(input as ExternalPaymentResponse);
         }
 
         /// <summary>
-        /// Returns true if AdjustInvoiceAmountRequest instances are equal
+        /// Returns true if ExternalPaymentResponse instances are equal
         /// </summary>
-        /// <param name="input">Instance of AdjustInvoiceAmountRequest to be compared</param>
+        /// <param name="input">Instance of ExternalPaymentResponse to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(AdjustInvoiceAmountRequest input)
+        public bool Equals(ExternalPaymentResponse input)
         {
             if (input == null)
             {
@@ -113,9 +112,9 @@ namespace FeeWise.Model
             }
             return 
                 (
-                    this.NewAmount == input.NewAmount ||
-                    (this.NewAmount != null &&
-                    this.NewAmount.Equals(input.NewAmount))
+                    this.ArtifactDetails == input.ArtifactDetails ||
+                    (this.ArtifactDetails != null &&
+                    this.ArtifactDetails.Equals(input.ArtifactDetails))
                 )
                 && (this.AdditionalProperties.Count == input.AdditionalProperties.Count && !this.AdditionalProperties.Except(input.AdditionalProperties).Any());
         }
@@ -129,9 +128,9 @@ namespace FeeWise.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.NewAmount != null)
+                if (this.ArtifactDetails != null)
                 {
-                    hashCode = (hashCode * 59) + this.NewAmount.GetHashCode();
+                    hashCode = (hashCode * 59) + this.ArtifactDetails.GetHashCode();
                 }
                 if (this.AdditionalProperties != null)
                 {

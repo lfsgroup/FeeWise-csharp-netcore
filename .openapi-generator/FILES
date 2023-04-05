@@ -27,6 +27,7 @@ docs/EventFilters.md
 docs/EventTopics.md
 docs/Events.md
 docs/ExternalPayment.md
+docs/ExternalPaymentResponse.md
 docs/Firm.md
 docs/FirmApi.md
 docs/FirmResponse.md
@@ -90,6 +91,7 @@ src/FeeWise.Test/Model/EventFiltersTests.cs
 src/FeeWise.Test/Model/EventTests.cs
 src/FeeWise.Test/Model/EventTopicsTests.cs
 src/FeeWise.Test/Model/EventsTests.cs
+src/FeeWise.Test/Model/ExternalPaymentResponseTests.cs
 src/FeeWise.Test/Model/ExternalPaymentTests.cs
 src/FeeWise.Test/Model/FirmResponseTests.cs
 src/FeeWise.Test/Model/FirmTests.cs
@@ -167,6 +169,7 @@ src/FeeWise/Model/EventFilters.cs
 src/FeeWise/Model/EventTopics.cs
 src/FeeWise/Model/Events.cs
 src/FeeWise/Model/ExternalPayment.cs
+src/FeeWise/Model/ExternalPaymentResponse.cs
 src/FeeWise/Model/Firm.cs
 src/FeeWise/Model/FirmResponse.cs
 src/FeeWise/Model/GetMagicLink200Response.cs

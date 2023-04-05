@@ -1265,7 +1265,7 @@ catch (ApiException e)
 
 <a name="recordexternalpayment"></a>
 # **RecordExternalPayment**
-> void RecordExternalPayment (ExternalPayment externalPayment)
+> ExternalPaymentResponse RecordExternalPayment (ExternalPayment externalPayment)
 
 Record external payment.
 
@@ -1302,7 +1302,8 @@ namespace Example
             try
             {
                 // Record external payment.
-                apiInstance.RecordExternalPayment(externalPayment);
+                ExternalPaymentResponse result = apiInstance.RecordExternalPayment(externalPayment);
+                Debug.WriteLine(result);
             }
             catch (ApiException  e)
             {
@@ -1322,7 +1323,10 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Record external payment.
-    apiInstance.RecordExternalPaymentWithHttpInfo(externalPayment);
+    ApiResponse<ExternalPaymentResponse> response = apiInstance.RecordExternalPaymentWithHttpInfo(externalPayment);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
 }
 catch (ApiException e)
 {
@@ -1340,7 +1344,7 @@ catch (ApiException e)
 
 ### Return type
 
-void (empty response body)
+[**ExternalPaymentResponse**](ExternalPaymentResponse.md)
 
 ### Authorization
 
@@ -1356,6 +1360,8 @@ void (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | The payment was recorded |  -  |
+| **404** | Artifact not found |  -  |
+| **409** | External payment already exists |  -  |
 | **500** | Error processing |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
