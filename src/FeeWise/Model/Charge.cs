@@ -26,10 +26,10 @@ using OpenAPIDateConverter = FeeWise.Client.OpenAPIDateConverter;
 namespace FeeWise.Model
 {
     /// <summary>
-    /// A TrustDeposit is created to request payment into a Trust account 
+    /// A Charge is created to request payment. Either the settlement_account_type or the settlement_account_id must be provided but not both. 
     /// </summary>
-    [DataContract(Name = "TrustDeposit")]
-    public partial class TrustDeposit : IEquatable<TrustDeposit>, IValidatableObject
+    [DataContract(Name = "Charge")]
+    public partial class Charge : IEquatable<Charge>, IValidatableObject
     {
 
         /// <summary>
@@ -39,125 +39,84 @@ namespace FeeWise.Model
         public Currency? Currency { get; set; }
 
         /// <summary>
+        /// Gets or Sets SettlementAccountType
+        /// </summary>
+        [DataMember(Name = "settlement_account_type", EmitDefaultValue = false)]
+        public AccountType? SettlementAccountType { get; set; }
+
+        /// <summary>
         /// Gets or Sets SurchargeChoiceOverride
         /// </summary>
         [DataMember(Name = "surcharge_choice_override", EmitDefaultValue = false)]
         public SurchargeChoice? SurchargeChoiceOverride { get; set; }
         /// <summary>
-        /// The status of the trust deposit. This must not be set when creating an trust deposit.
-        /// </summary>
-        /// <value>The status of the trust deposit. This must not be set when creating an trust deposit.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum StatusEnum
-        {
-            /// <summary>
-            /// Enum Draft for value: Draft
-            /// </summary>
-            [EnumMember(Value = "Draft")]
-            Draft = 1,
-
-            /// <summary>
-            /// Enum Submitted for value: Submitted
-            /// </summary>
-            [EnumMember(Value = "Submitted")]
-            Submitted = 2,
-
-            /// <summary>
-            /// Enum Authorised for value: Authorised
-            /// </summary>
-            [EnumMember(Value = "Authorised")]
-            Authorised = 3,
-
-            /// <summary>
-            /// Enum Voided for value: Voided
-            /// </summary>
-            [EnumMember(Value = "Voided")]
-            Voided = 4
-
-        }
-
-
-        /// <summary>
-        /// The status of the trust deposit. This must not be set when creating an trust deposit.
-        /// </summary>
-        /// <value>The status of the trust deposit. This must not be set when creating an trust deposit.</value>
-        [DataMember(Name = "status", EmitDefaultValue = false)]
-        public StatusEnum? Status { get; set; }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="TrustDeposit" /> class.
+        /// Initializes a new instance of the <see cref="Charge" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected TrustDeposit()
+        protected Charge()
         {
             this.AdditionalProperties = new Dictionary<string, object>();
         }
         /// <summary>
-        /// Initializes a new instance of the <see cref="TrustDeposit" /> class.
+        /// Initializes a new instance of the <see cref="Charge" /> class.
         /// </summary>
-        /// <param name="trustDepositId">This is the uuid of the Trust Deposit. This will be used for any &#39;GET&#39; of the Trust Deposit and in webhooks about this Trust Deposit NB this is generated and must not be supplied when creating a Trust Deposit. .</param>
-        /// <param name="firmId">The firm the trust deposit is raised for. (required).</param>
+        /// <param name="chargeId">This is the uuid of the charge. This will be used for a &#39;GET&#39; of the charge and in webhooks about this charge. NB: this is generated and must not be supplied when creating an charge. .</param>
+        /// <param name="firmId">The firm the charge is being created for. (required).</param>
         /// <param name="matter">matter.</param>
         /// <param name="debtor">debtor.</param>
-        /// <param name="externalId">This is the id supplied by the channel partner / PMS and can be used for filtering trust deposits. This should be unique for the PMS but this is not enforced. (required).</param>
-        /// <param name="externalReference">This a reference supplied by the channel partner / PMS and can be used for filtering trust deposits..</param>
-        /// <param name="amount">The total amount the trust deposit is for. (required).</param>
-        /// <param name="amountDue">The total amount outstanding on this trust deposit..</param>
+        /// <param name="externalId">This is the id supplied by the channel partner / PMS and can be used for filtering charges. This should be unique for the PMS but this is not enforced..</param>
+        /// <param name="externalReference">This a reference supplied by the channel partner / PMS and can be used for filtering charges..</param>
+        /// <param name="amount">The total amount the charge is for. (required).</param>
+        /// <param name="amountDue">The total amount outstanding on this charge..</param>
         /// <param name="currency">currency.</param>
         /// <param name="dueDate">dueDate.</param>
-        /// <param name="lineItems">lineItems.</param>
-        /// <param name="notes">Freeform notes on the trust deposit.</param>
-        /// <param name="payments">List of payments made against this trust deposit..</param>
-        /// <param name="settlementAccountId">The id of the account the trust deposit should be paid to.  If not supplied, the default trust deposit for the firm will be used .</param>
+        /// <param name="settlementAccountType">settlementAccountType.</param>
+        /// <param name="settlementAccountId">The id of the account the charge should be paid to. NB: if both the settlement_account_type and settlement_account_id are specified, it is a bad request. .</param>
+        /// <param name="notes">Any notes relevant to the charge..</param>
         /// <param name="paymentMethodsOverride">paymentMethodsOverride.</param>
+        /// <param name="description">Description of the charge..</param>
+        /// <param name="storePaymentMethods">Choose which payment methods to save when the customer pays a charge..</param>
         /// <param name="surchargeChoiceOverride">surchargeChoiceOverride.</param>
-        /// <param name="description">Freeform text for channel partner / PMS..</param>
-        /// <param name="paymentUri">The URI to send to customer.    They will follow this link to make a payment.    NB This must not be set when creating an invoice. .</param>
-        /// <param name="status">The status of the trust deposit. This must not be set when creating an trust deposit..</param>
-        public TrustDeposit(Guid trustDepositId = default(Guid), Guid firmId = default(Guid), Matter matter = default(Matter), Debtor debtor = default(Debtor), string externalId = default(string), string externalReference = default(string), string amount = default(string), string amountDue = default(string), Currency? currency = default(Currency?), DateTime dueDate = default(DateTime), List<LineItem> lineItems = default(List<LineItem>), List<string> notes = default(List<string>), List<Payment> payments = default(List<Payment>), Guid settlementAccountId = default(Guid), List<PaymentMethod> paymentMethodsOverride = default(List<PaymentMethod>), SurchargeChoice? surchargeChoiceOverride = default(SurchargeChoice?), string description = default(string), string paymentUri = default(string), StatusEnum? status = default(StatusEnum?))
+        /// <param name="paymentUri">The URI to pay the charge..</param>
+        public Charge(Guid chargeId = default(Guid), Guid firmId = default(Guid), Matter matter = default(Matter), Debtor debtor = default(Debtor), string externalId = default(string), string externalReference = default(string), string amount = default(string), string amountDue = default(string), Currency? currency = default(Currency?), DateTime dueDate = default(DateTime), AccountType? settlementAccountType = default(AccountType?), Guid settlementAccountId = default(Guid), List<string> notes = default(List<string>), List<PaymentMethod> paymentMethodsOverride = default(List<PaymentMethod>), string description = default(string), List<PaymentMethod> storePaymentMethods = default(List<PaymentMethod>), SurchargeChoice? surchargeChoiceOverride = default(SurchargeChoice?), string paymentUri = default(string))
         {
             this.FirmId = firmId;
-            // to ensure "externalId" is required (not null)
-            if (externalId == null)
-            {
-                throw new ArgumentNullException("externalId is a required property for TrustDeposit and cannot be null");
-            }
-            this.ExternalId = externalId;
             // to ensure "amount" is required (not null)
             if (amount == null)
             {
-                throw new ArgumentNullException("amount is a required property for TrustDeposit and cannot be null");
+                throw new ArgumentNullException("amount is a required property for Charge and cannot be null");
             }
             this.Amount = amount;
-            this.TrustDepositId = trustDepositId;
+            this.ChargeId = chargeId;
             this.Matter = matter;
             this.Debtor = debtor;
+            this.ExternalId = externalId;
             this.ExternalReference = externalReference;
             this.AmountDue = amountDue;
             this.Currency = currency;
             this.DueDate = dueDate;
-            this.LineItems = lineItems;
-            this.Notes = notes;
-            this.Payments = payments;
+            this.SettlementAccountType = settlementAccountType;
             this.SettlementAccountId = settlementAccountId;
+            this.Notes = notes;
             this.PaymentMethodsOverride = paymentMethodsOverride;
-            this.SurchargeChoiceOverride = surchargeChoiceOverride;
             this.Description = description;
+            this.StorePaymentMethods = storePaymentMethods;
+            this.SurchargeChoiceOverride = surchargeChoiceOverride;
             this.PaymentUri = paymentUri;
-            this.Status = status;
             this.AdditionalProperties = new Dictionary<string, object>();
         }
 
         /// <summary>
-        /// This is the uuid of the Trust Deposit. This will be used for any &#39;GET&#39; of the Trust Deposit and in webhooks about this Trust Deposit NB this is generated and must not be supplied when creating a Trust Deposit. 
+        /// This is the uuid of the charge. This will be used for a &#39;GET&#39; of the charge and in webhooks about this charge. NB: this is generated and must not be supplied when creating an charge. 
         /// </summary>
-        /// <value>This is the uuid of the Trust Deposit. This will be used for any &#39;GET&#39; of the Trust Deposit and in webhooks about this Trust Deposit NB this is generated and must not be supplied when creating a Trust Deposit. </value>
-        [DataMember(Name = "trust_deposit_id", EmitDefaultValue = false)]
-        public Guid TrustDepositId { get; set; }
+        /// <value>This is the uuid of the charge. This will be used for a &#39;GET&#39; of the charge and in webhooks about this charge. NB: this is generated and must not be supplied when creating an charge. </value>
+        [DataMember(Name = "charge_id", EmitDefaultValue = false)]
+        public Guid ChargeId { get; set; }
 
         /// <summary>
-        /// The firm the trust deposit is raised for.
+        /// The firm the charge is being created for.
         /// </summary>
-        /// <value>The firm the trust deposit is raised for.</value>
+        /// <value>The firm the charge is being created for.</value>
         [DataMember(Name = "firm_id", IsRequired = true, EmitDefaultValue = true)]
         public Guid FirmId { get; set; }
 
@@ -174,30 +133,30 @@ namespace FeeWise.Model
         public Debtor Debtor { get; set; }
 
         /// <summary>
-        /// This is the id supplied by the channel partner / PMS and can be used for filtering trust deposits. This should be unique for the PMS but this is not enforced.
+        /// This is the id supplied by the channel partner / PMS and can be used for filtering charges. This should be unique for the PMS but this is not enforced.
         /// </summary>
-        /// <value>This is the id supplied by the channel partner / PMS and can be used for filtering trust deposits. This should be unique for the PMS but this is not enforced.</value>
-        [DataMember(Name = "external_id", IsRequired = true, EmitDefaultValue = true)]
+        /// <value>This is the id supplied by the channel partner / PMS and can be used for filtering charges. This should be unique for the PMS but this is not enforced.</value>
+        [DataMember(Name = "external_id", EmitDefaultValue = false)]
         public string ExternalId { get; set; }
 
         /// <summary>
-        /// This a reference supplied by the channel partner / PMS and can be used for filtering trust deposits.
+        /// This a reference supplied by the channel partner / PMS and can be used for filtering charges.
         /// </summary>
-        /// <value>This a reference supplied by the channel partner / PMS and can be used for filtering trust deposits.</value>
+        /// <value>This a reference supplied by the channel partner / PMS and can be used for filtering charges.</value>
         [DataMember(Name = "external_reference", EmitDefaultValue = false)]
         public string ExternalReference { get; set; }
 
         /// <summary>
-        /// The total amount the trust deposit is for.
+        /// The total amount the charge is for.
         /// </summary>
-        /// <value>The total amount the trust deposit is for.</value>
+        /// <value>The total amount the charge is for.</value>
         [DataMember(Name = "amount", IsRequired = true, EmitDefaultValue = true)]
         public string Amount { get; set; }
 
         /// <summary>
-        /// The total amount outstanding on this trust deposit.
+        /// The total amount outstanding on this charge.
         /// </summary>
-        /// <value>The total amount outstanding on this trust deposit.</value>
+        /// <value>The total amount outstanding on this charge.</value>
         [DataMember(Name = "amount_due", EmitDefaultValue = false)]
         public string AmountDue { get; set; }
 
@@ -208,31 +167,18 @@ namespace FeeWise.Model
         public DateTime DueDate { get; set; }
 
         /// <summary>
-        /// Gets or Sets LineItems
+        /// The id of the account the charge should be paid to. NB: if both the settlement_account_type and settlement_account_id are specified, it is a bad request. 
         /// </summary>
-        [DataMember(Name = "line_items", EmitDefaultValue = false)]
-        public List<LineItem> LineItems { get; set; }
-
-        /// <summary>
-        /// Freeform notes on the trust deposit
-        /// </summary>
-        /// <value>Freeform notes on the trust deposit</value>
-        [DataMember(Name = "notes", EmitDefaultValue = false)]
-        public List<string> Notes { get; set; }
-
-        /// <summary>
-        /// List of payments made against this trust deposit.
-        /// </summary>
-        /// <value>List of payments made against this trust deposit.</value>
-        [DataMember(Name = "payments", EmitDefaultValue = false)]
-        public List<Payment> Payments { get; set; }
-
-        /// <summary>
-        /// The id of the account the trust deposit should be paid to.  If not supplied, the default trust deposit for the firm will be used 
-        /// </summary>
-        /// <value>The id of the account the trust deposit should be paid to.  If not supplied, the default trust deposit for the firm will be used </value>
+        /// <value>The id of the account the charge should be paid to. NB: if both the settlement_account_type and settlement_account_id are specified, it is a bad request. </value>
         [DataMember(Name = "settlement_account_id", EmitDefaultValue = false)]
         public Guid SettlementAccountId { get; set; }
+
+        /// <summary>
+        /// Any notes relevant to the charge.
+        /// </summary>
+        /// <value>Any notes relevant to the charge.</value>
+        [DataMember(Name = "notes", EmitDefaultValue = false)]
+        public List<string> Notes { get; set; }
 
         /// <summary>
         /// Gets or Sets PaymentMethodsOverride
@@ -241,16 +187,23 @@ namespace FeeWise.Model
         public List<PaymentMethod> PaymentMethodsOverride { get; set; }
 
         /// <summary>
-        /// Freeform text for channel partner / PMS.
+        /// Description of the charge.
         /// </summary>
-        /// <value>Freeform text for channel partner / PMS.</value>
+        /// <value>Description of the charge.</value>
         [DataMember(Name = "description", EmitDefaultValue = false)]
         public string Description { get; set; }
 
         /// <summary>
-        /// The URI to send to customer.    They will follow this link to make a payment.    NB This must not be set when creating an invoice. 
+        /// Choose which payment methods to save when the customer pays a charge.
         /// </summary>
-        /// <value>The URI to send to customer.    They will follow this link to make a payment.    NB This must not be set when creating an invoice. </value>
+        /// <value>Choose which payment methods to save when the customer pays a charge.</value>
+        [DataMember(Name = "store_payment_methods", EmitDefaultValue = false)]
+        public List<PaymentMethod> StorePaymentMethods { get; set; }
+
+        /// <summary>
+        /// The URI to pay the charge.
+        /// </summary>
+        /// <value>The URI to pay the charge.</value>
         [DataMember(Name = "payment_uri", EmitDefaultValue = false)]
         public string PaymentUri { get; set; }
 
@@ -267,8 +220,8 @@ namespace FeeWise.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class TrustDeposit {\n");
-            sb.Append("  TrustDepositId: ").Append(TrustDepositId).Append("\n");
+            sb.Append("class Charge {\n");
+            sb.Append("  ChargeId: ").Append(ChargeId).Append("\n");
             sb.Append("  FirmId: ").Append(FirmId).Append("\n");
             sb.Append("  Matter: ").Append(Matter).Append("\n");
             sb.Append("  Debtor: ").Append(Debtor).Append("\n");
@@ -278,15 +231,14 @@ namespace FeeWise.Model
             sb.Append("  AmountDue: ").Append(AmountDue).Append("\n");
             sb.Append("  Currency: ").Append(Currency).Append("\n");
             sb.Append("  DueDate: ").Append(DueDate).Append("\n");
-            sb.Append("  LineItems: ").Append(LineItems).Append("\n");
-            sb.Append("  Notes: ").Append(Notes).Append("\n");
-            sb.Append("  Payments: ").Append(Payments).Append("\n");
+            sb.Append("  SettlementAccountType: ").Append(SettlementAccountType).Append("\n");
             sb.Append("  SettlementAccountId: ").Append(SettlementAccountId).Append("\n");
+            sb.Append("  Notes: ").Append(Notes).Append("\n");
             sb.Append("  PaymentMethodsOverride: ").Append(PaymentMethodsOverride).Append("\n");
-            sb.Append("  SurchargeChoiceOverride: ").Append(SurchargeChoiceOverride).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
+            sb.Append("  StorePaymentMethods: ").Append(StorePaymentMethods).Append("\n");
+            sb.Append("  SurchargeChoiceOverride: ").Append(SurchargeChoiceOverride).Append("\n");
             sb.Append("  PaymentUri: ").Append(PaymentUri).Append("\n");
-            sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("  AdditionalProperties: ").Append(AdditionalProperties).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -308,15 +260,15 @@ namespace FeeWise.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as TrustDeposit);
+            return this.Equals(input as Charge);
         }
 
         /// <summary>
-        /// Returns true if TrustDeposit instances are equal
+        /// Returns true if Charge instances are equal
         /// </summary>
-        /// <param name="input">Instance of TrustDeposit to be compared</param>
+        /// <param name="input">Instance of Charge to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(TrustDeposit input)
+        public bool Equals(Charge input)
         {
             if (input == null)
             {
@@ -324,9 +276,9 @@ namespace FeeWise.Model
             }
             return 
                 (
-                    this.TrustDepositId == input.TrustDepositId ||
-                    (this.TrustDepositId != null &&
-                    this.TrustDepositId.Equals(input.TrustDepositId))
+                    this.ChargeId == input.ChargeId ||
+                    (this.ChargeId != null &&
+                    this.ChargeId.Equals(input.ChargeId))
                 ) && 
                 (
                     this.FirmId == input.FirmId ||
@@ -373,10 +325,13 @@ namespace FeeWise.Model
                     this.DueDate.Equals(input.DueDate))
                 ) && 
                 (
-                    this.LineItems == input.LineItems ||
-                    this.LineItems != null &&
-                    input.LineItems != null &&
-                    this.LineItems.SequenceEqual(input.LineItems)
+                    this.SettlementAccountType == input.SettlementAccountType ||
+                    this.SettlementAccountType.Equals(input.SettlementAccountType)
+                ) && 
+                (
+                    this.SettlementAccountId == input.SettlementAccountId ||
+                    (this.SettlementAccountId != null &&
+                    this.SettlementAccountId.Equals(input.SettlementAccountId))
                 ) && 
                 (
                     this.Notes == input.Notes ||
@@ -385,25 +340,10 @@ namespace FeeWise.Model
                     this.Notes.SequenceEqual(input.Notes)
                 ) && 
                 (
-                    this.Payments == input.Payments ||
-                    this.Payments != null &&
-                    input.Payments != null &&
-                    this.Payments.SequenceEqual(input.Payments)
-                ) && 
-                (
-                    this.SettlementAccountId == input.SettlementAccountId ||
-                    (this.SettlementAccountId != null &&
-                    this.SettlementAccountId.Equals(input.SettlementAccountId))
-                ) && 
-                (
                     this.PaymentMethodsOverride == input.PaymentMethodsOverride ||
                     this.PaymentMethodsOverride != null &&
                     input.PaymentMethodsOverride != null &&
                     this.PaymentMethodsOverride.SequenceEqual(input.PaymentMethodsOverride)
-                ) && 
-                (
-                    this.SurchargeChoiceOverride == input.SurchargeChoiceOverride ||
-                    this.SurchargeChoiceOverride.Equals(input.SurchargeChoiceOverride)
                 ) && 
                 (
                     this.Description == input.Description ||
@@ -411,13 +351,19 @@ namespace FeeWise.Model
                     this.Description.Equals(input.Description))
                 ) && 
                 (
+                    this.StorePaymentMethods == input.StorePaymentMethods ||
+                    this.StorePaymentMethods != null &&
+                    input.StorePaymentMethods != null &&
+                    this.StorePaymentMethods.SequenceEqual(input.StorePaymentMethods)
+                ) && 
+                (
+                    this.SurchargeChoiceOverride == input.SurchargeChoiceOverride ||
+                    this.SurchargeChoiceOverride.Equals(input.SurchargeChoiceOverride)
+                ) && 
+                (
                     this.PaymentUri == input.PaymentUri ||
                     (this.PaymentUri != null &&
                     this.PaymentUri.Equals(input.PaymentUri))
-                ) && 
-                (
-                    this.Status == input.Status ||
-                    this.Status.Equals(input.Status)
                 )
                 && (this.AdditionalProperties.Count == input.AdditionalProperties.Count && !this.AdditionalProperties.Except(input.AdditionalProperties).Any());
         }
@@ -431,9 +377,9 @@ namespace FeeWise.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.TrustDepositId != null)
+                if (this.ChargeId != null)
                 {
-                    hashCode = (hashCode * 59) + this.TrustDepositId.GetHashCode();
+                    hashCode = (hashCode * 59) + this.ChargeId.GetHashCode();
                 }
                 if (this.FirmId != null)
                 {
@@ -468,36 +414,32 @@ namespace FeeWise.Model
                 {
                     hashCode = (hashCode * 59) + this.DueDate.GetHashCode();
                 }
-                if (this.LineItems != null)
+                hashCode = (hashCode * 59) + this.SettlementAccountType.GetHashCode();
+                if (this.SettlementAccountId != null)
                 {
-                    hashCode = (hashCode * 59) + this.LineItems.GetHashCode();
+                    hashCode = (hashCode * 59) + this.SettlementAccountId.GetHashCode();
                 }
                 if (this.Notes != null)
                 {
                     hashCode = (hashCode * 59) + this.Notes.GetHashCode();
                 }
-                if (this.Payments != null)
-                {
-                    hashCode = (hashCode * 59) + this.Payments.GetHashCode();
-                }
-                if (this.SettlementAccountId != null)
-                {
-                    hashCode = (hashCode * 59) + this.SettlementAccountId.GetHashCode();
-                }
                 if (this.PaymentMethodsOverride != null)
                 {
                     hashCode = (hashCode * 59) + this.PaymentMethodsOverride.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.SurchargeChoiceOverride.GetHashCode();
                 if (this.Description != null)
                 {
                     hashCode = (hashCode * 59) + this.Description.GetHashCode();
                 }
+                if (this.StorePaymentMethods != null)
+                {
+                    hashCode = (hashCode * 59) + this.StorePaymentMethods.GetHashCode();
+                }
+                hashCode = (hashCode * 59) + this.SurchargeChoiceOverride.GetHashCode();
                 if (this.PaymentUri != null)
                 {
                     hashCode = (hashCode * 59) + this.PaymentUri.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.Status.GetHashCode();
                 if (this.AdditionalProperties != null)
                 {
                     hashCode = (hashCode * 59) + this.AdditionalProperties.GetHashCode();

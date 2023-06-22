@@ -18,6 +18,8 @@ docs/BankAccountApi.md
 docs/BankAccountResponse.md
 docs/BankAccountsResponse.md
 docs/CardPayment.md
+docs/Charge.md
+docs/ChargeResponse.md
 docs/Currency.md
 docs/DebitPayment.md
 docs/Debtor.md
@@ -83,6 +85,8 @@ src/FeeWise.Test/Model/BankAccountResponseTests.cs
 src/FeeWise.Test/Model/BankAccountTests.cs
 src/FeeWise.Test/Model/BankAccountsResponseTests.cs
 src/FeeWise.Test/Model/CardPaymentTests.cs
+src/FeeWise.Test/Model/ChargeResponseTests.cs
+src/FeeWise.Test/Model/ChargeTests.cs
 src/FeeWise.Test/Model/CurrencyTests.cs
 src/FeeWise.Test/Model/DebitPaymentTests.cs
 src/FeeWise.Test/Model/DebtorTests.cs
@@ -160,6 +164,8 @@ src/FeeWise/Model/BankAccount.cs
 src/FeeWise/Model/BankAccountResponse.cs
 src/FeeWise/Model/BankAccountsResponse.cs
 src/FeeWise/Model/CardPayment.cs
+src/FeeWise/Model/Charge.cs
+src/FeeWise/Model/ChargeResponse.cs
 src/FeeWise/Model/Currency.cs
 src/FeeWise/Model/DebitPayment.cs
 src/FeeWise/Model/Debtor.cs
