@@ -8,6 +8,8 @@ Name | Type | Description | Notes
 **DebtorId** | **Guid** | This is the uuid of the debtor in FeeWise. | [optional] 
 **ExternalId** | **string** | ID in the PMS | 
 **Name** | **string** |  | [optional] 
+**FirstName** | **string** |  | [optional] 
+**LastName** | **string** |  | [optional] 
 **Email** | **string** |  | [optional] 
 **ContactNumber** | **string** |  | [optional] 
 
