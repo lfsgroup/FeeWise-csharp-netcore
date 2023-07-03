@@ -21,6 +21,10 @@ docs/CardPayment.md
 docs/Charge.md
 docs/ChargeResponse.md
 docs/Currency.md
+docs/CustomerDetails.md
+docs/CustomerPaymentMethod.md
+docs/CustomerPaymentMethodAllOf.md
+docs/CustomersResponse.md
 docs/DebitPayment.md
 docs/Debtor.md
 docs/ErrorResponse.md
@@ -88,6 +92,10 @@ src/FeeWise.Test/Model/CardPaymentTests.cs
 src/FeeWise.Test/Model/ChargeResponseTests.cs
 src/FeeWise.Test/Model/ChargeTests.cs
 src/FeeWise.Test/Model/CurrencyTests.cs
+src/FeeWise.Test/Model/CustomerDetailsTests.cs
+src/FeeWise.Test/Model/CustomerPaymentMethodAllOfTests.cs
+src/FeeWise.Test/Model/CustomerPaymentMethodTests.cs
+src/FeeWise.Test/Model/CustomersResponseTests.cs
 src/FeeWise.Test/Model/DebitPaymentTests.cs
 src/FeeWise.Test/Model/DebtorTests.cs
 src/FeeWise.Test/Model/ErrorResponseTests.cs
@@ -167,6 +175,10 @@ src/FeeWise/Model/CardPayment.cs
 src/FeeWise/Model/Charge.cs
 src/FeeWise/Model/ChargeResponse.cs
 src/FeeWise/Model/Currency.cs
+src/FeeWise/Model/CustomerDetails.cs
+src/FeeWise/Model/CustomerPaymentMethod.cs
+src/FeeWise/Model/CustomerPaymentMethodAllOf.cs
+src/FeeWise/Model/CustomersResponse.cs
 src/FeeWise/Model/DebitPayment.cs
 src/FeeWise/Model/Debtor.cs
 src/FeeWise/Model/ErrorResponse.cs
