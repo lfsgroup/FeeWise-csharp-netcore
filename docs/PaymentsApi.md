@@ -7,6 +7,7 @@ All URIs are relative to *http://localhost*
 | [**AdjustInvoiceAmount**](PaymentsApi.md#adjustinvoiceamount) | **POST** /api/v3/partner/invoices/{invoice_id}/adjust-amount | Adjust an invoice. |
 | [**AdjustTrustDepositAmount**](PaymentsApi.md#adjusttrustdepositamount) | **POST** /api/v3/partner/trust-deposits/{trust_deposit_id}/adjust-amount | Adjust an trust deposit. |
 | [**CreateCharge**](PaymentsApi.md#createcharge) | **POST** /api/v3/partner/charges | Create a Charge |
+| [**CreateChargeAndPayWithCustomerPaymentToken**](PaymentsApi.md#createchargeandpaywithcustomerpaymenttoken) | **POST** /api/v3/partner/charges/pay/payment_token/{payment_token} | Create a Charge, and pay directly, using a customer payment token. |
 | [**CreateInvoice**](PaymentsApi.md#createinvoice) | **POST** /api/v3/partner/invoices | Create an Invoice |
 | [**CreateMatter**](PaymentsApi.md#creatematter) | **POST** /api/v3/partner/matters |  |
 | [**CreateTrustDeposit**](PaymentsApi.md#createtrustdeposit) | **POST** /api/v3/partner/trust-deposits | Create a Trust Deposit |
@@ -331,6 +332,111 @@ catch (ApiException e)
 | **400** | Bad request, do not include charge_id or payment_uri in the request. |  -  |
 | **404** | Firm or Settlement Account could not be found. |  -  |
 | **500** | Error processing |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="createchargeandpaywithcustomerpaymenttoken"></a>
+# **CreateChargeAndPayWithCustomerPaymentToken**
+> ChargeAndPayResponse CreateChargeAndPayWithCustomerPaymentToken (Guid paymentToken, Charge charge)
+
+Create a Charge, and pay directly, using a customer payment token.
+
+Create an charge (and pay for it) for a channel partner, using an existing customer payment token.  A list of customer payment tokens can be retrieved from the `/customers` endpoint.  NB the fields `charge_id`, and `payment_uri` must NOT be supplied. If supplied, BadResponse will be returned.   These are populated once the charge has been created and will be available in the response. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using FeeWise.Api;
+using FeeWise.Client;
+using FeeWise.Model;
+
+namespace Example
+{
+    public class CreateChargeAndPayWithCustomerPaymentTokenExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "http://localhost";
+            // Configure API key authorization: APIAuth
+            config.AddApiKey("X-API-KEY", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("X-API-KEY", "Bearer");
+            // Configure API key authorization: PartnerAuth
+            config.AddApiKey("X-CHANNEL-PARTNER-ID", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("X-CHANNEL-PARTNER-ID", "Bearer");
+
+            var apiInstance = new PaymentsApi(config);
+            var paymentToken = "paymentToken_example";  // Guid | 
+            var charge = new Charge(); // Charge | Charge details, using an existing customer payment token
+
+            try
+            {
+                // Create a Charge, and pay directly, using a customer payment token.
+                ChargeAndPayResponse result = apiInstance.CreateChargeAndPayWithCustomerPaymentToken(paymentToken, charge);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling PaymentsApi.CreateChargeAndPayWithCustomerPaymentToken: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the CreateChargeAndPayWithCustomerPaymentTokenWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Create a Charge, and pay directly, using a customer payment token.
+    ApiResponse<ChargeAndPayResponse> response = apiInstance.CreateChargeAndPayWithCustomerPaymentTokenWithHttpInfo(paymentToken, charge);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling PaymentsApi.CreateChargeAndPayWithCustomerPaymentTokenWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **paymentToken** | **Guid** |  |  |
+| **charge** | [**Charge**](Charge.md) | Charge details, using an existing customer payment token |  |
+
+### Return type
+
+[**ChargeAndPayResponse**](ChargeAndPayResponse.md)
+
+### Authorization
+
+[APIAuth](../README.md#APIAuth), [PartnerAuth](../README.md#PartnerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Charge created and paid |  -  |
+| **400** | Bad request, do not include charge_id or payment_uri in the request. |  -  |
+| **404** | Firm or Settlement Account could not be found. |  -  |
+| **500** | Error processing charge |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

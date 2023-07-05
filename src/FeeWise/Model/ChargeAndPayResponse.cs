@@ -26,39 +26,35 @@ using OpenAPIDateConverter = FeeWise.Client.OpenAPIDateConverter;
 namespace FeeWise.Model
 {
     /// <summary>
-    /// Payments
+    /// ChargeAndPayResponse
     /// </summary>
-    [DataContract(Name = "Payments")]
-    public partial class Payments : IEquatable<Payments>, IValidatableObject
+    [DataContract(Name = "ChargeAndPayResponse")]
+    public partial class ChargeAndPayResponse : IEquatable<ChargeAndPayResponse>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Payments" /> class.
+        /// Initializes a new instance of the <see cref="ChargeAndPayResponse" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected Payments()
+        /// <param name="charge">charge.</param>
+        /// <param name="paymentId">The unique ID for this charges payment.</param>
+        public ChargeAndPayResponse(Charge charge = default(Charge), Guid paymentId = default(Guid))
         {
-            this.AdditionalProperties = new Dictionary<string, object>();
-        }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Payments" /> class.
-        /// </summary>
-        /// <param name="payments">payments (required).</param>
-        public Payments(List<Payment> payments = default(List<Payment>))
-        {
-            // to ensure "payments" is required (not null)
-            if (payments == null)
-            {
-                throw new ArgumentNullException("payments is a required property for Payments and cannot be null");
-            }
-            this._Payments = payments;
+            this.Charge = charge;
+            this.PaymentId = paymentId;
             this.AdditionalProperties = new Dictionary<string, object>();
         }
 
         /// <summary>
-        /// Gets or Sets _Payments
+        /// Gets or Sets Charge
         /// </summary>
-        [DataMember(Name = "payments", IsRequired = true, EmitDefaultValue = true)]
-        public List<Payment> _Payments { get; set; }
+        [DataMember(Name = "charge", EmitDefaultValue = false)]
+        public Charge Charge { get; set; }
+
+        /// <summary>
+        /// The unique ID for this charges payment
+        /// </summary>
+        /// <value>The unique ID for this charges payment</value>
+        [DataMember(Name = "payment_id", EmitDefaultValue = false)]
+        public Guid PaymentId { get; set; }
 
         /// <summary>
         /// Gets or Sets additional properties
@@ -73,8 +69,9 @@ namespace FeeWise.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class Payments {\n");
-            sb.Append("  _Payments: ").Append(_Payments).Append("\n");
+            sb.Append("class ChargeAndPayResponse {\n");
+            sb.Append("  Charge: ").Append(Charge).Append("\n");
+            sb.Append("  PaymentId: ").Append(PaymentId).Append("\n");
             sb.Append("  AdditionalProperties: ").Append(AdditionalProperties).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -96,15 +93,15 @@ namespace FeeWise.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as Payments);
+            return this.Equals(input as ChargeAndPayResponse);
         }
 
         /// <summary>
-        /// Returns true if Payments instances are equal
+        /// Returns true if ChargeAndPayResponse instances are equal
         /// </summary>
-        /// <param name="input">Instance of Payments to be compared</param>
+        /// <param name="input">Instance of ChargeAndPayResponse to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(Payments input)
+        public bool Equals(ChargeAndPayResponse input)
         {
             if (input == null)
             {
@@ -112,10 +109,14 @@ namespace FeeWise.Model
             }
             return 
                 (
-                    this._Payments == input._Payments ||
-                    this._Payments != null &&
-                    input._Payments != null &&
-                    this._Payments.SequenceEqual(input._Payments)
+                    this.Charge == input.Charge ||
+                    (this.Charge != null &&
+                    this.Charge.Equals(input.Charge))
+                ) && 
+                (
+                    this.PaymentId == input.PaymentId ||
+                    (this.PaymentId != null &&
+                    this.PaymentId.Equals(input.PaymentId))
                 )
                 && (this.AdditionalProperties.Count == input.AdditionalProperties.Count && !this.AdditionalProperties.Except(input.AdditionalProperties).Any());
         }
@@ -129,9 +130,13 @@ namespace FeeWise.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this._Payments != null)
+                if (this.Charge != null)
                 {
-                    hashCode = (hashCode * 59) + this._Payments.GetHashCode();
+                    hashCode = (hashCode * 59) + this.Charge.GetHashCode();
+                }
+                if (this.PaymentId != null)
+                {
+                    hashCode = (hashCode * 59) + this.PaymentId.GetHashCode();
                 }
                 if (this.AdditionalProperties != null)
                 {
