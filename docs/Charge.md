@@ -23,6 +23,7 @@ Name | Type | Description | Notes
 **StorePaymentMethods** | [**List&lt;PaymentMethod&gt;**](PaymentMethod.md) | Choose which payment methods to save when the customer pays a charge. | [optional] 
 **SurchargeChoiceOverride** | **SurchargeChoice** |  | [optional] 
 **PaymentUri** | **string** | The URI to pay the charge. | [optional] 
+**Metadata** | **Dictionary&lt;string, string&gt;** | Set of key value pairs that you can attach to an object. Useful for storing additional information about the object in a structured format. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
