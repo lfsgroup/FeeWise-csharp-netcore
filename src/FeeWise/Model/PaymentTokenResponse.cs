@@ -26,47 +26,44 @@ using OpenAPIDateConverter = FeeWise.Client.OpenAPIDateConverter;
 namespace FeeWise.Model
 {
     /// <summary>
-    /// CustomerDetails
+    /// PaymentTokenResponse
     /// </summary>
-    [DataContract(Name = "CustomerDetails")]
-    public partial class CustomerDetails : IEquatable<CustomerDetails>, IValidatableObject
+    [DataContract(Name = "PaymentTokenResponse")]
+    public partial class PaymentTokenResponse : IEquatable<PaymentTokenResponse>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="CustomerDetails" /> class.
+        /// Initializes a new instance of the <see cref="PaymentTokenResponse" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected CustomerDetails()
+        /// <param name="debtor">debtor.</param>
+        /// <param name="paymentToken">The unique ID for this customer&#39;s payment method, this can be used to charge the associated customer.</param>
+        /// <param name="captureUri">The URI to capture the payment details for this payment token.</param>
+        public PaymentTokenResponse(Debtor debtor = default(Debtor), Guid paymentToken = default(Guid), string captureUri = default(string))
         {
-            this.AdditionalProperties = new Dictionary<string, object>();
-        }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="CustomerDetails" /> class.
-        /// </summary>
-        /// <param name="debtor">debtor (required).</param>
-        /// <param name="paymentMethods">paymentMethods.</param>
-        public CustomerDetails(Debtor debtor = default(Debtor), List<CustomerPaymentMethod> paymentMethods = default(List<CustomerPaymentMethod>))
-        {
-            // to ensure "debtor" is required (not null)
-            if (debtor == null)
-            {
-                throw new ArgumentNullException("debtor is a required property for CustomerDetails and cannot be null");
-            }
             this.Debtor = debtor;
-            this.PaymentMethods = paymentMethods;
+            this.PaymentToken = paymentToken;
+            this.CaptureUri = captureUri;
             this.AdditionalProperties = new Dictionary<string, object>();
         }
 
         /// <summary>
         /// Gets or Sets Debtor
         /// </summary>
-        [DataMember(Name = "debtor", IsRequired = true, EmitDefaultValue = true)]
+        [DataMember(Name = "debtor", EmitDefaultValue = false)]
         public Debtor Debtor { get; set; }
 
         /// <summary>
-        /// Gets or Sets PaymentMethods
+        /// The unique ID for this customer&#39;s payment method, this can be used to charge the associated customer
         /// </summary>
-        [DataMember(Name = "payment_methods", EmitDefaultValue = false)]
-        public List<CustomerPaymentMethod> PaymentMethods { get; set; }
+        /// <value>The unique ID for this customer&#39;s payment method, this can be used to charge the associated customer</value>
+        [DataMember(Name = "payment_token", EmitDefaultValue = false)]
+        public Guid PaymentToken { get; set; }
+
+        /// <summary>
+        /// The URI to capture the payment details for this payment token
+        /// </summary>
+        /// <value>The URI to capture the payment details for this payment token</value>
+        [DataMember(Name = "capture_uri", EmitDefaultValue = false)]
+        public string CaptureUri { get; set; }
 
         /// <summary>
         /// Gets or Sets additional properties
@@ -81,9 +78,10 @@ namespace FeeWise.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class CustomerDetails {\n");
+            sb.Append("class PaymentTokenResponse {\n");
             sb.Append("  Debtor: ").Append(Debtor).Append("\n");
-            sb.Append("  PaymentMethods: ").Append(PaymentMethods).Append("\n");
+            sb.Append("  PaymentToken: ").Append(PaymentToken).Append("\n");
+            sb.Append("  CaptureUri: ").Append(CaptureUri).Append("\n");
             sb.Append("  AdditionalProperties: ").Append(AdditionalProperties).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -105,15 +103,15 @@ namespace FeeWise.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as CustomerDetails);
+            return this.Equals(input as PaymentTokenResponse);
         }
 
         /// <summary>
-        /// Returns true if CustomerDetails instances are equal
+        /// Returns true if PaymentTokenResponse instances are equal
         /// </summary>
-        /// <param name="input">Instance of CustomerDetails to be compared</param>
+        /// <param name="input">Instance of PaymentTokenResponse to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(CustomerDetails input)
+        public bool Equals(PaymentTokenResponse input)
         {
             if (input == null)
             {
@@ -126,10 +124,14 @@ namespace FeeWise.Model
                     this.Debtor.Equals(input.Debtor))
                 ) && 
                 (
-                    this.PaymentMethods == input.PaymentMethods ||
-                    this.PaymentMethods != null &&
-                    input.PaymentMethods != null &&
-                    this.PaymentMethods.SequenceEqual(input.PaymentMethods)
+                    this.PaymentToken == input.PaymentToken ||
+                    (this.PaymentToken != null &&
+                    this.PaymentToken.Equals(input.PaymentToken))
+                ) && 
+                (
+                    this.CaptureUri == input.CaptureUri ||
+                    (this.CaptureUri != null &&
+                    this.CaptureUri.Equals(input.CaptureUri))
                 )
                 && (this.AdditionalProperties.Count == input.AdditionalProperties.Count && !this.AdditionalProperties.Except(input.AdditionalProperties).Any());
         }
@@ -147,9 +149,13 @@ namespace FeeWise.Model
                 {
                     hashCode = (hashCode * 59) + this.Debtor.GetHashCode();
                 }
-                if (this.PaymentMethods != null)
+                if (this.PaymentToken != null)
                 {
-                    hashCode = (hashCode * 59) + this.PaymentMethods.GetHashCode();
+                    hashCode = (hashCode * 59) + this.PaymentToken.GetHashCode();
+                }
+                if (this.CaptureUri != null)
+                {
+                    hashCode = (hashCode * 59) + this.CaptureUri.GetHashCode();
                 }
                 if (this.AdditionalProperties != null)
                 {
