@@ -6,7 +6,7 @@ A Charge is created to request payment. Either the settlement_account_type or th
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ChargeId** | **Guid** | This is the uuid of the charge. This will be used for a &#39;GET&#39; of the charge and in webhooks about this charge. NB: this is generated and must not be supplied when creating an charge.  | [optional] 
-**FirmId** | **Guid** | The firm the charge is being created for. | 
+**FirmId** | **Guid** | The firm the charge is being created for. | [optional] 
 **Matter** | [**Matter**](Matter.md) |  | [optional] 
 **Debtor** | [**Debtor**](Debtor.md) |  | [optional] 
 **ExternalId** | **string** | This is the id supplied by the channel partner / PMS and can be used for filtering charges. This should be unique for the PMS but this is not enforced. | [optional] 

@@ -6,8 +6,8 @@ All URIs are relative to *http://localhost*
 |--------|--------------|-------------|
 | [**AdjustInvoiceAmount**](PaymentsApi.md#adjustinvoiceamount) | **POST** /api/v3/partner/invoices/{invoice_id}/adjust-amount | Adjust an invoice. |
 | [**AdjustTrustDepositAmount**](PaymentsApi.md#adjusttrustdepositamount) | **POST** /api/v3/partner/trust-deposits/{trust_deposit_id}/adjust-amount | Adjust an trust deposit. |
-| [**CreateCharge**](PaymentsApi.md#createcharge) | **POST** /api/v3/partner/charges | Create a Charge |
-| [**CreateChargeAndPayWithCustomerPaymentToken**](PaymentsApi.md#createchargeandpaywithcustomerpaymenttoken) | **POST** /api/v3/partner/charges/pay/payment_token/{payment_token} | Create a Charge, and pay directly, using a customer payment token. |
+| [**CreateCharge**](PaymentsApi.md#createcharge) | **POST** /api/v3/partner/firms/{firm_id}/charges | Create a Charge |
+| [**CreateChargeAndPayWithCustomerPaymentToken**](PaymentsApi.md#createchargeandpaywithcustomerpaymenttoken) | **POST** /api/v3/partner/firms/{firm_id}/charges/payment_token/{payment_token} | Create a Charge, and pay directly, using a customer payment token. |
 | [**CreateInvoice**](PaymentsApi.md#createinvoice) | **POST** /api/v3/partner/invoices | Create an Invoice |
 | [**CreateMatter**](PaymentsApi.md#creatematter) | **POST** /api/v3/partner/matters |  |
 | [**CreateTrustDeposit**](PaymentsApi.md#createtrustdeposit) | **POST** /api/v3/partner/trust-deposits | Create a Trust Deposit |
@@ -234,11 +234,11 @@ catch (ApiException e)
 
 <a name="createcharge"></a>
 # **CreateCharge**
-> ChargeResponse CreateCharge (Charge charge)
+> ChargeResponse CreateCharge (Guid firmId, Charge charge)
 
 Create a Charge
 
-Create an charge for a channel partner.   NB the fields `charge_id`, and `payment_uri` must NOT be supplied. If supplied, BadResponse will be returned.   These are populated once the charge has been created and will be available in the response. 
+Create a charge for a firm. The firm can then send the returned URI to their customer, for payment. NB the fields `charge_id`, and `payment_uri` must NOT be supplied. If supplied, BadResponse will be returned.   These are populated once the charge has been created and will be available in the response. 
 
 ### Example
 ```csharp
@@ -266,12 +266,13 @@ namespace Example
             // config.AddApiKeyPrefix("X-CHANNEL-PARTNER-ID", "Bearer");
 
             var apiInstance = new PaymentsApi(config);
+            var firmId = "firmId_example";  // Guid | 
             var charge = new Charge(); // Charge | Charge details
 
             try
             {
                 // Create a Charge
-                ChargeResponse result = apiInstance.CreateCharge(charge);
+                ChargeResponse result = apiInstance.CreateCharge(firmId, charge);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -292,7 +293,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Create a Charge
-    ApiResponse<ChargeResponse> response = apiInstance.CreateChargeWithHttpInfo(charge);
+    ApiResponse<ChargeResponse> response = apiInstance.CreateChargeWithHttpInfo(firmId, charge);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -309,6 +310,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
+| **firmId** | **Guid** |  |  |
 | **charge** | [**Charge**](Charge.md) | Charge details |  |
 
 ### Return type
@@ -337,11 +339,11 @@ catch (ApiException e)
 
 <a name="createchargeandpaywithcustomerpaymenttoken"></a>
 # **CreateChargeAndPayWithCustomerPaymentToken**
-> ChargeAndPayResponse CreateChargeAndPayWithCustomerPaymentToken (Guid paymentToken, Charge charge)
+> ChargeAndPayResponse CreateChargeAndPayWithCustomerPaymentToken (Guid paymentToken, Guid firmId, Charge charge)
 
 Create a Charge, and pay directly, using a customer payment token.
 
-Create an charge (and pay for it) for a channel partner, using an existing customer payment token.  A list of customer payment tokens can be retrieved from the `/customers` endpoint.  NB the fields `charge_id`, and `payment_uri` must NOT be supplied. If supplied, BadResponse will be returned.   These are populated once the charge has been created and will be available in the response. 
+Create a charge (and pay for it) for a firm, using an existing customer payment token.  A list of customer payment tokens can be retrieved from the `/customers` endpoint.  NB the fields `charge_id`, and `payment_uri` must NOT be supplied. If supplied, BadResponse will be returned.   These are populated once the charge has been created and will be available in the response. 
 
 ### Example
 ```csharp
@@ -370,12 +372,13 @@ namespace Example
 
             var apiInstance = new PaymentsApi(config);
             var paymentToken = "paymentToken_example";  // Guid | 
+            var firmId = "firmId_example";  // Guid | 
             var charge = new Charge(); // Charge | Charge details, using an existing customer payment token
 
             try
             {
                 // Create a Charge, and pay directly, using a customer payment token.
-                ChargeAndPayResponse result = apiInstance.CreateChargeAndPayWithCustomerPaymentToken(paymentToken, charge);
+                ChargeAndPayResponse result = apiInstance.CreateChargeAndPayWithCustomerPaymentToken(paymentToken, firmId, charge);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -396,7 +399,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Create a Charge, and pay directly, using a customer payment token.
-    ApiResponse<ChargeAndPayResponse> response = apiInstance.CreateChargeAndPayWithCustomerPaymentTokenWithHttpInfo(paymentToken, charge);
+    ApiResponse<ChargeAndPayResponse> response = apiInstance.CreateChargeAndPayWithCustomerPaymentTokenWithHttpInfo(paymentToken, firmId, charge);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -414,6 +417,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **paymentToken** | **Guid** |  |  |
+| **firmId** | **Guid** |  |  |
 | **charge** | [**Charge**](Charge.md) | Charge details, using an existing customer payment token |  |
 
 ### Return type
