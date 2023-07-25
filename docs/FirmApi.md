@@ -15,7 +15,7 @@ All URIs are relative to *http://localhost*
 
 <a name="createfirm"></a>
 # **CreateFirm**
-> CreateFirmResponse CreateFirm (CreateFirm createFirm)
+> FirmDetails CreateFirm (CreateFirm createFirm)
 
 Create a new firm
 
@@ -52,7 +52,7 @@ namespace Example
             try
             {
                 // Create a new firm
-                CreateFirmResponse result = apiInstance.CreateFirm(createFirm);
+                FirmDetails result = apiInstance.CreateFirm(createFirm);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -73,7 +73,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Create a new firm
-    ApiResponse<CreateFirmResponse> response = apiInstance.CreateFirmWithHttpInfo(createFirm);
+    ApiResponse<FirmDetails> response = apiInstance.CreateFirmWithHttpInfo(createFirm);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -94,7 +94,7 @@ catch (ApiException e)
 
 ### Return type
 
-[**CreateFirmResponse**](CreateFirmResponse.md)
+[**FirmDetails**](FirmDetails.md)
 
 ### Authorization
 

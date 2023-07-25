@@ -22,9 +22,9 @@ docs/CardPayment.md
 docs/Charge.md
 docs/ChargeAndPayResponse.md
 docs/ChargeResponse.md
+docs/Company.md
+docs/CompanySupportEmail.md
 docs/CreateFirm.md
-docs/CreateFirmOfficeAccount.md
-docs/CreateFirmResponse.md
 docs/Currency.md
 docs/CustomerDetails.md
 docs/CustomerPaymentMethod.md
@@ -42,7 +42,6 @@ docs/ExternalPaymentResponse.md
 docs/Firm.md
 docs/FirmApi.md
 docs/FirmDetails.md
-docs/FirmDetailsSupportEmail.md
 docs/FirmResponse.md
 docs/GetMagicLink200Response.md
 docs/Invoice.md
@@ -102,8 +101,8 @@ src/FeeWise.Test/Model/CardPaymentTests.cs
 src/FeeWise.Test/Model/ChargeAndPayResponseTests.cs
 src/FeeWise.Test/Model/ChargeResponseTests.cs
 src/FeeWise.Test/Model/ChargeTests.cs
-src/FeeWise.Test/Model/CreateFirmOfficeAccountTests.cs
-src/FeeWise.Test/Model/CreateFirmResponseTests.cs
+src/FeeWise.Test/Model/CompanySupportEmailTests.cs
+src/FeeWise.Test/Model/CompanyTests.cs
 src/FeeWise.Test/Model/CreateFirmTests.cs
 src/FeeWise.Test/Model/CurrencyTests.cs
 src/FeeWise.Test/Model/CustomerDetailsTests.cs
@@ -119,7 +118,6 @@ src/FeeWise.Test/Model/EventTopicsTests.cs
 src/FeeWise.Test/Model/EventsTests.cs
 src/FeeWise.Test/Model/ExternalPaymentResponseTests.cs
 src/FeeWise.Test/Model/ExternalPaymentTests.cs
-src/FeeWise.Test/Model/FirmDetailsSupportEmailTests.cs
 src/FeeWise.Test/Model/FirmDetailsTests.cs
 src/FeeWise.Test/Model/FirmResponseTests.cs
 src/FeeWise.Test/Model/FirmTests.cs
@@ -194,9 +192,9 @@ src/FeeWise/Model/CardPayment.cs
 src/FeeWise/Model/Charge.cs
 src/FeeWise/Model/ChargeAndPayResponse.cs
 src/FeeWise/Model/ChargeResponse.cs
+src/FeeWise/Model/Company.cs
+src/FeeWise/Model/CompanySupportEmail.cs
 src/FeeWise/Model/CreateFirm.cs
-src/FeeWise/Model/CreateFirmOfficeAccount.cs
-src/FeeWise/Model/CreateFirmResponse.cs
 src/FeeWise/Model/Currency.cs
 src/FeeWise/Model/CustomerDetails.cs
 src/FeeWise/Model/CustomerPaymentMethod.cs
@@ -213,7 +211,6 @@ src/FeeWise/Model/ExternalPayment.cs
 src/FeeWise/Model/ExternalPaymentResponse.cs
 src/FeeWise/Model/Firm.cs
 src/FeeWise/Model/FirmDetails.cs
-src/FeeWise/Model/FirmDetailsSupportEmail.cs
 src/FeeWise/Model/FirmResponse.cs
 src/FeeWise/Model/GetMagicLink200Response.cs
 src/FeeWise/Model/Invoice.cs

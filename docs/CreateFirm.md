@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**FirmDetails** | [**FirmDetails**](FirmDetails.md) |  | 
+**Company** | [**Company**](Company.md) |  | 
 **Address** | [**Address**](Address.md) |  | 
-**OfficeAccount** | [**CreateFirmOfficeAccount**](CreateFirmOfficeAccount.md) |  | 
-**TrustAccount** | [**CreateFirmOfficeAccount**](CreateFirmOfficeAccount.md) |  | [optional] 
+**OfficeAccount** | [**BankAccount**](BankAccount.md) |  | 
+**TrustAccount** | [**BankAccount**](BankAccount.md) |  | [optional] 
 **Roles** | [**List&lt;Person&gt;**](Person.md) | Roles can be either Representative, Executives or Owners. | [optional] 
 **Metadata** | **Dictionary&lt;string, string&gt;** |  | [optional] 
 
