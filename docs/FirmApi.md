@@ -119,7 +119,7 @@ catch (ApiException e)
 
 <a name="createpaymenttoken"></a>
 # **CreatePaymentToken**
-> PaymentTokenResponse CreatePaymentToken (Guid firmId, Debtor debtor)
+> PaymentTokenResponse CreatePaymentToken (Guid firmId, PaymentTokenBody paymentTokenBody)
 
 Create a payment token for a customer.
 
@@ -152,12 +152,12 @@ namespace Example
 
             var apiInstance = new FirmApi(config);
             var firmId = "firmId_example";  // Guid | 
-            var debtor = new Debtor(); // Debtor | Customer details
+            var paymentTokenBody = new PaymentTokenBody(); // PaymentTokenBody | Customer details
 
             try
             {
                 // Create a payment token for a customer.
-                PaymentTokenResponse result = apiInstance.CreatePaymentToken(firmId, debtor);
+                PaymentTokenResponse result = apiInstance.CreatePaymentToken(firmId, paymentTokenBody);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -178,7 +178,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Create a payment token for a customer.
-    ApiResponse<PaymentTokenResponse> response = apiInstance.CreatePaymentTokenWithHttpInfo(firmId, debtor);
+    ApiResponse<PaymentTokenResponse> response = apiInstance.CreatePaymentTokenWithHttpInfo(firmId, paymentTokenBody);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -196,7 +196,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **firmId** | **Guid** |  |  |
-| **debtor** | [**Debtor**](Debtor.md) | Customer details |  |
+| **paymentTokenBody** | [**PaymentTokenBody**](PaymentTokenBody.md) | Customer details |  |
 
 ### Return type
 

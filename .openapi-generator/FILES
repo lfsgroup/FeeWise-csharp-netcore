@@ -55,6 +55,7 @@ docs/Payment.md
 docs/PaymentAuthorisedEvent.md
 docs/PaymentExternalPayment.md
 docs/PaymentMethod.md
+docs/PaymentTokenBody.md
 docs/PaymentTokenResponse.md
 docs/Payments.md
 docs/PaymentsApi.md
@@ -65,6 +66,7 @@ docs/Payouts.md
 docs/PayoutsApi.md
 docs/Person.md
 docs/SurchargeChoice.md
+docs/TokenType.md
 docs/TrustDeposit.md
 docs/TrustDepositResponse.md
 docs/Webhook.md
@@ -133,6 +135,7 @@ src/FeeWise.Test/Model/PaymentAuthorisedEventTests.cs
 src/FeeWise.Test/Model/PaymentExternalPaymentTests.cs
 src/FeeWise.Test/Model/PaymentMethodTests.cs
 src/FeeWise.Test/Model/PaymentTests.cs
+src/FeeWise.Test/Model/PaymentTokenBodyTests.cs
 src/FeeWise.Test/Model/PaymentTokenResponseTests.cs
 src/FeeWise.Test/Model/PaymentsTests.cs
 src/FeeWise.Test/Model/PayoutAccountTests.cs
@@ -141,6 +144,7 @@ src/FeeWise.Test/Model/PayoutTests.cs
 src/FeeWise.Test/Model/PayoutsTests.cs
 src/FeeWise.Test/Model/PersonTests.cs
 src/FeeWise.Test/Model/SurchargeChoiceTests.cs
+src/FeeWise.Test/Model/TokenTypeTests.cs
 src/FeeWise.Test/Model/TrustDepositResponseTests.cs
 src/FeeWise.Test/Model/TrustDepositTests.cs
 src/FeeWise.Test/Model/WebhookApiAuthenticationTests.cs
@@ -224,6 +228,7 @@ src/FeeWise/Model/Payment.cs
 src/FeeWise/Model/PaymentAuthorisedEvent.cs
 src/FeeWise/Model/PaymentExternalPayment.cs
 src/FeeWise/Model/PaymentMethod.cs
+src/FeeWise/Model/PaymentTokenBody.cs
 src/FeeWise/Model/PaymentTokenResponse.cs
 src/FeeWise/Model/Payments.cs
 src/FeeWise/Model/Payout.cs
@@ -232,6 +237,7 @@ src/FeeWise/Model/PayoutStatus.cs
 src/FeeWise/Model/Payouts.cs
 src/FeeWise/Model/Person.cs
 src/FeeWise/Model/SurchargeChoice.cs
+src/FeeWise/Model/TokenType.cs
 src/FeeWise/Model/TrustDeposit.cs
 src/FeeWise/Model/TrustDepositResponse.cs
 src/FeeWise/Model/Webhook.cs
