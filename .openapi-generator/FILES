@@ -43,6 +43,7 @@ docs/Firm.md
 docs/FirmApi.md
 docs/FirmDetails.md
 docs/FirmResponse.md
+docs/FirmsResponse.md
 docs/GetMagicLink200Response.md
 docs/Invoice.md
 docs/InvoiceResponse.md
@@ -123,6 +124,7 @@ src/FeeWise.Test/Model/ExternalPaymentTests.cs
 src/FeeWise.Test/Model/FirmDetailsTests.cs
 src/FeeWise.Test/Model/FirmResponseTests.cs
 src/FeeWise.Test/Model/FirmTests.cs
+src/FeeWise.Test/Model/FirmsResponseTests.cs
 src/FeeWise.Test/Model/GetMagicLink200ResponseTests.cs
 src/FeeWise.Test/Model/InvoiceResponseTests.cs
 src/FeeWise.Test/Model/InvoiceTests.cs
@@ -216,6 +218,7 @@ src/FeeWise/Model/ExternalPaymentResponse.cs
 src/FeeWise/Model/Firm.cs
 src/FeeWise/Model/FirmDetails.cs
 src/FeeWise/Model/FirmResponse.cs
+src/FeeWise/Model/FirmsResponse.cs
 src/FeeWise/Model/GetMagicLink200Response.cs
 src/FeeWise/Model/Invoice.cs
 src/FeeWise/Model/InvoiceResponse.cs

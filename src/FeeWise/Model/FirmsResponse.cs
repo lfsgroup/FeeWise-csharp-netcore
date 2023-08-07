@@ -26,35 +26,39 @@ using OpenAPIDateConverter = FeeWise.Client.OpenAPIDateConverter;
 namespace FeeWise.Model
 {
     /// <summary>
-    /// ApiKeyRotation
+    /// FirmsResponse
     /// </summary>
-    [DataContract(Name = "ApiKeyRotation")]
-    public partial class ApiKeyRotation : IEquatable<ApiKeyRotation>, IValidatableObject
+    [DataContract(Name = "FirmsResponse")]
+    public partial class FirmsResponse : IEquatable<FirmsResponse>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ApiKeyRotation" /> class.
+        /// Initializes a new instance of the <see cref="FirmsResponse" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected ApiKeyRotation()
+        protected FirmsResponse()
         {
             this.AdditionalProperties = new Dictionary<string, object>();
         }
         /// <summary>
-        /// Initializes a new instance of the <see cref="ApiKeyRotation" /> class.
+        /// Initializes a new instance of the <see cref="FirmsResponse" /> class.
         /// </summary>
-        /// <param name="previousKeyExpiresHours">hours until expiry (0 to expire immediately, defaults to 48 hours) (required) (default to 48).</param>
-        public ApiKeyRotation(int previousKeyExpiresHours = 48)
+        /// <param name="firms">firms (required).</param>
+        public FirmsResponse(List<FirmDetails> firms = default(List<FirmDetails>))
         {
-            this.PreviousKeyExpiresHours = previousKeyExpiresHours;
+            // to ensure "firms" is required (not null)
+            if (firms == null)
+            {
+                throw new ArgumentNullException("firms is a required property for FirmsResponse and cannot be null");
+            }
+            this.Firms = firms;
             this.AdditionalProperties = new Dictionary<string, object>();
         }
 
         /// <summary>
-        /// hours until expiry (0 to expire immediately, defaults to 48 hours)
+        /// Gets or Sets Firms
         /// </summary>
-        /// <value>hours until expiry (0 to expire immediately, defaults to 48 hours)</value>
-        [DataMember(Name = "previous_key_expires_hours", IsRequired = true, EmitDefaultValue = true)]
-        public int PreviousKeyExpiresHours { get; set; }
+        [DataMember(Name = "firms", IsRequired = true, EmitDefaultValue = true)]
+        public List<FirmDetails> Firms { get; set; }
 
         /// <summary>
         /// Gets or Sets additional properties
@@ -69,8 +73,8 @@ namespace FeeWise.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class ApiKeyRotation {\n");
-            sb.Append("  PreviousKeyExpiresHours: ").Append(PreviousKeyExpiresHours).Append("\n");
+            sb.Append("class FirmsResponse {\n");
+            sb.Append("  Firms: ").Append(Firms).Append("\n");
             sb.Append("  AdditionalProperties: ").Append(AdditionalProperties).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -92,15 +96,15 @@ namespace FeeWise.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as ApiKeyRotation);
+            return this.Equals(input as FirmsResponse);
         }
 
         /// <summary>
-        /// Returns true if ApiKeyRotation instances are equal
+        /// Returns true if FirmsResponse instances are equal
         /// </summary>
-        /// <param name="input">Instance of ApiKeyRotation to be compared</param>
+        /// <param name="input">Instance of FirmsResponse to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(ApiKeyRotation input)
+        public bool Equals(FirmsResponse input)
         {
             if (input == null)
             {
@@ -108,8 +112,10 @@ namespace FeeWise.Model
             }
             return 
                 (
-                    this.PreviousKeyExpiresHours == input.PreviousKeyExpiresHours ||
-                    this.PreviousKeyExpiresHours.Equals(input.PreviousKeyExpiresHours)
+                    this.Firms == input.Firms ||
+                    this.Firms != null &&
+                    input.Firms != null &&
+                    this.Firms.SequenceEqual(input.Firms)
                 )
                 && (this.AdditionalProperties.Count == input.AdditionalProperties.Count && !this.AdditionalProperties.Except(input.AdditionalProperties).Any());
         }
@@ -123,7 +129,10 @@ namespace FeeWise.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.PreviousKeyExpiresHours.GetHashCode();
+                if (this.Firms != null)
+                {
+                    hashCode = (hashCode * 59) + this.Firms.GetHashCode();
+                }
                 if (this.AdditionalProperties != null)
                 {
                     hashCode = (hashCode * 59) + this.AdditionalProperties.GetHashCode();
