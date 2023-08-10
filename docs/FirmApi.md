@@ -6,6 +6,7 @@ All URIs are relative to *http://localhost*
 |--------|--------------|-------------|
 | [**CreateFirm**](FirmApi.md#createfirm) | **POST** /api/v3/partner/firms | Create a new firm |
 | [**CreatePaymentToken**](FirmApi.md#createpaymenttoken) | **POST** /api/v3/partner/firms/{firm_id}/payment_token | Create a payment token for a customer. |
+| [**DeletePaymentToken**](FirmApi.md#deletepaymenttoken) | **DELETE** /api/v3/partner/firms/{firm_id}/payment_token/{payment_token} | Delete a payment token. |
 | [**GetFirm**](FirmApi.md#getfirm) | **GET** /api/v3/partner/firms/{firm_id} | Get a firm |
 | [**GetFirmBankAccounts**](FirmApi.md#getfirmbankaccounts) | **GET** /api/v3/partner/firms/{firm_id}/accounts | List all firms bank account&#39;s. |
 | [**GetFirmCustomers**](FirmApi.md#getfirmcustomers) | **GET** /api/v3/partner/firms/{firm_id}/customers | List all the customers for a firm. |
@@ -218,6 +219,106 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Return the customer and payment token. |  -  |
 | **404** | Firm not found |  -  |
+| **500** | Error processing |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="deletepaymenttoken"></a>
+# **DeletePaymentToken**
+> void DeletePaymentToken (Guid firmId, Guid paymentToken)
+
+Delete a payment token.
+
+Delete a payment token for given firm
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using FeeWise.Api;
+using FeeWise.Client;
+using FeeWise.Model;
+
+namespace Example
+{
+    public class DeletePaymentTokenExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "http://localhost";
+            // Configure API key authorization: APIAuth
+            config.AddApiKey("X-API-KEY", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("X-API-KEY", "Bearer");
+            // Configure API key authorization: PartnerAuth
+            config.AddApiKey("X-CHANNEL-PARTNER-ID", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("X-CHANNEL-PARTNER-ID", "Bearer");
+
+            var apiInstance = new FirmApi(config);
+            var firmId = "firmId_example";  // Guid | 
+            var paymentToken = "paymentToken_example";  // Guid | 
+
+            try
+            {
+                // Delete a payment token.
+                apiInstance.DeletePaymentToken(firmId, paymentToken);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling FirmApi.DeletePaymentToken: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the DeletePaymentTokenWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Delete a payment token.
+    apiInstance.DeletePaymentTokenWithHttpInfo(firmId, paymentToken);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling FirmApi.DeletePaymentTokenWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **firmId** | **Guid** |  |  |
+| **paymentToken** | **Guid** |  |  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[APIAuth](../README.md#APIAuth), [PartnerAuth](../README.md#PartnerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **204** | Payment token has been successfully deleted. |  -  |
+| **404** | Firm or token not found |  -  |
 | **500** | Error processing |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
