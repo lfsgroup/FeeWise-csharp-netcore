@@ -52,6 +52,7 @@ docs/Matter.md
 docs/MatterRequest.md
 docs/MatterResponse.md
 docs/MatterStatement.md
+docs/MetadataSearch.md
 docs/Payment.md
 docs/PaymentAuthorisedEvent.md
 docs/PaymentExternalPayment.md
@@ -133,6 +134,7 @@ src/FeeWise.Test/Model/MatterRequestTests.cs
 src/FeeWise.Test/Model/MatterResponseTests.cs
 src/FeeWise.Test/Model/MatterStatementTests.cs
 src/FeeWise.Test/Model/MatterTests.cs
+src/FeeWise.Test/Model/MetadataSearchTests.cs
 src/FeeWise.Test/Model/PaymentAuthorisedEventTests.cs
 src/FeeWise.Test/Model/PaymentExternalPaymentTests.cs
 src/FeeWise.Test/Model/PaymentMethodTests.cs
@@ -227,6 +229,7 @@ src/FeeWise/Model/Matter.cs
 src/FeeWise/Model/MatterRequest.cs
 src/FeeWise/Model/MatterResponse.cs
 src/FeeWise/Model/MatterStatement.cs
+src/FeeWise/Model/MetadataSearch.cs
 src/FeeWise/Model/Payment.cs
 src/FeeWise/Model/PaymentAuthorisedEvent.cs
 src/FeeWise/Model/PaymentExternalPayment.cs

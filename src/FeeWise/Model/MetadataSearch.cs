@@ -26,52 +26,34 @@ using OpenAPIDateConverter = FeeWise.Client.OpenAPIDateConverter;
 namespace FeeWise.Model
 {
     /// <summary>
-    /// BankAccountsResponse
+    /// MetadataSearch
     /// </summary>
-    [DataContract(Name = "BankAccountsResponse")]
-    public partial class BankAccountsResponse : IEquatable<BankAccountsResponse>, IValidatableObject
+    [DataContract(Name = "MetadataSearch")]
+    public partial class MetadataSearch : IEquatable<MetadataSearch>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="BankAccountsResponse" /> class.
+        /// Initializes a new instance of the <see cref="MetadataSearch" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected BankAccountsResponse()
+        /// <param name="key">key.</param>
+        /// <param name="value">value.</param>
+        public MetadataSearch(string key = default(string), string value = default(string))
         {
-            this.AdditionalProperties = new Dictionary<string, object>();
-        }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="BankAccountsResponse" /> class.
-        /// </summary>
-        /// <param name="officeAccounts">officeAccounts (required).</param>
-        /// <param name="trustAccounts">trustAccounts (required).</param>
-        public BankAccountsResponse(List<BankAccount> officeAccounts = default(List<BankAccount>), List<BankAccount> trustAccounts = default(List<BankAccount>))
-        {
-            // to ensure "officeAccounts" is required (not null)
-            if (officeAccounts == null)
-            {
-                throw new ArgumentNullException("officeAccounts is a required property for BankAccountsResponse and cannot be null");
-            }
-            this.OfficeAccounts = officeAccounts;
-            // to ensure "trustAccounts" is required (not null)
-            if (trustAccounts == null)
-            {
-                throw new ArgumentNullException("trustAccounts is a required property for BankAccountsResponse and cannot be null");
-            }
-            this.TrustAccounts = trustAccounts;
+            this.Key = key;
+            this.Value = value;
             this.AdditionalProperties = new Dictionary<string, object>();
         }
 
         /// <summary>
-        /// Gets or Sets OfficeAccounts
+        /// Gets or Sets Key
         /// </summary>
-        [DataMember(Name = "office_accounts", IsRequired = true, EmitDefaultValue = true)]
-        public List<BankAccount> OfficeAccounts { get; set; }
+        [DataMember(Name = "key", EmitDefaultValue = false)]
+        public string Key { get; set; }
 
         /// <summary>
-        /// Gets or Sets TrustAccounts
+        /// Gets or Sets Value
         /// </summary>
-        [DataMember(Name = "trust_accounts", IsRequired = true, EmitDefaultValue = true)]
-        public List<BankAccount> TrustAccounts { get; set; }
+        [DataMember(Name = "value", EmitDefaultValue = false)]
+        public string Value { get; set; }
 
         /// <summary>
         /// Gets or Sets additional properties
@@ -86,9 +68,9 @@ namespace FeeWise.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class BankAccountsResponse {\n");
-            sb.Append("  OfficeAccounts: ").Append(OfficeAccounts).Append("\n");
-            sb.Append("  TrustAccounts: ").Append(TrustAccounts).Append("\n");
+            sb.Append("class MetadataSearch {\n");
+            sb.Append("  Key: ").Append(Key).Append("\n");
+            sb.Append("  Value: ").Append(Value).Append("\n");
             sb.Append("  AdditionalProperties: ").Append(AdditionalProperties).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -110,15 +92,15 @@ namespace FeeWise.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as BankAccountsResponse);
+            return this.Equals(input as MetadataSearch);
         }
 
         /// <summary>
-        /// Returns true if BankAccountsResponse instances are equal
+        /// Returns true if MetadataSearch instances are equal
         /// </summary>
-        /// <param name="input">Instance of BankAccountsResponse to be compared</param>
+        /// <param name="input">Instance of MetadataSearch to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(BankAccountsResponse input)
+        public bool Equals(MetadataSearch input)
         {
             if (input == null)
             {
@@ -126,16 +108,14 @@ namespace FeeWise.Model
             }
             return 
                 (
-                    this.OfficeAccounts == input.OfficeAccounts ||
-                    this.OfficeAccounts != null &&
-                    input.OfficeAccounts != null &&
-                    this.OfficeAccounts.SequenceEqual(input.OfficeAccounts)
+                    this.Key == input.Key ||
+                    (this.Key != null &&
+                    this.Key.Equals(input.Key))
                 ) && 
                 (
-                    this.TrustAccounts == input.TrustAccounts ||
-                    this.TrustAccounts != null &&
-                    input.TrustAccounts != null &&
-                    this.TrustAccounts.SequenceEqual(input.TrustAccounts)
+                    this.Value == input.Value ||
+                    (this.Value != null &&
+                    this.Value.Equals(input.Value))
                 )
                 && (this.AdditionalProperties.Count == input.AdditionalProperties.Count && !this.AdditionalProperties.Except(input.AdditionalProperties).Any());
         }
@@ -149,13 +129,13 @@ namespace FeeWise.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.OfficeAccounts != null)
+                if (this.Key != null)
                 {
-                    hashCode = (hashCode * 59) + this.OfficeAccounts.GetHashCode();
+                    hashCode = (hashCode * 59) + this.Key.GetHashCode();
                 }
-                if (this.TrustAccounts != null)
+                if (this.Value != null)
                 {
-                    hashCode = (hashCode * 59) + this.TrustAccounts.GetHashCode();
+                    hashCode = (hashCode * 59) + this.Value.GetHashCode();
                 }
                 if (this.AdditionalProperties != null)
                 {
