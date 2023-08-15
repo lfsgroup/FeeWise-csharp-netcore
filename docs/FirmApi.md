@@ -319,6 +319,7 @@ void (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **204** | Payment token has been successfully deleted. |  -  |
+| **400** | Bad request |  -  |
 | **404** | Firm or token not found |  -  |
 | **500** | Error processing |  -  |
 
