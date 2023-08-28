@@ -42,7 +42,9 @@ docs/ExternalPaymentResponse.md
 docs/Firm.md
 docs/FirmApi.md
 docs/FirmDetails.md
+docs/FirmOnboardingStatus.md
 docs/FirmResponse.md
+docs/FirmStatusUpdatedEvent.md
 docs/FirmsResponse.md
 docs/GetMagicLink200Response.md
 docs/Invoice.md
@@ -67,6 +69,7 @@ docs/PayoutStatus.md
 docs/Payouts.md
 docs/PayoutsApi.md
 docs/Person.md
+docs/PostUpload200Response.md
 docs/SurchargeChoice.md
 docs/TokenType.md
 docs/TrustDeposit.md
@@ -123,7 +126,9 @@ src/FeeWise.Test/Model/EventsTests.cs
 src/FeeWise.Test/Model/ExternalPaymentResponseTests.cs
 src/FeeWise.Test/Model/ExternalPaymentTests.cs
 src/FeeWise.Test/Model/FirmDetailsTests.cs
+src/FeeWise.Test/Model/FirmOnboardingStatusTests.cs
 src/FeeWise.Test/Model/FirmResponseTests.cs
+src/FeeWise.Test/Model/FirmStatusUpdatedEventTests.cs
 src/FeeWise.Test/Model/FirmTests.cs
 src/FeeWise.Test/Model/FirmsResponseTests.cs
 src/FeeWise.Test/Model/GetMagicLink200ResponseTests.cs
@@ -147,6 +152,7 @@ src/FeeWise.Test/Model/PayoutStatusTests.cs
 src/FeeWise.Test/Model/PayoutTests.cs
 src/FeeWise.Test/Model/PayoutsTests.cs
 src/FeeWise.Test/Model/PersonTests.cs
+src/FeeWise.Test/Model/PostUpload200ResponseTests.cs
 src/FeeWise.Test/Model/SurchargeChoiceTests.cs
 src/FeeWise.Test/Model/TokenTypeTests.cs
 src/FeeWise.Test/Model/TrustDepositResponseTests.cs
@@ -219,7 +225,9 @@ src/FeeWise/Model/ExternalPayment.cs
 src/FeeWise/Model/ExternalPaymentResponse.cs
 src/FeeWise/Model/Firm.cs
 src/FeeWise/Model/FirmDetails.cs
+src/FeeWise/Model/FirmOnboardingStatus.cs
 src/FeeWise/Model/FirmResponse.cs
+src/FeeWise/Model/FirmStatusUpdatedEvent.cs
 src/FeeWise/Model/FirmsResponse.cs
 src/FeeWise/Model/GetMagicLink200Response.cs
 src/FeeWise/Model/Invoice.cs
@@ -242,6 +250,7 @@ src/FeeWise/Model/PayoutAccount.cs
 src/FeeWise/Model/PayoutStatus.cs
 src/FeeWise/Model/Payouts.cs
 src/FeeWise/Model/Person.cs
+src/FeeWise/Model/PostUpload200Response.cs
 src/FeeWise/Model/SurchargeChoice.cs
 src/FeeWise/Model/TokenType.cs
 src/FeeWise/Model/TrustDeposit.cs

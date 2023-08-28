@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **InvoiceId** | **Guid** | This is the uuid of the invoice. This will be used for and &#39;GET&#39; of the invoice and in webhooks about this invoice NB this is generated and must not be supplied when creating an invoice.  | [optional] 
-**FirmId** | **Guid** | The firm ID | 
+**FirmId** | **Guid** |  | 
 **Matter** | [**Matter**](Matter.md) |  | [optional] 
 **Debtor** | [**Debtor**](Debtor.md) |  | [optional] 
 **ExternalId** | **string** | This is the id of the artifact supplied by the channel partner / PMS. | 
@@ -23,7 +23,7 @@ Name | Type | Description | Notes
 **SurchargeChoiceOverride** | **SurchargeChoice** |  | [optional] 
 **Description** | **string** | Freeform text for channel partner / PMS. | [optional] 
 **PaymentUri** | **string** | The URI to send to customer.    They will follow this link to make a payment.    NB This must not be set when creating an invoice.  | [optional] 
-**Status** | **PayoutStatus** |  | 
+**Status** | **FirmOnboardingStatus** |  | 
 **TrustDepositId** | **Guid** | This is the uuid of the Trust Deposit. This will be used for any &#39;GET&#39; of the Trust Deposit and in webhooks about this Trust Deposit NB this is generated and must not be supplied when creating a Trust Deposit.  | [optional] 
 **TransactionId** | **Guid** | The unique id of this single transaction in the payout. | 
 **PaymentId** | **Guid** | The payment ID | 
@@ -45,6 +45,8 @@ Name | Type | Description | Notes
 **DebitPayment** | [**DebitPayment**](DebitPayment.md) |  | [optional] 
 **PaymentMethod** | **PaymentMethod** |  | 
 **PaymentMethodDetail** | **string** | The payment method detail | [optional] 
+**LegalName** | **string** |  | [optional] 
+**TradingName** | **string** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

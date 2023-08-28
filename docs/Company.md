@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 **ContactNumber** | **string** |  | 
 **BillingEmail** | **string** |  | 
 **BillingNumber** | **string** |  | [optional] 
-**Status** | **string** | Firm&#39;s status. | [optional] 
+**Status** | **FirmOnboardingStatus** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
