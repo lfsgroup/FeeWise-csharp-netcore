@@ -26,40 +26,34 @@ using OpenAPIDateConverter = FeeWise.Client.OpenAPIDateConverter;
 namespace FeeWise.Model
 {
     /// <summary>
-    /// Adjust the invoice amount 
+    /// Optional fields, may be populated with additional context of the error.
     /// </summary>
-    [DataContract(Name = "adjustInvoiceAmount_request")]
-    public partial class AdjustInvoiceAmountRequest : IEquatable<AdjustInvoiceAmountRequest>, IValidatableObject
+    [DataContract(Name = "ErrorResponse_error_context")]
+    public partial class ErrorResponseErrorContext : IEquatable<ErrorResponseErrorContext>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="AdjustInvoiceAmountRequest" /> class.
+        /// Initializes a new instance of the <see cref="ErrorResponseErrorContext" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected AdjustInvoiceAmountRequest()
+        /// <param name="code">code.</param>
+        /// <param name="declineCode">declineCode.</param>
+        public ErrorResponseErrorContext(string code = default(string), string declineCode = default(string))
         {
-            this.AdditionalProperties = new Dictionary<string, object>();
-        }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="AdjustInvoiceAmountRequest" /> class.
-        /// </summary>
-        /// <param name="newAmount">The new total amount for the invoice. (required).</param>
-        public AdjustInvoiceAmountRequest(string newAmount = default(string))
-        {
-            // to ensure "newAmount" is required (not null)
-            if (newAmount == null)
-            {
-                throw new ArgumentNullException("newAmount is a required property for AdjustInvoiceAmountRequest and cannot be null");
-            }
-            this.NewAmount = newAmount;
+            this.Code = code;
+            this.DeclineCode = declineCode;
             this.AdditionalProperties = new Dictionary<string, object>();
         }
 
         /// <summary>
-        /// The new total amount for the invoice.
+        /// Gets or Sets Code
         /// </summary>
-        /// <value>The new total amount for the invoice.</value>
-        [DataMember(Name = "new_amount", IsRequired = true, EmitDefaultValue = true)]
-        public string NewAmount { get; set; }
+        [DataMember(Name = "code", EmitDefaultValue = false)]
+        public string Code { get; set; }
+
+        /// <summary>
+        /// Gets or Sets DeclineCode
+        /// </summary>
+        [DataMember(Name = "decline_code", EmitDefaultValue = false)]
+        public string DeclineCode { get; set; }
 
         /// <summary>
         /// Gets or Sets additional properties
@@ -74,8 +68,9 @@ namespace FeeWise.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class AdjustInvoiceAmountRequest {\n");
-            sb.Append("  NewAmount: ").Append(NewAmount).Append("\n");
+            sb.Append("class ErrorResponseErrorContext {\n");
+            sb.Append("  Code: ").Append(Code).Append("\n");
+            sb.Append("  DeclineCode: ").Append(DeclineCode).Append("\n");
             sb.Append("  AdditionalProperties: ").Append(AdditionalProperties).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -97,15 +92,15 @@ namespace FeeWise.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as AdjustInvoiceAmountRequest);
+            return this.Equals(input as ErrorResponseErrorContext);
         }
 
         /// <summary>
-        /// Returns true if AdjustInvoiceAmountRequest instances are equal
+        /// Returns true if ErrorResponseErrorContext instances are equal
         /// </summary>
-        /// <param name="input">Instance of AdjustInvoiceAmountRequest to be compared</param>
+        /// <param name="input">Instance of ErrorResponseErrorContext to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(AdjustInvoiceAmountRequest input)
+        public bool Equals(ErrorResponseErrorContext input)
         {
             if (input == null)
             {
@@ -113,9 +108,14 @@ namespace FeeWise.Model
             }
             return 
                 (
-                    this.NewAmount == input.NewAmount ||
-                    (this.NewAmount != null &&
-                    this.NewAmount.Equals(input.NewAmount))
+                    this.Code == input.Code ||
+                    (this.Code != null &&
+                    this.Code.Equals(input.Code))
+                ) && 
+                (
+                    this.DeclineCode == input.DeclineCode ||
+                    (this.DeclineCode != null &&
+                    this.DeclineCode.Equals(input.DeclineCode))
                 )
                 && (this.AdditionalProperties.Count == input.AdditionalProperties.Count && !this.AdditionalProperties.Except(input.AdditionalProperties).Any());
         }
@@ -129,9 +129,13 @@ namespace FeeWise.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.NewAmount != null)
+                if (this.Code != null)
                 {
-                    hashCode = (hashCode * 59) + this.NewAmount.GetHashCode();
+                    hashCode = (hashCode * 59) + this.Code.GetHashCode();
+                }
+                if (this.DeclineCode != null)
+                {
+                    hashCode = (hashCode * 59) + this.DeclineCode.GetHashCode();
                 }
                 if (this.AdditionalProperties != null)
                 {

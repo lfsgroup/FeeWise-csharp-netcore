@@ -440,6 +440,7 @@ catch (ApiException e)
 | **200** | Charge created and paid |  -  |
 | **400** | Bad request, do not include charge_id or payment_uri in the request. |  -  |
 | **404** | Firm or Settlement Account could not be found. |  -  |
+| **409** | Charge was unsuccessful and the payment failed to process. |  -  |
 | **500** | Error processing charge |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

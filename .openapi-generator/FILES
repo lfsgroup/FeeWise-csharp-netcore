@@ -33,6 +33,7 @@ docs/CustomersResponse.md
 docs/DebitPayment.md
 docs/Debtor.md
 docs/ErrorResponse.md
+docs/ErrorResponseErrorContext.md
 docs/Event.md
 docs/EventFilters.md
 docs/EventTopics.md
@@ -118,6 +119,7 @@ src/FeeWise.Test/Model/CustomerPaymentMethodTests.cs
 src/FeeWise.Test/Model/CustomersResponseTests.cs
 src/FeeWise.Test/Model/DebitPaymentTests.cs
 src/FeeWise.Test/Model/DebtorTests.cs
+src/FeeWise.Test/Model/ErrorResponseErrorContextTests.cs
 src/FeeWise.Test/Model/ErrorResponseTests.cs
 src/FeeWise.Test/Model/EventFiltersTests.cs
 src/FeeWise.Test/Model/EventTests.cs
@@ -217,6 +219,7 @@ src/FeeWise/Model/CustomersResponse.cs
 src/FeeWise/Model/DebitPayment.cs
 src/FeeWise/Model/Debtor.cs
 src/FeeWise/Model/ErrorResponse.cs
+src/FeeWise/Model/ErrorResponseErrorContext.cs
 src/FeeWise/Model/Event.cs
 src/FeeWise/Model/EventFilters.cs
 src/FeeWise/Model/EventTopics.cs
