@@ -23,73 +23,73 @@ namespace FeeWise.Api
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public interface IAPIKeyApiSync : IApiAccessor
+    public interface IDefaultApiSync : IApiAccessor
     {
         #region Synchronous Operations
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Produces a new API-KEY. This new key and the previous key will both be valid until they expire. The key expiry is set by system defaults but may be customised for this specific key in the request. 
+        /// Upload a partner logo to FeeWise. This logo will be used wherever FeeWise and the partner have agreed to show a logo in the FeeWise UI. nb Content-Type header must be multipart/form-data example  curl -X POST -F \&quot;fwUploadFile&#x3D;@/path/to/file.png\&quot; \\     http://localhost:8080/api/v3/partner/upload \\       - -header &#39;X-CHANNEL-PARTNER-ID: &lt;channel partner id&gt;&#39;                - -header &#39;X-API-KEY: &lt;api key&gt;&#39; \\       - -header \&quot;Content-Type: multipart/form-data\&quot; 
         /// </remarks>
         /// <exception cref="FeeWise.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="apiKeyRotation"> (optional)</param>
+        /// <param name="fwUploadFile"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <returns>ApiKeyResponse</returns>
-        ApiKeyResponse RotateApiKey(ApiKeyRotation apiKeyRotation = default(ApiKeyRotation), int operationIndex = 0);
+        /// <returns>PostUpload200Response</returns>
+        PostUpload200Response PostPartnerLogoUpload(System.IO.Stream fwUploadFile = default(System.IO.Stream), int operationIndex = 0);
 
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Produces a new API-KEY. This new key and the previous key will both be valid until they expire. The key expiry is set by system defaults but may be customised for this specific key in the request. 
+        /// Upload a partner logo to FeeWise. This logo will be used wherever FeeWise and the partner have agreed to show a logo in the FeeWise UI. nb Content-Type header must be multipart/form-data example  curl -X POST -F \&quot;fwUploadFile&#x3D;@/path/to/file.png\&quot; \\     http://localhost:8080/api/v3/partner/upload \\       - -header &#39;X-CHANNEL-PARTNER-ID: &lt;channel partner id&gt;&#39;                - -header &#39;X-API-KEY: &lt;api key&gt;&#39; \\       - -header \&quot;Content-Type: multipart/form-data\&quot; 
         /// </remarks>
         /// <exception cref="FeeWise.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="apiKeyRotation"> (optional)</param>
+        /// <param name="fwUploadFile"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <returns>ApiResponse of ApiKeyResponse</returns>
-        ApiResponse<ApiKeyResponse> RotateApiKeyWithHttpInfo(ApiKeyRotation apiKeyRotation = default(ApiKeyRotation), int operationIndex = 0);
+        /// <returns>ApiResponse of PostUpload200Response</returns>
+        ApiResponse<PostUpload200Response> PostPartnerLogoUploadWithHttpInfo(System.IO.Stream fwUploadFile = default(System.IO.Stream), int operationIndex = 0);
         #endregion Synchronous Operations
     }
 
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public interface IAPIKeyApiAsync : IApiAccessor
+    public interface IDefaultApiAsync : IApiAccessor
     {
         #region Asynchronous Operations
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Produces a new API-KEY. This new key and the previous key will both be valid until they expire. The key expiry is set by system defaults but may be customised for this specific key in the request. 
+        /// Upload a partner logo to FeeWise. This logo will be used wherever FeeWise and the partner have agreed to show a logo in the FeeWise UI. nb Content-Type header must be multipart/form-data example  curl -X POST -F \&quot;fwUploadFile&#x3D;@/path/to/file.png\&quot; \\     http://localhost:8080/api/v3/partner/upload \\       - -header &#39;X-CHANNEL-PARTNER-ID: &lt;channel partner id&gt;&#39;                - -header &#39;X-API-KEY: &lt;api key&gt;&#39; \\       - -header \&quot;Content-Type: multipart/form-data\&quot; 
         /// </remarks>
         /// <exception cref="FeeWise.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="apiKeyRotation"> (optional)</param>
+        /// <param name="fwUploadFile"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiKeyResponse</returns>
-        System.Threading.Tasks.Task<ApiKeyResponse> RotateApiKeyAsync(ApiKeyRotation apiKeyRotation = default(ApiKeyRotation), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <returns>Task of PostUpload200Response</returns>
+        System.Threading.Tasks.Task<PostUpload200Response> PostPartnerLogoUploadAsync(System.IO.Stream fwUploadFile = default(System.IO.Stream), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Produces a new API-KEY. This new key and the previous key will both be valid until they expire. The key expiry is set by system defaults but may be customised for this specific key in the request. 
+        /// Upload a partner logo to FeeWise. This logo will be used wherever FeeWise and the partner have agreed to show a logo in the FeeWise UI. nb Content-Type header must be multipart/form-data example  curl -X POST -F \&quot;fwUploadFile&#x3D;@/path/to/file.png\&quot; \\     http://localhost:8080/api/v3/partner/upload \\       - -header &#39;X-CHANNEL-PARTNER-ID: &lt;channel partner id&gt;&#39;                - -header &#39;X-API-KEY: &lt;api key&gt;&#39; \\       - -header \&quot;Content-Type: multipart/form-data\&quot; 
         /// </remarks>
         /// <exception cref="FeeWise.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="apiKeyRotation"> (optional)</param>
+        /// <param name="fwUploadFile"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (ApiKeyResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ApiKeyResponse>> RotateApiKeyWithHttpInfoAsync(ApiKeyRotation apiKeyRotation = default(ApiKeyRotation), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (PostUpload200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<PostUpload200Response>> PostPartnerLogoUploadWithHttpInfoAsync(System.IO.Stream fwUploadFile = default(System.IO.Stream), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public interface IAPIKeyApi : IAPIKeyApiSync, IAPIKeyApiAsync
+    public interface IDefaultApi : IDefaultApiSync, IDefaultApiAsync
     {
 
     }
@@ -97,23 +97,23 @@ namespace FeeWise.Api
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public partial class APIKeyApi : IAPIKeyApi
+    public partial class DefaultApi : IDefaultApi
     {
         private FeeWise.Client.ExceptionFactory _exceptionFactory = (name, response) => null;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="APIKeyApi"/> class.
+        /// Initializes a new instance of the <see cref="DefaultApi"/> class.
         /// </summary>
         /// <returns></returns>
-        public APIKeyApi() : this((string)null)
+        public DefaultApi() : this((string)null)
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="APIKeyApi"/> class.
+        /// Initializes a new instance of the <see cref="DefaultApi"/> class.
         /// </summary>
         /// <returns></returns>
-        public APIKeyApi(string basePath)
+        public DefaultApi(string basePath)
         {
             this.Configuration = FeeWise.Client.Configuration.MergeConfigurations(
                 FeeWise.Client.GlobalConfiguration.Instance,
@@ -125,12 +125,12 @@ namespace FeeWise.Api
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="APIKeyApi"/> class
+        /// Initializes a new instance of the <see cref="DefaultApi"/> class
         /// using Configuration object
         /// </summary>
         /// <param name="configuration">An instance of Configuration</param>
         /// <returns></returns>
-        public APIKeyApi(FeeWise.Client.Configuration configuration)
+        public DefaultApi(FeeWise.Client.Configuration configuration)
         {
             if (configuration == null) throw new ArgumentNullException("configuration");
 
@@ -144,13 +144,13 @@ namespace FeeWise.Api
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="APIKeyApi"/> class
+        /// Initializes a new instance of the <see cref="DefaultApi"/> class
         /// using a Configuration object and client instance.
         /// </summary>
         /// <param name="client">The client interface for synchronous API access.</param>
         /// <param name="asyncClient">The client interface for asynchronous API access.</param>
         /// <param name="configuration">The configuration object.</param>
-        public APIKeyApi(FeeWise.Client.ISynchronousClient client, FeeWise.Client.IAsynchronousClient asyncClient, FeeWise.Client.IReadableConfiguration configuration)
+        public DefaultApi(FeeWise.Client.ISynchronousClient client, FeeWise.Client.IAsynchronousClient asyncClient, FeeWise.Client.IReadableConfiguration configuration)
         {
             if (client == null) throw new ArgumentNullException("client");
             if (asyncClient == null) throw new ArgumentNullException("asyncClient");
@@ -204,31 +204,31 @@ namespace FeeWise.Api
         }
 
         /// <summary>
-        ///  Produces a new API-KEY. This new key and the previous key will both be valid until they expire. The key expiry is set by system defaults but may be customised for this specific key in the request. 
+        ///  Upload a partner logo to FeeWise. This logo will be used wherever FeeWise and the partner have agreed to show a logo in the FeeWise UI. nb Content-Type header must be multipart/form-data example  curl -X POST -F \&quot;fwUploadFile&#x3D;@/path/to/file.png\&quot; \\     http://localhost:8080/api/v3/partner/upload \\       - -header &#39;X-CHANNEL-PARTNER-ID: &lt;channel partner id&gt;&#39;                - -header &#39;X-API-KEY: &lt;api key&gt;&#39; \\       - -header \&quot;Content-Type: multipart/form-data\&quot; 
         /// </summary>
         /// <exception cref="FeeWise.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="apiKeyRotation"> (optional)</param>
+        /// <param name="fwUploadFile"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <returns>ApiKeyResponse</returns>
-        public ApiKeyResponse RotateApiKey(ApiKeyRotation apiKeyRotation = default(ApiKeyRotation), int operationIndex = 0)
+        /// <returns>PostUpload200Response</returns>
+        public PostUpload200Response PostPartnerLogoUpload(System.IO.Stream fwUploadFile = default(System.IO.Stream), int operationIndex = 0)
         {
-            FeeWise.Client.ApiResponse<ApiKeyResponse> localVarResponse = RotateApiKeyWithHttpInfo(apiKeyRotation);
+            FeeWise.Client.ApiResponse<PostUpload200Response> localVarResponse = PostPartnerLogoUploadWithHttpInfo(fwUploadFile);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  Produces a new API-KEY. This new key and the previous key will both be valid until they expire. The key expiry is set by system defaults but may be customised for this specific key in the request. 
+        ///  Upload a partner logo to FeeWise. This logo will be used wherever FeeWise and the partner have agreed to show a logo in the FeeWise UI. nb Content-Type header must be multipart/form-data example  curl -X POST -F \&quot;fwUploadFile&#x3D;@/path/to/file.png\&quot; \\     http://localhost:8080/api/v3/partner/upload \\       - -header &#39;X-CHANNEL-PARTNER-ID: &lt;channel partner id&gt;&#39;                - -header &#39;X-API-KEY: &lt;api key&gt;&#39; \\       - -header \&quot;Content-Type: multipart/form-data\&quot; 
         /// </summary>
         /// <exception cref="FeeWise.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="apiKeyRotation"> (optional)</param>
+        /// <param name="fwUploadFile"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <returns>ApiResponse of ApiKeyResponse</returns>
-        public FeeWise.Client.ApiResponse<ApiKeyResponse> RotateApiKeyWithHttpInfo(ApiKeyRotation apiKeyRotation = default(ApiKeyRotation), int operationIndex = 0)
+        /// <returns>ApiResponse of PostUpload200Response</returns>
+        public FeeWise.Client.ApiResponse<PostUpload200Response> PostPartnerLogoUploadWithHttpInfo(System.IO.Stream fwUploadFile = default(System.IO.Stream), int operationIndex = 0)
         {
             FeeWise.Client.RequestOptions localVarRequestOptions = new FeeWise.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
-                "application/json"
+                "multipart/form-data"
             };
 
             // to determine the Accept header
@@ -248,9 +248,12 @@ namespace FeeWise.Api
                 localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
             }
 
-            localVarRequestOptions.Data = apiKeyRotation;
+            if (fwUploadFile != null)
+            {
+                localVarRequestOptions.FileParameters.Add("fwUploadFile", fwUploadFile);
+            }
 
-            localVarRequestOptions.Operation = "APIKeyApi.RotateApiKey";
+            localVarRequestOptions.Operation = "DefaultApi.PostPartnerLogoUpload";
             localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (APIAuth) required
@@ -265,10 +268,10 @@ namespace FeeWise.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<ApiKeyResponse>("/api/v3/partner/rotatekey", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<PostUpload200Response>("/api/v3/partner/upload", localVarRequestOptions, this.Configuration);
             if (this.ExceptionFactory != null)
             {
-                Exception _exception = this.ExceptionFactory("RotateApiKey", localVarResponse);
+                Exception _exception = this.ExceptionFactory("PostPartnerLogoUpload", localVarResponse);
                 if (_exception != null)
                 {
                     throw _exception;
@@ -279,34 +282,34 @@ namespace FeeWise.Api
         }
 
         /// <summary>
-        ///  Produces a new API-KEY. This new key and the previous key will both be valid until they expire. The key expiry is set by system defaults but may be customised for this specific key in the request. 
+        ///  Upload a partner logo to FeeWise. This logo will be used wherever FeeWise and the partner have agreed to show a logo in the FeeWise UI. nb Content-Type header must be multipart/form-data example  curl -X POST -F \&quot;fwUploadFile&#x3D;@/path/to/file.png\&quot; \\     http://localhost:8080/api/v3/partner/upload \\       - -header &#39;X-CHANNEL-PARTNER-ID: &lt;channel partner id&gt;&#39;                - -header &#39;X-API-KEY: &lt;api key&gt;&#39; \\       - -header \&quot;Content-Type: multipart/form-data\&quot; 
         /// </summary>
         /// <exception cref="FeeWise.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="apiKeyRotation"> (optional)</param>
+        /// <param name="fwUploadFile"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiKeyResponse</returns>
-        public async System.Threading.Tasks.Task<ApiKeyResponse> RotateApiKeyAsync(ApiKeyRotation apiKeyRotation = default(ApiKeyRotation), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        /// <returns>Task of PostUpload200Response</returns>
+        public async System.Threading.Tasks.Task<PostUpload200Response> PostPartnerLogoUploadAsync(System.IO.Stream fwUploadFile = default(System.IO.Stream), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            FeeWise.Client.ApiResponse<ApiKeyResponse> localVarResponse = await RotateApiKeyWithHttpInfoAsync(apiKeyRotation, operationIndex, cancellationToken).ConfigureAwait(false);
+            FeeWise.Client.ApiResponse<PostUpload200Response> localVarResponse = await PostPartnerLogoUploadWithHttpInfoAsync(fwUploadFile, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  Produces a new API-KEY. This new key and the previous key will both be valid until they expire. The key expiry is set by system defaults but may be customised for this specific key in the request. 
+        ///  Upload a partner logo to FeeWise. This logo will be used wherever FeeWise and the partner have agreed to show a logo in the FeeWise UI. nb Content-Type header must be multipart/form-data example  curl -X POST -F \&quot;fwUploadFile&#x3D;@/path/to/file.png\&quot; \\     http://localhost:8080/api/v3/partner/upload \\       - -header &#39;X-CHANNEL-PARTNER-ID: &lt;channel partner id&gt;&#39;                - -header &#39;X-API-KEY: &lt;api key&gt;&#39; \\       - -header \&quot;Content-Type: multipart/form-data\&quot; 
         /// </summary>
         /// <exception cref="FeeWise.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="apiKeyRotation"> (optional)</param>
+        /// <param name="fwUploadFile"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (ApiKeyResponse)</returns>
-        public async System.Threading.Tasks.Task<FeeWise.Client.ApiResponse<ApiKeyResponse>> RotateApiKeyWithHttpInfoAsync(ApiKeyRotation apiKeyRotation = default(ApiKeyRotation), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (PostUpload200Response)</returns>
+        public async System.Threading.Tasks.Task<FeeWise.Client.ApiResponse<PostUpload200Response>> PostPartnerLogoUploadWithHttpInfoAsync(System.IO.Stream fwUploadFile = default(System.IO.Stream), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
 
             FeeWise.Client.RequestOptions localVarRequestOptions = new FeeWise.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
-                "application/json"
+                "multipart/form-data"
             };
 
             // to determine the Accept header
@@ -326,9 +329,12 @@ namespace FeeWise.Api
                 localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
             }
 
-            localVarRequestOptions.Data = apiKeyRotation;
+            if (fwUploadFile != null)
+            {
+                localVarRequestOptions.FileParameters.Add("fwUploadFile", fwUploadFile);
+            }
 
-            localVarRequestOptions.Operation = "APIKeyApi.RotateApiKey";
+            localVarRequestOptions.Operation = "DefaultApi.PostPartnerLogoUpload";
             localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (APIAuth) required
@@ -343,11 +349,11 @@ namespace FeeWise.Api
             }
 
             // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.PostAsync<ApiKeyResponse>("/api/v3/partner/rotatekey", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<PostUpload200Response>("/api/v3/partner/upload", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
-                Exception _exception = this.ExceptionFactory("RotateApiKey", localVarResponse);
+                Exception _exception = this.ExceptionFactory("PostPartnerLogoUpload", localVarResponse);
                 if (_exception != null)
                 {
                     throw _exception;
