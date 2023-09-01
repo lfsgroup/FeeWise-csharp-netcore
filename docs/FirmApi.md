@@ -840,7 +840,7 @@ catch (ApiException e)
 
 
 
-Upload files to FeeWise. nb Content-Type header must be multipart/form-data example  curl -X POST -F \"fwUploadFile=@/path/to/file.png\" \\     http://localhost:8080/api/v3/partner/firms/<firm_id>/upload?file_purpose=identity_document \\       - -header 'X-CHANNEL-PARTNER-ID: <channel partner id>'                - -header 'X-API-KEY: <api key>' \\       - -header \"Content-Type: multipart/form-data\" 
+Upload files to FeeWise. nb Content-Type header must be multipart/form-data example  curl -X POST -F \"fwUploadFile=@/path/to/file.png\" \\     http://localhost:8080/api/v3/partner/firms/<firm_id>/upload?file_purpose=identity_document \\       - -header 'X-CHANNEL-PARTNER-ID: <channel partner id>'  \\       - -header 'X-API-KEY: <api key>' \\       - -header \"Content-Type: multipart/form-data\" 
 
 ### Example
 ```csharp
