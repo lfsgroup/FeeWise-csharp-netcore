@@ -75,6 +75,7 @@ docs/PayoutsApi.md
 docs/Person.md
 docs/PostUpload200Response.md
 docs/SurchargeChoice.md
+docs/TermsOfService.md
 docs/TokenType.md
 docs/TrustDeposit.md
 docs/TrustDepositResponse.md
@@ -162,6 +163,7 @@ src/FeeWise.Test/Model/PayoutsTests.cs
 src/FeeWise.Test/Model/PersonTests.cs
 src/FeeWise.Test/Model/PostUpload200ResponseTests.cs
 src/FeeWise.Test/Model/SurchargeChoiceTests.cs
+src/FeeWise.Test/Model/TermsOfServiceTests.cs
 src/FeeWise.Test/Model/TokenTypeTests.cs
 src/FeeWise.Test/Model/TrustDepositResponseTests.cs
 src/FeeWise.Test/Model/TrustDepositTests.cs
@@ -264,6 +266,7 @@ src/FeeWise/Model/Payouts.cs
 src/FeeWise/Model/Person.cs
 src/FeeWise/Model/PostUpload200Response.cs
 src/FeeWise/Model/SurchargeChoice.cs
+src/FeeWise/Model/TermsOfService.cs
 src/FeeWise/Model/TokenType.cs
 src/FeeWise/Model/TrustDeposit.cs
 src/FeeWise/Model/TrustDepositResponse.cs

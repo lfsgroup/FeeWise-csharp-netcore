@@ -26,39 +26,60 @@ using OpenAPIDateConverter = FeeWise.Client.OpenAPIDateConverter;
 namespace FeeWise.Model
 {
     /// <summary>
-    /// EventTopics
+    /// Document that the firm has signed and provided, e.g. FeeWise Terms of Service
     /// </summary>
-    [DataContract(Name = "EventTopics")]
-    public partial class EventTopics : IEquatable<EventTopics>, IValidatableObject
+    [DataContract(Name = "TermsOfService")]
+    public partial class TermsOfService : IEquatable<TermsOfService>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="EventTopics" /> class.
+        /// Initializes a new instance of the <see cref="TermsOfService" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected EventTopics()
+        protected TermsOfService()
         {
             this.AdditionalProperties = new Dictionary<string, object>();
         }
         /// <summary>
-        /// Initializes a new instance of the <see cref="EventTopics" /> class.
+        /// Initializes a new instance of the <see cref="TermsOfService" /> class.
         /// </summary>
-        /// <param name="eventTopics">eventTopics (required).</param>
-        public EventTopics(List<string> eventTopics = default(List<string>))
+        /// <param name="documentName">documentName (required).</param>
+        /// <param name="accepted">accepted (required).</param>
+        /// <param name="acceptedIp">acceptedIp (required).</param>
+        public TermsOfService(string documentName = default(string), DateTime accepted = default(DateTime), string acceptedIp = default(string))
         {
-            // to ensure "eventTopics" is required (not null)
-            if (eventTopics == null)
+            // to ensure "documentName" is required (not null)
+            if (documentName == null)
             {
-                throw new ArgumentNullException("eventTopics is a required property for EventTopics and cannot be null");
+                throw new ArgumentNullException("documentName is a required property for TermsOfService and cannot be null");
             }
-            this._EventTopics = eventTopics;
+            this.DocumentName = documentName;
+            this.Accepted = accepted;
+            // to ensure "acceptedIp" is required (not null)
+            if (acceptedIp == null)
+            {
+                throw new ArgumentNullException("acceptedIp is a required property for TermsOfService and cannot be null");
+            }
+            this.AcceptedIp = acceptedIp;
             this.AdditionalProperties = new Dictionary<string, object>();
         }
 
         /// <summary>
-        /// Gets or Sets _EventTopics
+        /// Gets or Sets DocumentName
         /// </summary>
-        [DataMember(Name = "event_topics", IsRequired = true, EmitDefaultValue = true)]
-        public List<string> _EventTopics { get; set; }
+        [DataMember(Name = "document_name", IsRequired = true, EmitDefaultValue = true)]
+        public string DocumentName { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Accepted
+        /// </summary>
+        [DataMember(Name = "accepted", IsRequired = true, EmitDefaultValue = true)]
+        public DateTime Accepted { get; set; }
+
+        /// <summary>
+        /// Gets or Sets AcceptedIp
+        /// </summary>
+        [DataMember(Name = "accepted_ip", IsRequired = true, EmitDefaultValue = true)]
+        public string AcceptedIp { get; set; }
 
         /// <summary>
         /// Gets or Sets additional properties
@@ -73,8 +94,10 @@ namespace FeeWise.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class EventTopics {\n");
-            sb.Append("  _EventTopics: ").Append(_EventTopics).Append("\n");
+            sb.Append("class TermsOfService {\n");
+            sb.Append("  DocumentName: ").Append(DocumentName).Append("\n");
+            sb.Append("  Accepted: ").Append(Accepted).Append("\n");
+            sb.Append("  AcceptedIp: ").Append(AcceptedIp).Append("\n");
             sb.Append("  AdditionalProperties: ").Append(AdditionalProperties).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -96,15 +119,15 @@ namespace FeeWise.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as EventTopics);
+            return this.Equals(input as TermsOfService);
         }
 
         /// <summary>
-        /// Returns true if EventTopics instances are equal
+        /// Returns true if TermsOfService instances are equal
         /// </summary>
-        /// <param name="input">Instance of EventTopics to be compared</param>
+        /// <param name="input">Instance of TermsOfService to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(EventTopics input)
+        public bool Equals(TermsOfService input)
         {
             if (input == null)
             {
@@ -112,10 +135,19 @@ namespace FeeWise.Model
             }
             return 
                 (
-                    this._EventTopics == input._EventTopics ||
-                    this._EventTopics != null &&
-                    input._EventTopics != null &&
-                    this._EventTopics.SequenceEqual(input._EventTopics)
+                    this.DocumentName == input.DocumentName ||
+                    (this.DocumentName != null &&
+                    this.DocumentName.Equals(input.DocumentName))
+                ) && 
+                (
+                    this.Accepted == input.Accepted ||
+                    (this.Accepted != null &&
+                    this.Accepted.Equals(input.Accepted))
+                ) && 
+                (
+                    this.AcceptedIp == input.AcceptedIp ||
+                    (this.AcceptedIp != null &&
+                    this.AcceptedIp.Equals(input.AcceptedIp))
                 )
                 && (this.AdditionalProperties.Count == input.AdditionalProperties.Count && !this.AdditionalProperties.Except(input.AdditionalProperties).Any());
         }
@@ -129,9 +161,17 @@ namespace FeeWise.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this._EventTopics != null)
+                if (this.DocumentName != null)
                 {
-                    hashCode = (hashCode * 59) + this._EventTopics.GetHashCode();
+                    hashCode = (hashCode * 59) + this.DocumentName.GetHashCode();
+                }
+                if (this.Accepted != null)
+                {
+                    hashCode = (hashCode * 59) + this.Accepted.GetHashCode();
+                }
+                if (this.AcceptedIp != null)
+                {
+                    hashCode = (hashCode * 59) + this.AcceptedIp.GetHashCode();
                 }
                 if (this.AdditionalProperties != null)
                 {
