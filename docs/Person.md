@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**PersonId** | **Guid** |  | [optional] 
 **FirstName** | **string** |  | 
 **MiddleName** | **string** |  | [optional] 
 **LastName** | **string** |  | 
