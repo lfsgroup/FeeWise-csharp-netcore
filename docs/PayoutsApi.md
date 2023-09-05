@@ -4,14 +4,14 @@ All URIs are relative to *http://localhost*
 
 | Method | HTTP request | Description |
 |--------|--------------|-------------|
-| [**GetChannelPartnerPayouts**](PayoutsApi.md#getchannelpartnerpayouts) | **GET** /api/v3/partner/payouts |  |
-| [**GetFirmPayouts**](PayoutsApi.md#getfirmpayouts) | **GET** /api/v3/partner/payouts/firms/{firm_id} |  |
+| [**GetChannelPartnerPayouts**](PayoutsApi.md#getchannelpartnerpayouts) | **GET** /api/v3/partner/payouts | Get payouts for the channel partner |
+| [**GetFirmPayouts**](PayoutsApi.md#getfirmpayouts) | **GET** /api/v3/partner/payouts/firms/{firm_id} | Get payouts for the specified firm |
 
 <a name="getchannelpartnerpayouts"></a>
 # **GetChannelPartnerPayouts**
 > Payouts GetChannelPartnerPayouts (DateTime? since = null)
 
-
+Get payouts for the channel partner
 
 Get list of payouts for the channel partner since the provided timestamp.  If not supplied, payouts for the last 24 hours are returned. The channel partner is derived from the PartnerAuth security context 
 
@@ -45,6 +45,7 @@ namespace Example
 
             try
             {
+                // Get payouts for the channel partner
                 Payouts result = apiInstance.GetChannelPartnerPayouts(since);
                 Debug.WriteLine(result);
             }
@@ -65,6 +66,7 @@ This returns an ApiResponse object which contains the response data, status code
 ```csharp
 try
 {
+    // Get payouts for the channel partner
     ApiResponse<Payouts> response = apiInstance.GetChannelPartnerPayoutsWithHttpInfo(since);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
@@ -111,7 +113,7 @@ catch (ApiException e)
 # **GetFirmPayouts**
 > Payouts GetFirmPayouts (Guid firmId, DateTime? since = null)
 
-
+Get payouts for the specified firm
 
 Get list of payouts for the specified firm.  If the since parameter is not supplied, payouts for the last 24 hours are returned. 
 
@@ -146,6 +148,7 @@ namespace Example
 
             try
             {
+                // Get payouts for the specified firm
                 Payouts result = apiInstance.GetFirmPayouts(firmId, since);
                 Debug.WriteLine(result);
             }
@@ -166,6 +169,7 @@ This returns an ApiResponse object which contains the response data, status code
 ```csharp
 try
 {
+    // Get payouts for the specified firm
     ApiResponse<Payouts> response = apiInstance.GetFirmPayoutsWithHttpInfo(firmId, since);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);

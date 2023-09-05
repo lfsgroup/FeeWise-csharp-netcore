@@ -12,7 +12,7 @@ All URIs are relative to *http://localhost*
 | [**GetFirmCustomers**](FirmApi.md#getfirmcustomers) | **GET** /api/v3/partner/firms/{firm_id}/customers | List all the customers for a firm. |
 | [**GetFirms**](FirmApi.md#getfirms) | **GET** /api/v3/partner/firms | Get firms |
 | [**GetMagicLink**](FirmApi.md#getmagiclink) | **POST** /api/v3/partner/firms/{firm_id}/magic-link | Create a magic link |
-| [**PostUpload**](FirmApi.md#postupload) | **POST** /api/v3/partner/firms/{firm_id}/upload |  |
+| [**PostUpload**](FirmApi.md#postupload) | **POST** /api/v3/partner/firms/{firm_id}/upload | Upload file |
 | [**SearchChargesByMetadata**](FirmApi.md#searchchargesbymetadata) | **GET** /api/v3/partner/firms/{firm_id}/charges/search | Query metadata to search for Charges, for the given firm |
 | [**SetFirmsDefaultBankAccount**](FirmApi.md#setfirmsdefaultbankaccount) | **POST** /api/v3/partner/firms/{firm_id}/accounts/{account_id}/default | Set firms default bank account. |
 | [**SyncFirm**](FirmApi.md#syncfirm) | **POST** /api/v3/partner/firms/sync/{connect_id} | Sync a firm by the FeeWise Connect ID |
@@ -838,7 +838,7 @@ catch (ApiException e)
 # **PostUpload**
 > PostUpload200Response PostUpload (Guid firmId, string filePurpose, Guid? personId = null, System.IO.Stream fwUploadFile = null)
 
-
+Upload file
 
 Upload files to FeeWise. nb Content-Type header must be multipart/form-data example  curl -X POST -F \"fwUploadFile=@/path/to/file.png\" \\     http://localhost:8080/api/v3/partner/firms/<firm_id>/upload?file_purpose=identity_document \\       - -header 'X-CHANNEL-PARTNER-ID: <channel partner id>'  \\       - -header 'X-API-KEY: <api key>' \\       - -header \"Content-Type: multipart/form-data\" 
 
@@ -875,6 +875,7 @@ namespace Example
 
             try
             {
+                // Upload file
                 PostUpload200Response result = apiInstance.PostUpload(firmId, filePurpose, personId, fwUploadFile);
                 Debug.WriteLine(result);
             }
@@ -895,6 +896,7 @@ This returns an ApiResponse object which contains the response data, status code
 ```csharp
 try
 {
+    // Upload file
     ApiResponse<PostUpload200Response> response = apiInstance.PostUploadWithHttpInfo(firmId, filePurpose, personId, fwUploadFile);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);

@@ -4,13 +4,13 @@ All URIs are relative to *http://localhost*
 
 | Method | HTTP request | Description |
 |--------|--------------|-------------|
-| [**RotateApiKey**](APIKeyApi.md#rotateapikey) | **POST** /api/v3/partner/rotatekey |  |
+| [**RotateApiKey**](APIKeyApi.md#rotateapikey) | **POST** /api/v3/partner/rotatekey | Rotate API Key |
 
 <a name="rotateapikey"></a>
 # **RotateApiKey**
 > ApiKeyResponse RotateApiKey (ApiKeyRotation apiKeyRotation = null)
 
-
+Rotate API Key
 
 Produces a new API-KEY. This new key and the previous key will both be valid until they expire. The key expiry is set by system defaults but may be customised for this specific key in the request. 
 
@@ -44,6 +44,7 @@ namespace Example
 
             try
             {
+                // Rotate API Key
                 ApiKeyResponse result = apiInstance.RotateApiKey(apiKeyRotation);
                 Debug.WriteLine(result);
             }
@@ -64,6 +65,7 @@ This returns an ApiResponse object which contains the response data, status code
 ```csharp
 try
 {
+    // Rotate API Key
     ApiResponse<ApiKeyResponse> response = apiInstance.RotateApiKeyWithHttpInfo(apiKeyRotation);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);

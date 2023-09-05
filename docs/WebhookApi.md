@@ -5,7 +5,7 @@ All URIs are relative to *http://localhost*
 | Method | HTTP request | Description |
 |--------|--------------|-------------|
 | [**CreateWebhook**](WebhookApi.md#createwebhook) | **POST** /api/v3/partner/webhooks | Create a webhook |
-| [**DeleteWebhook**](WebhookApi.md#deletewebhook) | **DELETE** /api/v3/partner/webhooks/{webhook_id} |  |
+| [**DeleteWebhook**](WebhookApi.md#deletewebhook) | **DELETE** /api/v3/partner/webhooks/{webhook_id} | Delete Webhook |
 | [**GetChannelPartnerEventTopics**](WebhookApi.md#getchannelpartnereventtopics) | **GET** /api/v3/partner/events/topics | Get a list of event topics for the channel partner |
 | [**GetChannelPartnerWebhookEvents**](WebhookApi.md#getchannelpartnerwebhookevents) | **GET** /api/v3/partner/events | Get a list of events for the channel partner |
 | [**GetWebhooks**](WebhookApi.md#getwebhooks) | **GET** /api/v3/partner/webhooks | Get list of webhooks for the partner |
@@ -118,7 +118,7 @@ catch (ApiException e)
 # **DeleteWebhook**
 > void DeleteWebhook (Guid webhookId)
 
-
+Delete Webhook
 
 Delete a webhook by id
 
@@ -152,6 +152,7 @@ namespace Example
 
             try
             {
+                // Delete Webhook
                 apiInstance.DeleteWebhook(webhookId);
             }
             catch (ApiException  e)
@@ -171,6 +172,7 @@ This returns an ApiResponse object which contains the response data, status code
 ```csharp
 try
 {
+    // Delete Webhook
     apiInstance.DeleteWebhookWithHttpInfo(webhookId);
 }
 catch (ApiException e)

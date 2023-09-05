@@ -4,14 +4,14 @@ All URIs are relative to *http://localhost*
 
 | Method | HTTP request | Description |
 |--------|--------------|-------------|
-| [**GetPartnerBranding**](PartnerApi.md#getpartnerbranding) | **GET** /api/v3/partner/branding |  |
-| [**PostPartnerLogoUpload**](PartnerApi.md#postpartnerlogoupload) | **POST** /api/v3/partner/upload |  |
+| [**GetPartnerBranding**](PartnerApi.md#getpartnerbranding) | **GET** /api/v3/partner/branding | Get partner branding |
+| [**PostPartnerLogoUpload**](PartnerApi.md#postpartnerlogoupload) | **POST** /api/v3/partner/upload | Upload partner logo |
 
 <a name="getpartnerbranding"></a>
 # **GetPartnerBranding**
 > GetPartnerBranding200Response GetPartnerBranding ()
 
-
+Get partner branding
 
 Get partner branding. Nb if branding is not set, an empty model will be returned
 
@@ -44,6 +44,7 @@ namespace Example
 
             try
             {
+                // Get partner branding
                 GetPartnerBranding200Response result = apiInstance.GetPartnerBranding();
                 Debug.WriteLine(result);
             }
@@ -64,6 +65,7 @@ This returns an ApiResponse object which contains the response data, status code
 ```csharp
 try
 {
+    // Get partner branding
     ApiResponse<GetPartnerBranding200Response> response = apiInstance.GetPartnerBrandingWithHttpInfo();
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
@@ -107,7 +109,7 @@ This endpoint does not need any parameter.
 # **PostPartnerLogoUpload**
 > PostUpload200Response PostPartnerLogoUpload (System.IO.Stream fwUploadFile = null)
 
-
+Upload partner logo
 
 Upload a partner logo to FeeWise. This logo will be used wherever FeeWise and the partner have agreed to show a logo in the FeeWise UI. nb Content-Type header must be multipart/form-data example  curl -X POST -F \"fwUploadFile=@/path/to/file.png\" \\     http://localhost:8080/api/v3/partner/upload \\       - -header 'X-CHANNEL-PARTNER-ID: <channel partner id>' \\       - -header 'X-API-KEY: <api key>' \\       - -header \"Content-Type: multipart/form-data\" 
 
@@ -141,6 +143,7 @@ namespace Example
 
             try
             {
+                // Upload partner logo
                 PostUpload200Response result = apiInstance.PostPartnerLogoUpload(fwUploadFile);
                 Debug.WriteLine(result);
             }
@@ -161,6 +164,7 @@ This returns an ApiResponse object which contains the response data, status code
 ```csharp
 try
 {
+    // Upload partner logo
     ApiResponse<PostUpload200Response> response = apiInstance.PostPartnerLogoUploadWithHttpInfo(fwUploadFile);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);

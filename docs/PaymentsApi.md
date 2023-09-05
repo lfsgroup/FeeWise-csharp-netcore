@@ -7,15 +7,15 @@ All URIs are relative to *http://localhost*
 | [**AdjustInvoiceAmount**](PaymentsApi.md#adjustinvoiceamount) | **POST** /api/v3/partner/invoices/{invoice_id}/adjust-amount | Adjust an invoice. |
 | [**AdjustTrustDepositAmount**](PaymentsApi.md#adjusttrustdepositamount) | **POST** /api/v3/partner/trust-deposits/{trust_deposit_id}/adjust-amount | Adjust an trust deposit. |
 | [**CreateCharge**](PaymentsApi.md#createcharge) | **POST** /api/v3/partner/firms/{firm_id}/charges | Create a Charge |
-| [**CreateChargeAndPayWithCustomerPaymentToken**](PaymentsApi.md#createchargeandpaywithcustomerpaymenttoken) | **POST** /api/v3/partner/firms/{firm_id}/charges/payment_token/{payment_token} | Create a Charge, and pay directly, using a customer payment token. |
+| [**CreateChargeAndPayWithCustomerPaymentToken**](PaymentsApi.md#createchargeandpaywithcustomerpaymenttoken) | **POST** /api/v3/partner/firms/{firm_id}/charges/payment_token/{payment_token} | Create Charge, and pay directly. |
 | [**CreateInvoice**](PaymentsApi.md#createinvoice) | **POST** /api/v3/partner/invoices | Create an Invoice |
-| [**CreateMatter**](PaymentsApi.md#creatematter) | **POST** /api/v3/partner/matters |  |
+| [**CreateMatter**](PaymentsApi.md#creatematter) | **POST** /api/v3/partner/matters | Create a matter |
 | [**CreateTrustDeposit**](PaymentsApi.md#createtrustdeposit) | **POST** /api/v3/partner/trust-deposits | Create a Trust Deposit |
 | [**GetChannelPartnerPayments**](PaymentsApi.md#getchannelpartnerpayments) | **GET** /api/v3/partner/payments | Search for payments for the channel partner |
-| [**GetDebtorMatterStatement**](PaymentsApi.md#getdebtormatterstatement) | **GET** /api/v3/partner/statements/debtors/{debtor_id}/matters/{matter_id} |  |
+| [**GetDebtorMatterStatement**](PaymentsApi.md#getdebtormatterstatement) | **GET** /api/v3/partner/statements/debtors/{debtor_id}/matters/{matter_id} | Get a matter debtor statement |
 | [**GetInvoiceByExternalId**](PaymentsApi.md#getinvoicebyexternalid) | **GET** /api/v3/partner/invoices/firm/{firm_id}/{external_id} | Get invoice by external_id |
 | [**GetInvoiceById**](PaymentsApi.md#getinvoicebyid) | **GET** /api/v3/partner/invoices/{invoice_id} | Get a specified invoice by id. |
-| [**GetMatterStatement**](PaymentsApi.md#getmatterstatement) | **GET** /api/v3/partner/statements/matters/{matter_id} |  |
+| [**GetMatterStatement**](PaymentsApi.md#getmatterstatement) | **GET** /api/v3/partner/statements/matters/{matter_id} | Get a matter statement |
 | [**GetTrustDepositByExternalId**](PaymentsApi.md#gettrustdepositbyexternalid) | **GET** /api/v3/partner/trust-deposits/firm/{firm_id}/{external_id} | Get Trust Deposit by external_id |
 | [**GetTrustDepositById**](PaymentsApi.md#gettrustdepositbyid) | **GET** /api/v3/partner/trust-deposits/{trust_deposit_id} | Get a Trust Deposit by id. |
 | [**RecordExternalPayment**](PaymentsApi.md#recordexternalpayment) | **POST** /api/v3/partner/payments/external | Record external payment. |
@@ -341,7 +341,7 @@ catch (ApiException e)
 # **CreateChargeAndPayWithCustomerPaymentToken**
 > ChargeAndPayResponse CreateChargeAndPayWithCustomerPaymentToken (Guid paymentToken, Guid firmId, Charge charge)
 
-Create a Charge, and pay directly, using a customer payment token.
+Create Charge, and pay directly.
 
 Create a charge (and pay for it) for a firm, using an existing customer payment token.  A list of customer payment tokens can be retrieved from the `/customers` endpoint.  NB the fields `charge_id`, and `payment_uri` must NOT be supplied. If supplied, BadResponse will be returned.   These are populated once the charge has been created and will be available in the response. 
 
@@ -377,7 +377,7 @@ namespace Example
 
             try
             {
-                // Create a Charge, and pay directly, using a customer payment token.
+                // Create Charge, and pay directly.
                 ChargeAndPayResponse result = apiInstance.CreateChargeAndPayWithCustomerPaymentToken(paymentToken, firmId, charge);
                 Debug.WriteLine(result);
             }
@@ -398,7 +398,7 @@ This returns an ApiResponse object which contains the response data, status code
 ```csharp
 try
 {
-    // Create a Charge, and pay directly, using a customer payment token.
+    // Create Charge, and pay directly.
     ApiResponse<ChargeAndPayResponse> response = apiInstance.CreateChargeAndPayWithCustomerPaymentTokenWithHttpInfo(paymentToken, firmId, charge);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
@@ -549,7 +549,7 @@ catch (ApiException e)
 # **CreateMatter**
 > MatterResponse CreateMatter (MatterRequest matterRequest = null)
 
-
+Create a matter
 
 Create a matter, with all matter information, debtor details and artifacts, invoice or trust deposit. 
 
@@ -583,6 +583,7 @@ namespace Example
 
             try
             {
+                // Create a matter
                 MatterResponse result = apiInstance.CreateMatter(matterRequest);
                 Debug.WriteLine(result);
             }
@@ -603,6 +604,7 @@ This returns an ApiResponse object which contains the response data, status code
 ```csharp
 try
 {
+    // Create a matter
     ApiResponse<MatterResponse> response = apiInstance.CreateMatterWithHttpInfo(matterRequest);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
@@ -856,7 +858,7 @@ catch (ApiException e)
 # **GetDebtorMatterStatement**
 > MatterStatement GetDebtorMatterStatement (Guid debtorId, Guid matterId, int? to = null, int? from = null)
 
-
+Get a matter debtor statement
 
 Get a matter statement that is payable by the client via the returned URL.   Note: `to` and `from` are not yet implemented. 
 
@@ -893,6 +895,7 @@ namespace Example
 
             try
             {
+                // Get a matter debtor statement
                 MatterStatement result = apiInstance.GetDebtorMatterStatement(debtorId, matterId, to, from);
                 Debug.WriteLine(result);
             }
@@ -913,6 +916,7 @@ This returns an ApiResponse object which contains the response data, status code
 ```csharp
 try
 {
+    // Get a matter debtor statement
     ApiResponse<MatterStatement> response = apiInstance.GetDebtorMatterStatementWithHttpInfo(debtorId, matterId, to, from);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
@@ -1170,7 +1174,7 @@ catch (ApiException e)
 # **GetMatterStatement**
 > MatterStatement GetMatterStatement (Guid matterId, int? to = null, int? from = null)
 
-
+Get a matter statement
 
 Get a matter statement that is payable by the client via the returned URL.   Note: `to` and `from` are not yet implemented. 
 
@@ -1206,6 +1210,7 @@ namespace Example
 
             try
             {
+                // Get a matter statement
                 MatterStatement result = apiInstance.GetMatterStatement(matterId, to, from);
                 Debug.WriteLine(result);
             }
@@ -1226,6 +1231,7 @@ This returns an ApiResponse object which contains the response data, status code
 ```csharp
 try
 {
+    // Get a matter statement
     ApiResponse<MatterStatement> response = apiInstance.GetMatterStatementWithHttpInfo(matterId, to, from);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
