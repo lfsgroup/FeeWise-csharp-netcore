@@ -26,39 +26,45 @@ using OpenAPIDateConverter = FeeWise.Client.OpenAPIDateConverter;
 namespace FeeWise.Model
 {
     /// <summary>
-    /// WebhookList
+    /// PostPartnerLogoUpload200Response
     /// </summary>
-    [DataContract(Name = "WebhookList")]
-    public partial class WebhookList : IEquatable<WebhookList>, IValidatableObject
+    [DataContract(Name = "postPartnerLogoUpload_200_response")]
+    public partial class PostPartnerLogoUpload200Response : IEquatable<PostPartnerLogoUpload200Response>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="WebhookList" /> class.
+        /// Initializes a new instance of the <see cref="PostPartnerLogoUpload200Response" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected WebhookList()
+        /// <param name="url">URL of the uploaded file, in FeeWise..</param>
+        /// <param name="uploadedFileName">Name of the uploaded file..</param>
+        /// <param name="uploadedFileSizeInBytes">Size of the uploaded file, in bytes..</param>
+        public PostPartnerLogoUpload200Response(string url = default(string), string uploadedFileName = default(string), int uploadedFileSizeInBytes = default(int))
         {
-            this.AdditionalProperties = new Dictionary<string, object>();
-        }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="WebhookList" /> class.
-        /// </summary>
-        /// <param name="webhooks">webhooks (required).</param>
-        public WebhookList(List<Webhook> webhooks = default(List<Webhook>))
-        {
-            // to ensure "webhooks" is required (not null)
-            if (webhooks == null)
-            {
-                throw new ArgumentNullException("webhooks is a required property for WebhookList and cannot be null");
-            }
-            this.Webhooks = webhooks;
+            this.Url = url;
+            this.UploadedFileName = uploadedFileName;
+            this.UploadedFileSizeInBytes = uploadedFileSizeInBytes;
             this.AdditionalProperties = new Dictionary<string, object>();
         }
 
         /// <summary>
-        /// Gets or Sets Webhooks
+        /// URL of the uploaded file, in FeeWise.
         /// </summary>
-        [DataMember(Name = "webhooks", IsRequired = true, EmitDefaultValue = true)]
-        public List<Webhook> Webhooks { get; set; }
+        /// <value>URL of the uploaded file, in FeeWise.</value>
+        [DataMember(Name = "url", EmitDefaultValue = false)]
+        public string Url { get; set; }
+
+        /// <summary>
+        /// Name of the uploaded file.
+        /// </summary>
+        /// <value>Name of the uploaded file.</value>
+        [DataMember(Name = "uploaded_file_name", EmitDefaultValue = false)]
+        public string UploadedFileName { get; set; }
+
+        /// <summary>
+        /// Size of the uploaded file, in bytes.
+        /// </summary>
+        /// <value>Size of the uploaded file, in bytes.</value>
+        [DataMember(Name = "uploaded_file_size_in_bytes", EmitDefaultValue = false)]
+        public int UploadedFileSizeInBytes { get; set; }
 
         /// <summary>
         /// Gets or Sets additional properties
@@ -73,8 +79,10 @@ namespace FeeWise.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class WebhookList {\n");
-            sb.Append("  Webhooks: ").Append(Webhooks).Append("\n");
+            sb.Append("class PostPartnerLogoUpload200Response {\n");
+            sb.Append("  Url: ").Append(Url).Append("\n");
+            sb.Append("  UploadedFileName: ").Append(UploadedFileName).Append("\n");
+            sb.Append("  UploadedFileSizeInBytes: ").Append(UploadedFileSizeInBytes).Append("\n");
             sb.Append("  AdditionalProperties: ").Append(AdditionalProperties).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -96,15 +104,15 @@ namespace FeeWise.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as WebhookList);
+            return this.Equals(input as PostPartnerLogoUpload200Response);
         }
 
         /// <summary>
-        /// Returns true if WebhookList instances are equal
+        /// Returns true if PostPartnerLogoUpload200Response instances are equal
         /// </summary>
-        /// <param name="input">Instance of WebhookList to be compared</param>
+        /// <param name="input">Instance of PostPartnerLogoUpload200Response to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(WebhookList input)
+        public bool Equals(PostPartnerLogoUpload200Response input)
         {
             if (input == null)
             {
@@ -112,10 +120,18 @@ namespace FeeWise.Model
             }
             return 
                 (
-                    this.Webhooks == input.Webhooks ||
-                    this.Webhooks != null &&
-                    input.Webhooks != null &&
-                    this.Webhooks.SequenceEqual(input.Webhooks)
+                    this.Url == input.Url ||
+                    (this.Url != null &&
+                    this.Url.Equals(input.Url))
+                ) && 
+                (
+                    this.UploadedFileName == input.UploadedFileName ||
+                    (this.UploadedFileName != null &&
+                    this.UploadedFileName.Equals(input.UploadedFileName))
+                ) && 
+                (
+                    this.UploadedFileSizeInBytes == input.UploadedFileSizeInBytes ||
+                    this.UploadedFileSizeInBytes.Equals(input.UploadedFileSizeInBytes)
                 )
                 && (this.AdditionalProperties.Count == input.AdditionalProperties.Count && !this.AdditionalProperties.Except(input.AdditionalProperties).Any());
         }
@@ -129,10 +145,15 @@ namespace FeeWise.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Webhooks != null)
+                if (this.Url != null)
                 {
-                    hashCode = (hashCode * 59) + this.Webhooks.GetHashCode();
+                    hashCode = (hashCode * 59) + this.Url.GetHashCode();
                 }
+                if (this.UploadedFileName != null)
+                {
+                    hashCode = (hashCode * 59) + this.UploadedFileName.GetHashCode();
+                }
+                hashCode = (hashCode * 59) + this.UploadedFileSizeInBytes.GetHashCode();
                 if (this.AdditionalProperties != null)
                 {
                     hashCode = (hashCode * 59) + this.AdditionalProperties.GetHashCode();

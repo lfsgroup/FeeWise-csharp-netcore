@@ -107,7 +107,7 @@ This endpoint does not need any parameter.
 
 <a name="postpartnerlogoupload"></a>
 # **PostPartnerLogoUpload**
-> PostUpload200Response PostPartnerLogoUpload (System.IO.Stream fwUploadFile = null)
+> PostPartnerLogoUpload200Response PostPartnerLogoUpload (System.IO.Stream fwUploadFile = null)
 
 Upload partner logo
 
@@ -144,7 +144,7 @@ namespace Example
             try
             {
                 // Upload partner logo
-                PostUpload200Response result = apiInstance.PostPartnerLogoUpload(fwUploadFile);
+                PostPartnerLogoUpload200Response result = apiInstance.PostPartnerLogoUpload(fwUploadFile);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -165,7 +165,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Upload partner logo
-    ApiResponse<PostUpload200Response> response = apiInstance.PostPartnerLogoUploadWithHttpInfo(fwUploadFile);
+    ApiResponse<PostPartnerLogoUpload200Response> response = apiInstance.PostPartnerLogoUploadWithHttpInfo(fwUploadFile);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -186,7 +186,7 @@ catch (ApiException e)
 
 ### Return type
 
-[**PostUpload200Response**](PostUpload200Response.md)
+[**PostPartnerLogoUpload200Response**](PostPartnerLogoUpload200Response.md)
 
 ### Authorization
 

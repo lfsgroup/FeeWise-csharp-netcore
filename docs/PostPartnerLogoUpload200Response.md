@@ -1,10 +1,10 @@
-# FeeWise.Model.PostUpload200Response
+# FeeWise.Model.PostPartnerLogoUpload200Response
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Url** | **string** | URL of the uploaded file. For security reasons the URL will be only provided for logo and icon files.  | [optional] 
+**Url** | **string** | URL of the uploaded file, in FeeWise. | [optional] 
 **UploadedFileName** | **string** | Name of the uploaded file. | [optional] 
 **UploadedFileSizeInBytes** | **int** | Size of the uploaded file, in bytes. | [optional] 
 
