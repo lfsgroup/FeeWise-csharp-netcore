@@ -10,6 +10,7 @@ All URIs are relative to *http://localhost*
 | [**GetFirm**](FirmApi.md#getfirm) | **GET** /api/v3/partner/firms/{firm_id} | Get a firm |
 | [**GetFirmBankAccounts**](FirmApi.md#getfirmbankaccounts) | **GET** /api/v3/partner/firms/{firm_id}/accounts | List all firms bank account&#39;s. |
 | [**GetFirmCustomers**](FirmApi.md#getfirmcustomers) | **GET** /api/v3/partner/firms/{firm_id}/customers | List all the customers for a firm. |
+| [**GetFirmDetails**](FirmApi.md#getfirmdetails) | **GET** /api/v3/partner/firms/firm-details | Get firm details |
 | [**GetFirms**](FirmApi.md#getfirms) | **GET** /api/v3/partner/firms | Get firms |
 | [**GetMagicLink**](FirmApi.md#getmagiclink) | **POST** /api/v3/partner/firms/{firm_id}/magic-link | Create a magic link |
 | [**PostUpload**](FirmApi.md#postupload) | **POST** /api/v3/partner/firms/{firm_id}/upload | Upload file |
@@ -332,7 +333,7 @@ void (empty response body)
 
 Get a firm
 
-Get a firm by the firm's ID.  The firm will have the current sync status.
+Deprecated, prefer /api/v3/partner/firms/firm-details.
 
 ### Example
 ```csharp
@@ -627,6 +628,111 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Return the list of customers. |  -  |
+| **404** | Firm not found |  -  |
+| **500** | Error processing |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="getfirmdetails"></a>
+# **GetFirmDetails**
+> FirmDetails GetFirmDetails (Guid? firmId = null, string externalId = null)
+
+Get firm details
+
+Get firm details by Firm ID (UUID) - This is the FeeWise unique ID for a firm OR by External ID (string), the partner's own unique id for a firm. Both will return the same model 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using FeeWise.Api;
+using FeeWise.Client;
+using FeeWise.Model;
+
+namespace Example
+{
+    public class GetFirmDetailsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "http://localhost";
+            // Configure API key authorization: APIAuth
+            config.AddApiKey("X-API-KEY", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("X-API-KEY", "Bearer");
+            // Configure API key authorization: PartnerAuth
+            config.AddApiKey("X-CHANNEL-PARTNER-ID", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("X-CHANNEL-PARTNER-ID", "Bearer");
+
+            var apiInstance = new FirmApi(config);
+            var firmId = "firmId_example";  // Guid? | Firm ID (UUID) (optional) 
+            var externalId = "externalId_example";  // string | External ID (string) (optional) 
+
+            try
+            {
+                // Get firm details
+                FirmDetails result = apiInstance.GetFirmDetails(firmId, externalId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling FirmApi.GetFirmDetails: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetFirmDetailsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Get firm details
+    ApiResponse<FirmDetails> response = apiInstance.GetFirmDetailsWithHttpInfo(firmId, externalId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling FirmApi.GetFirmDetailsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **firmId** | **Guid?** | Firm ID (UUID) | [optional]  |
+| **externalId** | **string** | External ID (string) | [optional]  |
+
+### Return type
+
+[**FirmDetails**](FirmDetails.md)
+
+### Authorization
+
+[APIAuth](../README.md#APIAuth), [PartnerAuth](../README.md#PartnerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Return the Firm. |  -  |
+| **400** | Bad request |  -  |
 | **404** | Firm not found |  -  |
 | **500** | Error processing |  -  |
 
