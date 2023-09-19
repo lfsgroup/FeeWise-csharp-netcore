@@ -46,6 +46,7 @@ docs/FirmDetails.md
 docs/FirmOnboardingStatus.md
 docs/FirmResponse.md
 docs/FirmStatusUpdatedEvent.md
+docs/FirmsApi.md
 docs/FirmsResponse.md
 docs/GetMagicLink200Response.md
 docs/GetPartnerBranding200Response.md
@@ -73,6 +74,7 @@ docs/PayoutStatus.md
 docs/Payouts.md
 docs/PayoutsApi.md
 docs/Person.md
+docs/PostFirmBrandingColourRequest.md
 docs/PostPartnerLogoUpload200Response.md
 docs/PostUpload200Response.md
 docs/SurchargeChoice.md
@@ -93,6 +95,7 @@ git_push.sh
 src/FeeWise.Test/Api/APIKeyApiTests.cs
 src/FeeWise.Test/Api/BankAccountApiTests.cs
 src/FeeWise.Test/Api/FirmApiTests.cs
+src/FeeWise.Test/Api/FirmsApiTests.cs
 src/FeeWise.Test/Api/PartnerApiTests.cs
 src/FeeWise.Test/Api/PaymentsApiTests.cs
 src/FeeWise.Test/Api/PayoutsApiTests.cs
@@ -162,6 +165,7 @@ src/FeeWise.Test/Model/PayoutStatusTests.cs
 src/FeeWise.Test/Model/PayoutTests.cs
 src/FeeWise.Test/Model/PayoutsTests.cs
 src/FeeWise.Test/Model/PersonTests.cs
+src/FeeWise.Test/Model/PostFirmBrandingColourRequestTests.cs
 src/FeeWise.Test/Model/PostPartnerLogoUpload200ResponseTests.cs
 src/FeeWise.Test/Model/PostUpload200ResponseTests.cs
 src/FeeWise.Test/Model/SurchargeChoiceTests.cs
@@ -180,6 +184,7 @@ src/FeeWise.Test/Model/WebhookTests.cs
 src/FeeWise/Api/APIKeyApi.cs
 src/FeeWise/Api/BankAccountApi.cs
 src/FeeWise/Api/FirmApi.cs
+src/FeeWise/Api/FirmsApi.cs
 src/FeeWise/Api/PartnerApi.cs
 src/FeeWise/Api/PaymentsApi.cs
 src/FeeWise/Api/PayoutsApi.cs
@@ -266,6 +271,7 @@ src/FeeWise/Model/PayoutAccount.cs
 src/FeeWise/Model/PayoutStatus.cs
 src/FeeWise/Model/Payouts.cs
 src/FeeWise/Model/Person.cs
+src/FeeWise/Model/PostFirmBrandingColourRequest.cs
 src/FeeWise/Model/PostPartnerLogoUpload200Response.cs
 src/FeeWise/Model/PostUpload200Response.cs
 src/FeeWise/Model/SurchargeChoice.cs
