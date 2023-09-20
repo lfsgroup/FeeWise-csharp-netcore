@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **LastName** | **string** |  | 
 **Title** | **string** |  | 
 **Phone** | **string** |  | [optional] 
-**NationalId** | **string** |  | [optional] 
+**NationalId** | **string** | This field may be required to be populated, depending on the region.  For the US , this is the social security number, and is required. For CA, this is the social insurance number.  | [optional] 
 **Email** | **string** |  | 
 **Address** | [**Address**](Address.md) |  | 
 **DateOfBirth** | **DateTime** |  | 

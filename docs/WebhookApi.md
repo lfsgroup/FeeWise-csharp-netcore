@@ -343,7 +343,7 @@ namespace Example
             var apiInstance = new WebhookApi(config);
             var topic = payout.paid;  // string |  (optional) 
             var sinceWebhookEventId = "sinceWebhookEventId_example";  // Guid? | If supplied, all events since this webhook event was sent, are retrieved. The retrieved events are subject to the  other filter params (topic, status).   NB - 'since_webhook_event_id' and 'since' are mutually exclusive. Supplying both results in a BadRequest error.  (optional) 
-            var since = 2022-07-29T15:33:00;  // DateTime? | Return events sent since this timestamp. If not supplied, events for the last 24 hours are returned.   NB - 'since_webhook_event_id' and 'since' are mutually exclusive. Supplying both results in a BadRequest error.  (optional) 
+            var since = 2023-09-01T00:00:00Z;  // DateTime? | Return events sent since this timestamp. If not supplied, events for the last 24 hours are returned.   NB - 'since_webhook_event_id' and 'since' are mutually exclusive. Supplying both results in a BadRequest error.  (optional) 
             var status = (WebhookSendStatus) "sent";  // WebhookSendStatus? | Webhook send status (optional) 
 
             try

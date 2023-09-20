@@ -5,10 +5,10 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **InvoiceId** | **Guid** | This is the uuid of the invoice. This will be used for and &#39;GET&#39; of the invoice and in webhooks about this invoice NB this is generated and must not be supplied when creating an invoice.  | [optional] 
-**FirmId** | **Guid** |  | 
+**FirmId** | **Guid** | FeeWise&#39; unique ID for the firm | 
 **Matter** | [**Matter**](Matter.md) |  | [optional] 
 **Debtor** | [**Debtor**](Debtor.md) |  | [optional] 
-**ExternalId** | **string** | This is the id of the artifact supplied by the channel partner / PMS. | 
+**ExternalId** | **string** | Unique ID for the firm, set by partners | 
 **ExternalReference** | **string** | This a reference supplied by the channel partner / PMS and can be used for filtering trust deposits. | [optional] 
 **Amount** | **string** | The total amount the trust deposit is for. | 
 **AmountDue** | **string** | The total amount outstanding on this trust deposit. | [optional] 
@@ -47,6 +47,7 @@ Name | Type | Description | Notes
 **PaymentMethodDetail** | **string** | The payment method detail | [optional] 
 **LegalName** | **string** |  | [optional] 
 **TradingName** | **string** |  | [optional] 
+**Metadata** | **Dictionary&lt;string, string&gt;** | Set of key value pairs attached to the firm object when it was created. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
