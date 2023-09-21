@@ -13,6 +13,7 @@ All URIs are relative to *http://localhost*
 | [**GetFirmDetails**](FirmApi.md#getfirmdetails) | **GET** /api/v3/partner/firms/firm-details | Get firm details |
 | [**GetFirms**](FirmApi.md#getfirms) | **GET** /api/v3/partner/firms | Get firms |
 | [**GetMagicLink**](FirmApi.md#getmagiclink) | **POST** /api/v3/partner/firms/{firm_id}/magic-link | Create a magic link |
+| [**PostFirmBrandingColour**](FirmApi.md#postfirmbrandingcolour) | **POST** /api/v3/partner/firms/{firm_id}/branding/colour | Set firm branding colour for firm dashboard |
 | [**PostUpload**](FirmApi.md#postupload) | **POST** /api/v3/partner/firms/{firm_id}/upload | Upload file |
 | [**SearchChargesByMetadata**](FirmApi.md#searchchargesbymetadata) | **GET** /api/v3/partner/firms/{firm_id}/charges/search | Query metadata to search for Charges, for the given firm |
 | [**SetFirmsDefaultBankAccount**](FirmApi.md#setfirmsdefaultbankaccount) | **POST** /api/v3/partner/firms/{firm_id}/accounts/{account_id}/default | Set firms default bank account. |
@@ -937,6 +938,107 @@ catch (ApiException e)
 | **500** | Server Error |  -  |
 | **401** | Access to Firm Unauthorized |  -  |
 | **404** | Firm not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="postfirmbrandingcolour"></a>
+# **PostFirmBrandingColour**
+> void PostFirmBrandingColour (Guid firmId, PostFirmBrandingColourRequest postFirmBrandingColourRequest = null)
+
+Set firm branding colour for firm dashboard
+
+Update firm branding colour
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using FeeWise.Api;
+using FeeWise.Client;
+using FeeWise.Model;
+
+namespace Example
+{
+    public class PostFirmBrandingColourExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "http://localhost";
+            // Configure API key authorization: APIAuth
+            config.AddApiKey("X-API-KEY", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("X-API-KEY", "Bearer");
+            // Configure API key authorization: PartnerAuth
+            config.AddApiKey("X-CHANNEL-PARTNER-ID", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("X-CHANNEL-PARTNER-ID", "Bearer");
+
+            var apiInstance = new FirmApi(config);
+            var firmId = "firmId_example";  // Guid | 
+            var postFirmBrandingColourRequest = new PostFirmBrandingColourRequest(); // PostFirmBrandingColourRequest |  (optional) 
+
+            try
+            {
+                // Set firm branding colour for firm dashboard
+                apiInstance.PostFirmBrandingColour(firmId, postFirmBrandingColourRequest);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling FirmApi.PostFirmBrandingColour: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the PostFirmBrandingColourWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Set firm branding colour for firm dashboard
+    apiInstance.PostFirmBrandingColourWithHttpInfo(firmId, postFirmBrandingColourRequest);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling FirmApi.PostFirmBrandingColourWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **firmId** | **Guid** |  |  |
+| **postFirmBrandingColourRequest** | [**PostFirmBrandingColourRequest**](PostFirmBrandingColourRequest.md) |  | [optional]  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[APIAuth](../README.md#APIAuth), [PartnerAuth](../README.md#PartnerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **204** | Successful Response |  -  |
+| **400** | Bad request |  -  |
+| **401** | Unauthorized request |  -  |
+| **500** | Generic Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
