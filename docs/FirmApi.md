@@ -1044,7 +1044,7 @@ void (empty response body)
 
 <a name="postupload"></a>
 # **PostUpload**
-> PostUpload200Response PostUpload (Guid firmId, string filePurpose, Guid? personId = null, System.IO.Stream fwUploadFile = null)
+> PostUpload200Response PostUpload (Guid firmId, string filePurpose, Guid? personId = null, string documentSide = null, System.IO.Stream fwUploadFile = null)
 
 Upload file
 
@@ -1079,12 +1079,13 @@ namespace Example
             var firmId = "firmId_example";  // Guid | 
             var filePurpose = "business_logo";  // string | Purpose of the uploaded file, must match one of the enum values
             var personId = "personId_example";  // Guid? | person_id is required when the file_purpose is \"identity_document\". The person_id can be retrieved from the firm details endpoint.  (optional) 
+            var documentSide = "front";  // string | The side of the \"identity_document\" being uploaded. (optional)  (default to front)
             var fwUploadFile = new System.IO.MemoryStream(System.IO.File.ReadAllBytes("/path/to/file.txt"));  // System.IO.Stream |  (optional) 
 
             try
             {
                 // Upload file
-                PostUpload200Response result = apiInstance.PostUpload(firmId, filePurpose, personId, fwUploadFile);
+                PostUpload200Response result = apiInstance.PostUpload(firmId, filePurpose, personId, documentSide, fwUploadFile);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -1105,7 +1106,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Upload file
-    ApiResponse<PostUpload200Response> response = apiInstance.PostUploadWithHttpInfo(firmId, filePurpose, personId, fwUploadFile);
+    ApiResponse<PostUpload200Response> response = apiInstance.PostUploadWithHttpInfo(firmId, filePurpose, personId, documentSide, fwUploadFile);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -1125,6 +1126,7 @@ catch (ApiException e)
 | **firmId** | **Guid** |  |  |
 | **filePurpose** | **string** | Purpose of the uploaded file, must match one of the enum values |  |
 | **personId** | **Guid?** | person_id is required when the file_purpose is \&quot;identity_document\&quot;. The person_id can be retrieved from the firm details endpoint.  | [optional]  |
+| **documentSide** | **string** | The side of the \&quot;identity_document\&quot; being uploaded. | [optional] [default to front] |
 | **fwUploadFile** | **System.IO.Stream****System.IO.Stream** |  | [optional]  |
 
 ### Return type
