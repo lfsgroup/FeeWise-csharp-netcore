@@ -158,7 +158,7 @@ namespace Example
 
             var apiInstance = new FirmApi(config);
             var firmId = "firmId_example";  // Guid | 
-            var paymentTokenBody = new PaymentTokenBody(); // PaymentTokenBody | Customer details
+            var paymentTokenBody = new PaymentTokenBody(); // PaymentTokenBody | Customer and payment method details nb If payment method is not provided, the default will be set to Card. 
 
             try
             {
@@ -202,7 +202,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **firmId** | **Guid** |  |  |
-| **paymentTokenBody** | [**PaymentTokenBody**](PaymentTokenBody.md) | Customer details |  |
+| **paymentTokenBody** | [**PaymentTokenBody**](PaymentTokenBody.md) | Customer and payment method details nb If payment method is not provided, the default will be set to Card.  |  |
 
 ### Return type
 
