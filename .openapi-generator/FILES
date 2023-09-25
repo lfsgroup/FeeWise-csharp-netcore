@@ -28,7 +28,6 @@ docs/CreateFirm.md
 docs/Currency.md
 docs/CustomerDetails.md
 docs/CustomerPaymentMethod.md
-docs/CustomerPaymentMethodAllOf.md
 docs/CustomersResponse.md
 docs/DebitPayment.md
 docs/Debtor.md
@@ -121,7 +120,6 @@ src/FeeWise.Test/Model/CompanyTests.cs
 src/FeeWise.Test/Model/CreateFirmTests.cs
 src/FeeWise.Test/Model/CurrencyTests.cs
 src/FeeWise.Test/Model/CustomerDetailsTests.cs
-src/FeeWise.Test/Model/CustomerPaymentMethodAllOfTests.cs
 src/FeeWise.Test/Model/CustomerPaymentMethodTests.cs
 src/FeeWise.Test/Model/CustomersResponseTests.cs
 src/FeeWise.Test/Model/DebitPaymentTests.cs
@@ -227,7 +225,6 @@ src/FeeWise/Model/CreateFirm.cs
 src/FeeWise/Model/Currency.cs
 src/FeeWise/Model/CustomerDetails.cs
 src/FeeWise/Model/CustomerPaymentMethod.cs
-src/FeeWise/Model/CustomerPaymentMethodAllOf.cs
 src/FeeWise/Model/CustomersResponse.cs
 src/FeeWise/Model/DebitPayment.cs
 src/FeeWise/Model/Debtor.cs
