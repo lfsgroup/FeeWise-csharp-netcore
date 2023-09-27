@@ -5,6 +5,7 @@ All URIs are relative to *http://localhost*
 | Method | HTTP request | Description |
 |--------|--------------|-------------|
 | [**CreateFirm**](FirmApi.md#createfirm) | **POST** /api/v3/partner/firms | Create a new firm |
+| [**CreateFirmAccountOwner**](FirmApi.md#createfirmaccountowner) | **POST** /api/v3/partner/firms/{firm_id}/owner | Create Firm Account Owner |
 | [**CreatePaymentToken**](FirmApi.md#createpaymenttoken) | **POST** /api/v3/partner/firms/{firm_id}/payment_token | Create a payment token for a customer. |
 | [**DeletePaymentToken**](FirmApi.md#deletepaymenttoken) | **DELETE** /api/v3/partner/firms/{firm_id}/payment_token/{payment_token} | Delete a payment token. |
 | [**GetFirm**](FirmApi.md#getfirm) | **GET** /api/v3/partner/firms/{firm_id} | Get a firm |
@@ -119,6 +120,107 @@ catch (ApiException e)
 | **400** | Bad JSON request or request contains an invalid uuid |  -  |
 | **404** | Channel Partner Not Found |  -  |
 | **409** | External ID is not unique or a Bank Account is invalid |  -  |
+| **500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="createfirmaccountowner"></a>
+# **CreateFirmAccountOwner**
+> void CreateFirmAccountOwner (Guid firmId, CreateFirmAccountOwnerRequest createFirmAccountOwnerRequest)
+
+Create Firm Account Owner
+
+Create a firm account owner, once activated, they can sign into the FeeWise dashboard.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using FeeWise.Api;
+using FeeWise.Client;
+using FeeWise.Model;
+
+namespace Example
+{
+    public class CreateFirmAccountOwnerExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "http://localhost";
+            // Configure API key authorization: APIAuth
+            config.AddApiKey("X-API-KEY", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("X-API-KEY", "Bearer");
+            // Configure API key authorization: PartnerAuth
+            config.AddApiKey("X-CHANNEL-PARTNER-ID", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("X-CHANNEL-PARTNER-ID", "Bearer");
+
+            var apiInstance = new FirmApi(config);
+            var firmId = "firmId_example";  // Guid | 
+            var createFirmAccountOwnerRequest = new CreateFirmAccountOwnerRequest(); // CreateFirmAccountOwnerRequest | Firm account owner details
+
+            try
+            {
+                // Create Firm Account Owner
+                apiInstance.CreateFirmAccountOwner(firmId, createFirmAccountOwnerRequest);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling FirmApi.CreateFirmAccountOwner: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the CreateFirmAccountOwnerWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Create Firm Account Owner
+    apiInstance.CreateFirmAccountOwnerWithHttpInfo(firmId, createFirmAccountOwnerRequest);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling FirmApi.CreateFirmAccountOwnerWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **firmId** | **Guid** |  |  |
+| **createFirmAccountOwnerRequest** | [**CreateFirmAccountOwnerRequest**](CreateFirmAccountOwnerRequest.md) | Firm account owner details |  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[APIAuth](../README.md#APIAuth), [PartnerAuth](../README.md#PartnerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **204** | Successfully created firm account owner |  -  |
+| **404** | Firm not found |  -  |
+| **409** | Firm User email duplicates existing |  -  |
 | **500** | Internal Server Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

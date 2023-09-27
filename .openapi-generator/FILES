@@ -25,6 +25,7 @@ docs/ChargeResponse.md
 docs/Company.md
 docs/CompanySupportEmail.md
 docs/CreateFirm.md
+docs/CreateFirmAccountOwnerRequest.md
 docs/Currency.md
 docs/CustomerDetails.md
 docs/CustomerPaymentMethod.md
@@ -117,6 +118,7 @@ src/FeeWise.Test/Model/ChargeResponseTests.cs
 src/FeeWise.Test/Model/ChargeTests.cs
 src/FeeWise.Test/Model/CompanySupportEmailTests.cs
 src/FeeWise.Test/Model/CompanyTests.cs
+src/FeeWise.Test/Model/CreateFirmAccountOwnerRequestTests.cs
 src/FeeWise.Test/Model/CreateFirmTests.cs
 src/FeeWise.Test/Model/CurrencyTests.cs
 src/FeeWise.Test/Model/CustomerDetailsTests.cs
@@ -222,6 +224,7 @@ src/FeeWise/Model/ChargeResponse.cs
 src/FeeWise/Model/Company.cs
 src/FeeWise/Model/CompanySupportEmail.cs
 src/FeeWise/Model/CreateFirm.cs
+src/FeeWise/Model/CreateFirmAccountOwnerRequest.cs
 src/FeeWise/Model/Currency.cs
 src/FeeWise/Model/CustomerDetails.cs
 src/FeeWise/Model/CustomerPaymentMethod.cs

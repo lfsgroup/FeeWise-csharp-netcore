@@ -26,47 +26,65 @@ using OpenAPIDateConverter = FeeWise.Client.OpenAPIDateConverter;
 namespace FeeWise.Model
 {
     /// <summary>
-    /// Events
+    /// CreateFirmAccountOwnerRequest
     /// </summary>
-    [DataContract(Name = "Events")]
-    public partial class Events : IEquatable<Events>, IValidatableObject
+    [DataContract(Name = "createFirmAccountOwner_request")]
+    public partial class CreateFirmAccountOwnerRequest : IEquatable<CreateFirmAccountOwnerRequest>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Events" /> class.
+        /// Initializes a new instance of the <see cref="CreateFirmAccountOwnerRequest" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected Events()
+        protected CreateFirmAccountOwnerRequest()
         {
             this.AdditionalProperties = new Dictionary<string, object>();
         }
         /// <summary>
-        /// Initializes a new instance of the <see cref="Events" /> class.
+        /// Initializes a new instance of the <see cref="CreateFirmAccountOwnerRequest" /> class.
         /// </summary>
-        /// <param name="events">events (required).</param>
-        /// <param name="filters">filters.</param>
-        public Events(List<Event> events = default(List<Event>), EventFilters filters = default(EventFilters))
+        /// <param name="email">email (required).</param>
+        /// <param name="firstName">firstName (required).</param>
+        /// <param name="lastName">lastName (required).</param>
+        public CreateFirmAccountOwnerRequest(string email = default(string), string firstName = default(string), string lastName = default(string))
         {
-            // to ensure "events" is required (not null)
-            if (events == null)
+            // to ensure "email" is required (not null)
+            if (email == null)
             {
-                throw new ArgumentNullException("events is a required property for Events and cannot be null");
+                throw new ArgumentNullException("email is a required property for CreateFirmAccountOwnerRequest and cannot be null");
             }
-            this._Events = events;
-            this.Filters = filters;
+            this.Email = email;
+            // to ensure "firstName" is required (not null)
+            if (firstName == null)
+            {
+                throw new ArgumentNullException("firstName is a required property for CreateFirmAccountOwnerRequest and cannot be null");
+            }
+            this.FirstName = firstName;
+            // to ensure "lastName" is required (not null)
+            if (lastName == null)
+            {
+                throw new ArgumentNullException("lastName is a required property for CreateFirmAccountOwnerRequest and cannot be null");
+            }
+            this.LastName = lastName;
             this.AdditionalProperties = new Dictionary<string, object>();
         }
 
         /// <summary>
-        /// Gets or Sets _Events
+        /// Gets or Sets Email
         /// </summary>
-        [DataMember(Name = "events", IsRequired = true, EmitDefaultValue = true)]
-        public List<Event> _Events { get; set; }
+        [DataMember(Name = "email", IsRequired = true, EmitDefaultValue = true)]
+        public string Email { get; set; }
 
         /// <summary>
-        /// Gets or Sets Filters
+        /// Gets or Sets FirstName
         /// </summary>
-        [DataMember(Name = "filters", EmitDefaultValue = false)]
-        public EventFilters Filters { get; set; }
+        [DataMember(Name = "first_name", IsRequired = true, EmitDefaultValue = true)]
+        public string FirstName { get; set; }
+
+        /// <summary>
+        /// Gets or Sets LastName
+        /// </summary>
+        [DataMember(Name = "last_name", IsRequired = true, EmitDefaultValue = true)]
+        public string LastName { get; set; }
 
         /// <summary>
         /// Gets or Sets additional properties
@@ -81,9 +99,10 @@ namespace FeeWise.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class Events {\n");
-            sb.Append("  _Events: ").Append(_Events).Append("\n");
-            sb.Append("  Filters: ").Append(Filters).Append("\n");
+            sb.Append("class CreateFirmAccountOwnerRequest {\n");
+            sb.Append("  Email: ").Append(Email).Append("\n");
+            sb.Append("  FirstName: ").Append(FirstName).Append("\n");
+            sb.Append("  LastName: ").Append(LastName).Append("\n");
             sb.Append("  AdditionalProperties: ").Append(AdditionalProperties).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -105,15 +124,15 @@ namespace FeeWise.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as Events);
+            return this.Equals(input as CreateFirmAccountOwnerRequest);
         }
 
         /// <summary>
-        /// Returns true if Events instances are equal
+        /// Returns true if CreateFirmAccountOwnerRequest instances are equal
         /// </summary>
-        /// <param name="input">Instance of Events to be compared</param>
+        /// <param name="input">Instance of CreateFirmAccountOwnerRequest to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(Events input)
+        public bool Equals(CreateFirmAccountOwnerRequest input)
         {
             if (input == null)
             {
@@ -121,15 +140,19 @@ namespace FeeWise.Model
             }
             return 
                 (
-                    this._Events == input._Events ||
-                    this._Events != null &&
-                    input._Events != null &&
-                    this._Events.SequenceEqual(input._Events)
+                    this.Email == input.Email ||
+                    (this.Email != null &&
+                    this.Email.Equals(input.Email))
                 ) && 
                 (
-                    this.Filters == input.Filters ||
-                    (this.Filters != null &&
-                    this.Filters.Equals(input.Filters))
+                    this.FirstName == input.FirstName ||
+                    (this.FirstName != null &&
+                    this.FirstName.Equals(input.FirstName))
+                ) && 
+                (
+                    this.LastName == input.LastName ||
+                    (this.LastName != null &&
+                    this.LastName.Equals(input.LastName))
                 )
                 && (this.AdditionalProperties.Count == input.AdditionalProperties.Count && !this.AdditionalProperties.Except(input.AdditionalProperties).Any());
         }
@@ -143,13 +166,17 @@ namespace FeeWise.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this._Events != null)
+                if (this.Email != null)
                 {
-                    hashCode = (hashCode * 59) + this._Events.GetHashCode();
+                    hashCode = (hashCode * 59) + this.Email.GetHashCode();
                 }
-                if (this.Filters != null)
+                if (this.FirstName != null)
                 {
-                    hashCode = (hashCode * 59) + this.Filters.GetHashCode();
+                    hashCode = (hashCode * 59) + this.FirstName.GetHashCode();
+                }
+                if (this.LastName != null)
+                {
+                    hashCode = (hashCode * 59) + this.LastName.GetHashCode();
                 }
                 if (this.AdditionalProperties != null)
                 {
