@@ -219,6 +219,7 @@ void (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **204** | Successfully created firm account owner |  -  |
+| **401** | Unauthorized error |  -  |
 | **404** | Firm not found |  -  |
 | **409** | Firm User email duplicates existing |  -  |
 | **500** | Internal Server Error |  -  |
