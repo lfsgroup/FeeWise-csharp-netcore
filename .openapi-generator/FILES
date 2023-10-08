@@ -63,6 +63,7 @@ docs/Payment.md
 docs/PaymentAuthorisedEvent.md
 docs/PaymentExternalPayment.md
 docs/PaymentMethod.md
+docs/PaymentNotificationEvent.md
 docs/PaymentTokenBody.md
 docs/PaymentTokenResponse.md
 docs/Payments.md
@@ -154,6 +155,7 @@ src/FeeWise.Test/Model/PartyBrandingTests.cs
 src/FeeWise.Test/Model/PaymentAuthorisedEventTests.cs
 src/FeeWise.Test/Model/PaymentExternalPaymentTests.cs
 src/FeeWise.Test/Model/PaymentMethodTests.cs
+src/FeeWise.Test/Model/PaymentNotificationEventTests.cs
 src/FeeWise.Test/Model/PaymentTests.cs
 src/FeeWise.Test/Model/PaymentTokenBodyTests.cs
 src/FeeWise.Test/Model/PaymentTokenResponseTests.cs
@@ -260,6 +262,7 @@ src/FeeWise/Model/Payment.cs
 src/FeeWise/Model/PaymentAuthorisedEvent.cs
 src/FeeWise/Model/PaymentExternalPayment.cs
 src/FeeWise/Model/PaymentMethod.cs
+src/FeeWise/Model/PaymentNotificationEvent.cs
 src/FeeWise/Model/PaymentTokenBody.cs
 src/FeeWise/Model/PaymentTokenResponse.cs
 src/FeeWise/Model/Payments.cs

@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **InvoiceId** | **Guid** | This is the uuid of the invoice. This will be used for and &#39;GET&#39; of the invoice and in webhooks about this invoice NB this is generated and must not be supplied when creating an invoice.  | [optional] 
-**FirmId** | **Guid** | FeeWise&#39; unique ID for the firm | 
+**FirmId** | **Guid** | The firm ID | 
 **Matter** | [**Matter**](Matter.md) |  | [optional] 
 **Debtor** | [**Debtor**](Debtor.md) |  | [optional] 
 **ExternalId** | **string** | Unique ID for the firm, set by partners | 
@@ -47,7 +47,9 @@ Name | Type | Description | Notes
 **PaymentMethodDetail** | **string** | The payment method detail | [optional] 
 **LegalName** | **string** |  | [optional] 
 **TradingName** | **string** |  | [optional] 
-**Metadata** | **Dictionary&lt;string, string&gt;** | Set of key value pairs attached to the firm object when it was created. | [optional] 
+**Metadata** | **Dictionary&lt;string, string&gt;** | Set of key value pairs attached to the payment object when it was created. | [optional] 
+**PaymentStatus** | **string** | The status of the payment. Card payments have either a Successful or Failed status. Direct Debit payments can have a Processing, Successful or Failed status. | 
+**FailureMessage** | **string** | When the payment_status is Failed this will show the reason for payment failure. E.g. Card does not have sufficient funds. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

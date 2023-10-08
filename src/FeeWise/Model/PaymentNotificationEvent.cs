@@ -26,10 +26,10 @@ using OpenAPIDateConverter = FeeWise.Client.OpenAPIDateConverter;
 namespace FeeWise.Model
 {
     /// <summary>
-    /// PaymentAuthorisedEvent
+    /// PaymentNotificationEvent
     /// </summary>
-    [DataContract(Name = "PaymentAuthorisedEvent")]
-    public partial class PaymentAuthorisedEvent : IEquatable<PaymentAuthorisedEvent>, IValidatableObject
+    [DataContract(Name = "PaymentNotificationEvent")]
+    public partial class PaymentNotificationEvent : IEquatable<PaymentNotificationEvent>, IValidatableObject
     {
 
         /// <summary>
@@ -38,15 +38,55 @@ namespace FeeWise.Model
         [DataMember(Name = "payment_method", IsRequired = true, EmitDefaultValue = true)]
         public PaymentMethod PaymentMethod { get; set; }
         /// <summary>
-        /// Initializes a new instance of the <see cref="PaymentAuthorisedEvent" /> class.
+        /// The status of the payment. Card payments have either a Successful or Failed status. Direct Debit payments can have a Processing, Successful or Failed status.
+        /// </summary>
+        /// <value>The status of the payment. Card payments have either a Successful or Failed status. Direct Debit payments can have a Processing, Successful or Failed status.</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum PaymentStatusEnum
+        {
+            /// <summary>
+            /// Enum Successful for value: Successful
+            /// </summary>
+            [EnumMember(Value = "Successful")]
+            Successful = 1,
+
+            /// <summary>
+            /// Enum Processing for value: Processing
+            /// </summary>
+            [EnumMember(Value = "Processing")]
+            Processing = 2,
+
+            /// <summary>
+            /// Enum Failed for value: Failed
+            /// </summary>
+            [EnumMember(Value = "Failed")]
+            Failed = 3,
+
+            /// <summary>
+            /// Enum NA for value: N/A
+            /// </summary>
+            [EnumMember(Value = "N/A")]
+            NA = 4
+
+        }
+
+
+        /// <summary>
+        /// The status of the payment. Card payments have either a Successful or Failed status. Direct Debit payments can have a Processing, Successful or Failed status.
+        /// </summary>
+        /// <value>The status of the payment. Card payments have either a Successful or Failed status. Direct Debit payments can have a Processing, Successful or Failed status.</value>
+        [DataMember(Name = "payment_status", IsRequired = true, EmitDefaultValue = true)]
+        public PaymentStatusEnum PaymentStatus { get; set; }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PaymentNotificationEvent" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected PaymentAuthorisedEvent()
+        protected PaymentNotificationEvent()
         {
             this.AdditionalProperties = new Dictionary<string, object>();
         }
         /// <summary>
-        /// Initializes a new instance of the <see cref="PaymentAuthorisedEvent" /> class.
+        /// Initializes a new instance of the <see cref="PaymentNotificationEvent" /> class.
         /// </summary>
         /// <param name="artifacts">artifacts (required).</param>
         /// <param name="paymentId">The payment ID (required).</param>
@@ -56,26 +96,32 @@ namespace FeeWise.Model
         /// <param name="firmId">The firm ID (required).</param>
         /// <param name="paymentMethod">paymentMethod (required).</param>
         /// <param name="paymentMethodDetail">The payment method detail.</param>
-        public PaymentAuthorisedEvent(List<ArtifactReceipt> artifacts = default(List<ArtifactReceipt>), Guid paymentId = default(Guid), string amountPaid = default(string), CardPayment cardPayment = default(CardPayment), DebitPayment debitPayment = default(DebitPayment), Guid firmId = default(Guid), PaymentMethod paymentMethod = default(PaymentMethod), string paymentMethodDetail = default(string))
+        /// <param name="paymentStatus">The status of the payment. Card payments have either a Successful or Failed status. Direct Debit payments can have a Processing, Successful or Failed status. (required).</param>
+        /// <param name="failureMessage">When the payment_status is Failed this will show the reason for payment failure. E.g. Card does not have sufficient funds..</param>
+        /// <param name="metadata">Set of key value pairs attached to the payment object when it was created..</param>
+        public PaymentNotificationEvent(List<ArtifactReceipt> artifacts = default(List<ArtifactReceipt>), Guid paymentId = default(Guid), string amountPaid = default(string), CardPayment cardPayment = default(CardPayment), DebitPayment debitPayment = default(DebitPayment), Guid firmId = default(Guid), PaymentMethod paymentMethod = default(PaymentMethod), string paymentMethodDetail = default(string), PaymentStatusEnum paymentStatus = default(PaymentStatusEnum), string failureMessage = default(string), Dictionary<string, string> metadata = default(Dictionary<string, string>))
         {
             // to ensure "artifacts" is required (not null)
             if (artifacts == null)
             {
-                throw new ArgumentNullException("artifacts is a required property for PaymentAuthorisedEvent and cannot be null");
+                throw new ArgumentNullException("artifacts is a required property for PaymentNotificationEvent and cannot be null");
             }
             this.Artifacts = artifacts;
             this.PaymentId = paymentId;
             // to ensure "amountPaid" is required (not null)
             if (amountPaid == null)
             {
-                throw new ArgumentNullException("amountPaid is a required property for PaymentAuthorisedEvent and cannot be null");
+                throw new ArgumentNullException("amountPaid is a required property for PaymentNotificationEvent and cannot be null");
             }
             this.AmountPaid = amountPaid;
             this.FirmId = firmId;
             this.PaymentMethod = paymentMethod;
+            this.PaymentStatus = paymentStatus;
             this.CardPayment = cardPayment;
             this.DebitPayment = debitPayment;
             this.PaymentMethodDetail = paymentMethodDetail;
+            this.FailureMessage = failureMessage;
+            this.Metadata = metadata;
             this.AdditionalProperties = new Dictionary<string, object>();
         }
 
@@ -126,6 +172,20 @@ namespace FeeWise.Model
         public string PaymentMethodDetail { get; set; }
 
         /// <summary>
+        /// When the payment_status is Failed this will show the reason for payment failure. E.g. Card does not have sufficient funds.
+        /// </summary>
+        /// <value>When the payment_status is Failed this will show the reason for payment failure. E.g. Card does not have sufficient funds.</value>
+        [DataMember(Name = "failure_message", EmitDefaultValue = false)]
+        public string FailureMessage { get; set; }
+
+        /// <summary>
+        /// Set of key value pairs attached to the payment object when it was created.
+        /// </summary>
+        /// <value>Set of key value pairs attached to the payment object when it was created.</value>
+        [DataMember(Name = "metadata", EmitDefaultValue = false)]
+        public Dictionary<string, string> Metadata { get; set; }
+
+        /// <summary>
         /// Gets or Sets additional properties
         /// </summary>
         [JsonExtensionData]
@@ -138,7 +198,7 @@ namespace FeeWise.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class PaymentAuthorisedEvent {\n");
+            sb.Append("class PaymentNotificationEvent {\n");
             sb.Append("  Artifacts: ").Append(Artifacts).Append("\n");
             sb.Append("  PaymentId: ").Append(PaymentId).Append("\n");
             sb.Append("  AmountPaid: ").Append(AmountPaid).Append("\n");
@@ -147,6 +207,9 @@ namespace FeeWise.Model
             sb.Append("  FirmId: ").Append(FirmId).Append("\n");
             sb.Append("  PaymentMethod: ").Append(PaymentMethod).Append("\n");
             sb.Append("  PaymentMethodDetail: ").Append(PaymentMethodDetail).Append("\n");
+            sb.Append("  PaymentStatus: ").Append(PaymentStatus).Append("\n");
+            sb.Append("  FailureMessage: ").Append(FailureMessage).Append("\n");
+            sb.Append("  Metadata: ").Append(Metadata).Append("\n");
             sb.Append("  AdditionalProperties: ").Append(AdditionalProperties).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -168,15 +231,15 @@ namespace FeeWise.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as PaymentAuthorisedEvent);
+            return this.Equals(input as PaymentNotificationEvent);
         }
 
         /// <summary>
-        /// Returns true if PaymentAuthorisedEvent instances are equal
+        /// Returns true if PaymentNotificationEvent instances are equal
         /// </summary>
-        /// <param name="input">Instance of PaymentAuthorisedEvent to be compared</param>
+        /// <param name="input">Instance of PaymentNotificationEvent to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(PaymentAuthorisedEvent input)
+        public bool Equals(PaymentNotificationEvent input)
         {
             if (input == null)
             {
@@ -222,6 +285,21 @@ namespace FeeWise.Model
                     this.PaymentMethodDetail == input.PaymentMethodDetail ||
                     (this.PaymentMethodDetail != null &&
                     this.PaymentMethodDetail.Equals(input.PaymentMethodDetail))
+                ) && 
+                (
+                    this.PaymentStatus == input.PaymentStatus ||
+                    this.PaymentStatus.Equals(input.PaymentStatus)
+                ) && 
+                (
+                    this.FailureMessage == input.FailureMessage ||
+                    (this.FailureMessage != null &&
+                    this.FailureMessage.Equals(input.FailureMessage))
+                ) && 
+                (
+                    this.Metadata == input.Metadata ||
+                    this.Metadata != null &&
+                    input.Metadata != null &&
+                    this.Metadata.SequenceEqual(input.Metadata)
                 )
                 && (this.AdditionalProperties.Count == input.AdditionalProperties.Count && !this.AdditionalProperties.Except(input.AdditionalProperties).Any());
         }
@@ -263,6 +341,15 @@ namespace FeeWise.Model
                 if (this.PaymentMethodDetail != null)
                 {
                     hashCode = (hashCode * 59) + this.PaymentMethodDetail.GetHashCode();
+                }
+                hashCode = (hashCode * 59) + this.PaymentStatus.GetHashCode();
+                if (this.FailureMessage != null)
+                {
+                    hashCode = (hashCode * 59) + this.FailureMessage.GetHashCode();
+                }
+                if (this.Metadata != null)
+                {
+                    hashCode = (hashCode * 59) + this.Metadata.GetHashCode();
                 }
                 if (this.AdditionalProperties != null)
                 {
