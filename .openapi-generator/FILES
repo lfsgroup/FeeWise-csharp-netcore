@@ -57,8 +57,11 @@ docs/MatterRequest.md
 docs/MatterResponse.md
 docs/MatterStatement.md
 docs/MetadataSearch.md
+docs/PaginatedTransaction.md
+docs/PaginationMetadata.md
 docs/PartnerApi.md
 docs/PartyBranding.md
+docs/Payer.md
 docs/Payment.md
 docs/PaymentAuthorisedEvent.md
 docs/PaymentExternalPayment.md
@@ -80,6 +83,10 @@ docs/PostUpload200Response.md
 docs/SurchargeChoice.md
 docs/TermsOfService.md
 docs/TokenType.md
+docs/Transaction.md
+docs/TransactionStatus.md
+docs/TransactionsApi.md
+docs/TransactionsResponse.md
 docs/TrustDeposit.md
 docs/TrustDepositResponse.md
 docs/Webhook.md
@@ -98,6 +105,7 @@ src/FeeWise.Test/Api/FirmApiTests.cs
 src/FeeWise.Test/Api/PartnerApiTests.cs
 src/FeeWise.Test/Api/PaymentsApiTests.cs
 src/FeeWise.Test/Api/PayoutsApiTests.cs
+src/FeeWise.Test/Api/TransactionsApiTests.cs
 src/FeeWise.Test/Api/WebhookApiTests.cs
 src/FeeWise.Test/FeeWise.Test.csproj
 src/FeeWise.Test/Model/AccountTypeTests.cs
@@ -151,7 +159,10 @@ src/FeeWise.Test/Model/MatterResponseTests.cs
 src/FeeWise.Test/Model/MatterStatementTests.cs
 src/FeeWise.Test/Model/MatterTests.cs
 src/FeeWise.Test/Model/MetadataSearchTests.cs
+src/FeeWise.Test/Model/PaginatedTransactionTests.cs
+src/FeeWise.Test/Model/PaginationMetadataTests.cs
 src/FeeWise.Test/Model/PartyBrandingTests.cs
+src/FeeWise.Test/Model/PayerTests.cs
 src/FeeWise.Test/Model/PaymentAuthorisedEventTests.cs
 src/FeeWise.Test/Model/PaymentExternalPaymentTests.cs
 src/FeeWise.Test/Model/PaymentMethodTests.cs
@@ -171,6 +182,9 @@ src/FeeWise.Test/Model/PostUpload200ResponseTests.cs
 src/FeeWise.Test/Model/SurchargeChoiceTests.cs
 src/FeeWise.Test/Model/TermsOfServiceTests.cs
 src/FeeWise.Test/Model/TokenTypeTests.cs
+src/FeeWise.Test/Model/TransactionStatusTests.cs
+src/FeeWise.Test/Model/TransactionTests.cs
+src/FeeWise.Test/Model/TransactionsResponseTests.cs
 src/FeeWise.Test/Model/TrustDepositResponseTests.cs
 src/FeeWise.Test/Model/TrustDepositTests.cs
 src/FeeWise.Test/Model/WebhookApiAuthenticationTests.cs
@@ -187,6 +201,7 @@ src/FeeWise/Api/FirmApi.cs
 src/FeeWise/Api/PartnerApi.cs
 src/FeeWise/Api/PaymentsApi.cs
 src/FeeWise/Api/PayoutsApi.cs
+src/FeeWise/Api/TransactionsApi.cs
 src/FeeWise/Api/WebhookApi.cs
 src/FeeWise/Client/ApiClient.cs
 src/FeeWise/Client/ApiException.cs
@@ -257,7 +272,10 @@ src/FeeWise/Model/MatterRequest.cs
 src/FeeWise/Model/MatterResponse.cs
 src/FeeWise/Model/MatterStatement.cs
 src/FeeWise/Model/MetadataSearch.cs
+src/FeeWise/Model/PaginatedTransaction.cs
+src/FeeWise/Model/PaginationMetadata.cs
 src/FeeWise/Model/PartyBranding.cs
+src/FeeWise/Model/Payer.cs
 src/FeeWise/Model/Payment.cs
 src/FeeWise/Model/PaymentAuthorisedEvent.cs
 src/FeeWise/Model/PaymentExternalPayment.cs
@@ -277,6 +295,9 @@ src/FeeWise/Model/PostUpload200Response.cs
 src/FeeWise/Model/SurchargeChoice.cs
 src/FeeWise/Model/TermsOfService.cs
 src/FeeWise/Model/TokenType.cs
+src/FeeWise/Model/Transaction.cs
+src/FeeWise/Model/TransactionStatus.cs
+src/FeeWise/Model/TransactionsResponse.cs
 src/FeeWise/Model/TrustDeposit.cs
 src/FeeWise/Model/TrustDepositResponse.cs
 src/FeeWise/Model/Webhook.cs

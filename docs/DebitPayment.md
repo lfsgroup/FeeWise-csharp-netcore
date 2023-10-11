@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Scheme** | **string** | Scheme (e.g. us_bank_account, au_bsb_account) | [optional] 
 **Country** | **string** | Country code (e.g. US, CA) | [optional] 
 **BankName** | **string** | Name of the bank | [optional] 
 **AccountName** | **string** | Name of the account holder | [optional] 

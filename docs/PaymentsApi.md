@@ -11,7 +11,7 @@ All URIs are relative to *http://localhost*
 | [**CreateInvoice**](PaymentsApi.md#createinvoice) | **POST** /api/v3/partner/invoices | Create an Invoice |
 | [**CreateMatter**](PaymentsApi.md#creatematter) | **POST** /api/v3/partner/matters | Create a matter |
 | [**CreateTrustDeposit**](PaymentsApi.md#createtrustdeposit) | **POST** /api/v3/partner/trust-deposits | Create a Trust Deposit |
-| [**GetChannelPartnerPayments**](PaymentsApi.md#getchannelpartnerpayments) | **GET** /api/v3/partner/payments | Search for payments for the channel partner |
+| [**GetChannelPartnerPayments**](PaymentsApi.md#getchannelpartnerpayments) | **GET** /api/v3/partner/payments | DEPRECATED use /transactions - Search for payments for the channel partner |
 | [**GetDebtorMatterStatement**](PaymentsApi.md#getdebtormatterstatement) | **GET** /api/v3/partner/statements/debtors/{debtor_id}/matters/{matter_id} | Get a matter debtor statement |
 | [**GetInvoiceByExternalId**](PaymentsApi.md#getinvoicebyexternalid) | **GET** /api/v3/partner/invoices/firm/{firm_id}/{external_id} | Get invoice by external_id |
 | [**GetInvoiceById**](PaymentsApi.md#getinvoicebyid) | **GET** /api/v3/partner/invoices/{invoice_id} | Get a specified invoice by id. |
@@ -750,7 +750,7 @@ catch (ApiException e)
 # **GetChannelPartnerPayments**
 > Payments GetChannelPartnerPayments (Guid? paymentId = null, Guid? artifactId = null, Guid? firmId = null, DateTime? since = null)
 
-Search for payments for the channel partner
+DEPRECATED use /transactions - Search for payments for the channel partner
 
 Search for payments for a channel partner..         The filters supplied in the query params must *all* be met.         The channel partner is derived from the PartnerAuth security context. 
 
@@ -787,7 +787,7 @@ namespace Example
 
             try
             {
-                // Search for payments for the channel partner
+                // DEPRECATED use /transactions - Search for payments for the channel partner
                 Payments result = apiInstance.GetChannelPartnerPayments(paymentId, artifactId, firmId, since);
                 Debug.WriteLine(result);
             }
@@ -808,7 +808,7 @@ This returns an ApiResponse object which contains the response data, status code
 ```csharp
 try
 {
-    // Search for payments for the channel partner
+    // DEPRECATED use /transactions - Search for payments for the channel partner
     ApiResponse<Payments> response = apiInstance.GetChannelPartnerPaymentsWithHttpInfo(paymentId, artifactId, firmId, since);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);

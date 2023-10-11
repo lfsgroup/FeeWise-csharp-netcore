@@ -2,7 +2,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FeeWise", "src\FeeWise\FeeWise.csproj", "{2B5F1FC0-7244-47D1-AFA6-A6255C4AD365}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FeeWise", "src\FeeWise\FeeWise.csproj", "{0685EE1F-C9EF-42F6-82B7-671924EFCD11}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FeeWise.Test", "src\FeeWise.Test\FeeWise.Test.csproj", "{19F1DEBC-DE5E-4517-8062-F000CD499087}"
 EndProject
@@ -12,10 +12,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{2B5F1FC0-7244-47D1-AFA6-A6255C4AD365}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2B5F1FC0-7244-47D1-AFA6-A6255C4AD365}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2B5F1FC0-7244-47D1-AFA6-A6255C4AD365}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2B5F1FC0-7244-47D1-AFA6-A6255C4AD365}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0685EE1F-C9EF-42F6-82B7-671924EFCD11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0685EE1F-C9EF-42F6-82B7-671924EFCD11}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0685EE1F-C9EF-42F6-82B7-671924EFCD11}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0685EE1F-C9EF-42F6-82B7-671924EFCD11}.Release|Any CPU.Build.0 = Release|Any CPU
 		{19F1DEBC-DE5E-4517-8062-F000CD499087}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{19F1DEBC-DE5E-4517-8062-F000CD499087}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{19F1DEBC-DE5E-4517-8062-F000CD499087}.Release|Any CPU.ActiveCfg = Release|Any CPU
