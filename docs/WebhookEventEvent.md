@@ -35,6 +35,7 @@ Name | Type | Description | Notes
 **Refunded** | **string** | The amount refunded (back to the client) against this payment. | [optional] 
 **PaidOut** | **string** | The total amount paid to the firm for this payment | 
 **Date** | **DateTime** | When the payout was made. | 
+**Metadata** | **Dictionary&lt;string, string&gt;** | Set of key value pairs attached to the payment object when it was created. | [optional] 
 **PayoutReference** | **string** | The unique reference of the payout. This will appear in the bank account statement the payout was made to. | 
 **PayoutTotal** | **string** | The total paid out to the firm. This is the sum of the transactions paid_out amounts. | 
 **Account** | [**PayoutAccount**](PayoutAccount.md) |  | 
@@ -47,7 +48,6 @@ Name | Type | Description | Notes
 **PaymentMethodDetail** | **string** | The payment method detail | [optional] 
 **LegalName** | **string** |  | [optional] 
 **TradingName** | **string** |  | [optional] 
-**Metadata** | **Dictionary&lt;string, string&gt;** | Set of key value pairs attached to the payment object when it was created. | [optional] 
 **PaymentStatus** | **string** | The status of the payment. Card payments have either a Successful or Failed status. Direct Debit payments can have a Processing, Successful or Failed status. | 
 **FailureMessage** | **string** | When the payment_status is Failed this will show the reason for payment failure. E.g. Card does not have sufficient funds. | [optional] 
 

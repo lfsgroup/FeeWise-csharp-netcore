@@ -6,6 +6,7 @@ Details of the account the payout is for.
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AccountType** | **AccountType** |  | [optional] 
+**AccountId** | **Guid** | FW ID of the settlement account | [optional] 
 **BranchCode** | **string** |  | [optional] 
 **AccountNumber** | **string** |  | [optional] 
 **Alias** | **string** | The name of the account for the PMS | [optional] 

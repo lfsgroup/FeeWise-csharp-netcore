@@ -45,7 +45,7 @@ namespace Example
             var to = 2023-09-20T00:00:00.000Z;  // DateTime? | Return payments created before timestamp. If not supplied, \"to\" defaults to now.  (optional) 
             var page = 1;  // int? | Pagination - Page number to return  (optional)  (default to 1)
             var pageSize = 20;  // int? | Pagination - Transactions per page  (optional)  (default to 20)
-            var sortBy = "account_type";  // string | Field to sort by, from the transaction model (optional)  (default to payment_date)
+            var sortBy = "account_id";  // string | Field to sort by, from the transaction model (optional)  (default to payment_date)
             var order = "asc";  // string | Sorting order (asc or desc). Default is desc  (optional)  (default to desc)
             var statusFilter = new List<string>(); // List<string> | Filter by status nb: Example usage, comma separated, in query... /transactions?status_filter=Paid,Initialised  (optional) 
             var accountIdFilter = new List<Guid>(); // List<Guid> | Filter by account id nb: Example usage, comma separated, in query... /transactions?account_id=57d43c4e-f18d-40ae-9511-2aeafbf68def,b7dc7851-5cc4-41d5-8174-f00ad916f76b  (optional) 

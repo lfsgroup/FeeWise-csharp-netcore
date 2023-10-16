@@ -26,39 +26,34 @@ using OpenAPIDateConverter = FeeWise.Client.OpenAPIDateConverter;
 namespace FeeWise.Model
 {
     /// <summary>
-    /// TrustDepositResponse
+    /// PayoutsResponse
     /// </summary>
-    [DataContract(Name = "TrustDepositResponse")]
-    public partial class TrustDepositResponse : IEquatable<TrustDepositResponse>, IValidatableObject
+    [DataContract(Name = "PayoutsResponse")]
+    public partial class PayoutsResponse : IEquatable<PayoutsResponse>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="TrustDepositResponse" /> class.
+        /// Initializes a new instance of the <see cref="PayoutsResponse" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected TrustDepositResponse()
+        /// <param name="payouts">payouts.</param>
+        /// <param name="paginationMetadata">paginationMetadata.</param>
+        public PayoutsResponse(List<Payout> payouts = default(List<Payout>), PaginationMetadata paginationMetadata = default(PaginationMetadata))
         {
-            this.AdditionalProperties = new Dictionary<string, object>();
-        }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="TrustDepositResponse" /> class.
-        /// </summary>
-        /// <param name="trustDeposit">trustDeposit (required).</param>
-        public TrustDepositResponse(TrustDeposit trustDeposit = default(TrustDeposit))
-        {
-            // to ensure "trustDeposit" is required (not null)
-            if (trustDeposit == null)
-            {
-                throw new ArgumentNullException("trustDeposit is a required property for TrustDepositResponse and cannot be null");
-            }
-            this.TrustDeposit = trustDeposit;
+            this.Payouts = payouts;
+            this.PaginationMetadata = paginationMetadata;
             this.AdditionalProperties = new Dictionary<string, object>();
         }
 
         /// <summary>
-        /// Gets or Sets TrustDeposit
+        /// Gets or Sets Payouts
         /// </summary>
-        [DataMember(Name = "trust_deposit", IsRequired = true, EmitDefaultValue = true)]
-        public TrustDeposit TrustDeposit { get; set; }
+        [DataMember(Name = "payouts", EmitDefaultValue = false)]
+        public List<Payout> Payouts { get; set; }
+
+        /// <summary>
+        /// Gets or Sets PaginationMetadata
+        /// </summary>
+        [DataMember(Name = "pagination_metadata", EmitDefaultValue = false)]
+        public PaginationMetadata PaginationMetadata { get; set; }
 
         /// <summary>
         /// Gets or Sets additional properties
@@ -73,8 +68,9 @@ namespace FeeWise.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class TrustDepositResponse {\n");
-            sb.Append("  TrustDeposit: ").Append(TrustDeposit).Append("\n");
+            sb.Append("class PayoutsResponse {\n");
+            sb.Append("  Payouts: ").Append(Payouts).Append("\n");
+            sb.Append("  PaginationMetadata: ").Append(PaginationMetadata).Append("\n");
             sb.Append("  AdditionalProperties: ").Append(AdditionalProperties).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -96,15 +92,15 @@ namespace FeeWise.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as TrustDepositResponse);
+            return this.Equals(input as PayoutsResponse);
         }
 
         /// <summary>
-        /// Returns true if TrustDepositResponse instances are equal
+        /// Returns true if PayoutsResponse instances are equal
         /// </summary>
-        /// <param name="input">Instance of TrustDepositResponse to be compared</param>
+        /// <param name="input">Instance of PayoutsResponse to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(TrustDepositResponse input)
+        public bool Equals(PayoutsResponse input)
         {
             if (input == null)
             {
@@ -112,9 +108,15 @@ namespace FeeWise.Model
             }
             return 
                 (
-                    this.TrustDeposit == input.TrustDeposit ||
-                    (this.TrustDeposit != null &&
-                    this.TrustDeposit.Equals(input.TrustDeposit))
+                    this.Payouts == input.Payouts ||
+                    this.Payouts != null &&
+                    input.Payouts != null &&
+                    this.Payouts.SequenceEqual(input.Payouts)
+                ) && 
+                (
+                    this.PaginationMetadata == input.PaginationMetadata ||
+                    (this.PaginationMetadata != null &&
+                    this.PaginationMetadata.Equals(input.PaginationMetadata))
                 )
                 && (this.AdditionalProperties.Count == input.AdditionalProperties.Count && !this.AdditionalProperties.Except(input.AdditionalProperties).Any());
         }
@@ -128,9 +130,13 @@ namespace FeeWise.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.TrustDeposit != null)
+                if (this.Payouts != null)
                 {
-                    hashCode = (hashCode * 59) + this.TrustDeposit.GetHashCode();
+                    hashCode = (hashCode * 59) + this.Payouts.GetHashCode();
+                }
+                if (this.PaginationMetadata != null)
+                {
+                    hashCode = (hashCode * 59) + this.PaginationMetadata.GetHashCode();
                 }
                 if (this.AdditionalProperties != null)
                 {

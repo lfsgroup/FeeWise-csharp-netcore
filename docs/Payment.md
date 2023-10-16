@@ -17,6 +17,7 @@ Name | Type | Description | Notes
 **PaidOut** | **string** | The total amount paid to the firm for this payment | 
 **Currency** | **string** | The currency the payment was made in. | 
 **Date** | **DateTime** | When the payment was made. | 
+**Metadata** | **Dictionary&lt;string, string&gt;** | metadata that the partner has attached to the original artifact (charge, invoice, trust deposit, etc) | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -76,6 +76,7 @@ docs/PayoutAccount.md
 docs/PayoutStatus.md
 docs/Payouts.md
 docs/PayoutsApi.md
+docs/PayoutsResponse.md
 docs/Person.md
 docs/PostFirmBrandingColourRequest.md
 docs/PostPartnerLogoUpload200Response.md
@@ -174,6 +175,7 @@ src/FeeWise.Test/Model/PaymentsTests.cs
 src/FeeWise.Test/Model/PayoutAccountTests.cs
 src/FeeWise.Test/Model/PayoutStatusTests.cs
 src/FeeWise.Test/Model/PayoutTests.cs
+src/FeeWise.Test/Model/PayoutsResponseTests.cs
 src/FeeWise.Test/Model/PayoutsTests.cs
 src/FeeWise.Test/Model/PersonTests.cs
 src/FeeWise.Test/Model/PostFirmBrandingColourRequestTests.cs
@@ -288,6 +290,7 @@ src/FeeWise/Model/Payout.cs
 src/FeeWise/Model/PayoutAccount.cs
 src/FeeWise/Model/PayoutStatus.cs
 src/FeeWise/Model/Payouts.cs
+src/FeeWise/Model/PayoutsResponse.cs
 src/FeeWise/Model/Person.cs
 src/FeeWise/Model/PostFirmBrandingColourRequest.cs
 src/FeeWise/Model/PostPartnerLogoUpload200Response.cs
