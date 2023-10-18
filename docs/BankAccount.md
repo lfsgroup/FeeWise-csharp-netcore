@@ -10,10 +10,12 @@ Name | Type | Description | Notes
 **AccountHolderType** | **string** |  | [optional] 
 **AccountNumber** | **string** |  | 
 **BranchCode** | **string** |  | 
+**Address** | **string** |  | [optional] 
 **Alias** | **string** |  | [optional] 
 **Bank** | **string** |  | [optional] 
 **CountryCode** | **string** |  | [optional] 
-**IsDefault** | **bool** |  | [optional] 
+**IsDefault** | **bool** | Will be set to true, if the account is the default for this type (e.g. Office, Trust) | [optional] 
+**DefaultAccounts** | **List&lt;BankAccount.DefaultAccountsEnum&gt;** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

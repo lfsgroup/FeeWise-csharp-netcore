@@ -23,73 +23,77 @@ namespace FeeWise.Api
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public interface IAPIKeyApiSync : IApiAccessor
+    public interface IAccountsApiSync : IApiAccessor
     {
         #region Synchronous Operations
         /// <summary>
-        /// Rotate API Key
+        /// Create an account
         /// </summary>
         /// <remarks>
-        /// Produces a new API-KEY. This new key and the previous key will both be valid until they expire. The key expiry is set by system defaults but may be customised for this specific key in the request. 
+        /// Create an Office or Trust account for a Firm
         /// </remarks>
         /// <exception cref="FeeWise.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="apiKeyRotation"> (optional)</param>
+        /// <param name="firmId"></param>
+        /// <param name="bankAccount">New account details</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <returns>ApiKeyResponse</returns>
-        ApiKeyResponse RotateApiKey(ApiKeyRotation apiKeyRotation = default(ApiKeyRotation), int operationIndex = 0);
+        /// <returns>BankAccount</returns>
+        BankAccount CreateFirmBankAccount(Guid firmId, BankAccount bankAccount, int operationIndex = 0);
 
         /// <summary>
-        /// Rotate API Key
+        /// Create an account
         /// </summary>
         /// <remarks>
-        /// Produces a new API-KEY. This new key and the previous key will both be valid until they expire. The key expiry is set by system defaults but may be customised for this specific key in the request. 
+        /// Create an Office or Trust account for a Firm
         /// </remarks>
         /// <exception cref="FeeWise.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="apiKeyRotation"> (optional)</param>
+        /// <param name="firmId"></param>
+        /// <param name="bankAccount">New account details</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <returns>ApiResponse of ApiKeyResponse</returns>
-        ApiResponse<ApiKeyResponse> RotateApiKeyWithHttpInfo(ApiKeyRotation apiKeyRotation = default(ApiKeyRotation), int operationIndex = 0);
+        /// <returns>ApiResponse of BankAccount</returns>
+        ApiResponse<BankAccount> CreateFirmBankAccountWithHttpInfo(Guid firmId, BankAccount bankAccount, int operationIndex = 0);
         #endregion Synchronous Operations
     }
 
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public interface IAPIKeyApiAsync : IApiAccessor
+    public interface IAccountsApiAsync : IApiAccessor
     {
         #region Asynchronous Operations
         /// <summary>
-        /// Rotate API Key
+        /// Create an account
         /// </summary>
         /// <remarks>
-        /// Produces a new API-KEY. This new key and the previous key will both be valid until they expire. The key expiry is set by system defaults but may be customised for this specific key in the request. 
+        /// Create an Office or Trust account for a Firm
         /// </remarks>
         /// <exception cref="FeeWise.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="apiKeyRotation"> (optional)</param>
+        /// <param name="firmId"></param>
+        /// <param name="bankAccount">New account details</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiKeyResponse</returns>
-        System.Threading.Tasks.Task<ApiKeyResponse> RotateApiKeyAsync(ApiKeyRotation apiKeyRotation = default(ApiKeyRotation), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <returns>Task of BankAccount</returns>
+        System.Threading.Tasks.Task<BankAccount> CreateFirmBankAccountAsync(Guid firmId, BankAccount bankAccount, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
-        /// Rotate API Key
+        /// Create an account
         /// </summary>
         /// <remarks>
-        /// Produces a new API-KEY. This new key and the previous key will both be valid until they expire. The key expiry is set by system defaults but may be customised for this specific key in the request. 
+        /// Create an Office or Trust account for a Firm
         /// </remarks>
         /// <exception cref="FeeWise.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="apiKeyRotation"> (optional)</param>
+        /// <param name="firmId"></param>
+        /// <param name="bankAccount">New account details</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (ApiKeyResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ApiKeyResponse>> RotateApiKeyWithHttpInfoAsync(ApiKeyRotation apiKeyRotation = default(ApiKeyRotation), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (BankAccount)</returns>
+        System.Threading.Tasks.Task<ApiResponse<BankAccount>> CreateFirmBankAccountWithHttpInfoAsync(Guid firmId, BankAccount bankAccount, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public interface IAPIKeyApi : IAPIKeyApiSync, IAPIKeyApiAsync
+    public interface IAccountsApi : IAccountsApiSync, IAccountsApiAsync
     {
 
     }
@@ -97,23 +101,23 @@ namespace FeeWise.Api
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public partial class APIKeyApi : IAPIKeyApi
+    public partial class AccountsApi : IAccountsApi
     {
         private FeeWise.Client.ExceptionFactory _exceptionFactory = (name, response) => null;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="APIKeyApi"/> class.
+        /// Initializes a new instance of the <see cref="AccountsApi"/> class.
         /// </summary>
         /// <returns></returns>
-        public APIKeyApi() : this((string)null)
+        public AccountsApi() : this((string)null)
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="APIKeyApi"/> class.
+        /// Initializes a new instance of the <see cref="AccountsApi"/> class.
         /// </summary>
         /// <returns></returns>
-        public APIKeyApi(string basePath)
+        public AccountsApi(string basePath)
         {
             this.Configuration = FeeWise.Client.Configuration.MergeConfigurations(
                 FeeWise.Client.GlobalConfiguration.Instance,
@@ -125,12 +129,12 @@ namespace FeeWise.Api
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="APIKeyApi"/> class
+        /// Initializes a new instance of the <see cref="AccountsApi"/> class
         /// using Configuration object
         /// </summary>
         /// <param name="configuration">An instance of Configuration</param>
         /// <returns></returns>
-        public APIKeyApi(FeeWise.Client.Configuration configuration)
+        public AccountsApi(FeeWise.Client.Configuration configuration)
         {
             if (configuration == null) throw new ArgumentNullException("configuration");
 
@@ -144,13 +148,13 @@ namespace FeeWise.Api
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="APIKeyApi"/> class
+        /// Initializes a new instance of the <see cref="AccountsApi"/> class
         /// using a Configuration object and client instance.
         /// </summary>
         /// <param name="client">The client interface for synchronous API access.</param>
         /// <param name="asyncClient">The client interface for asynchronous API access.</param>
         /// <param name="configuration">The configuration object.</param>
-        public APIKeyApi(FeeWise.Client.ISynchronousClient client, FeeWise.Client.IAsynchronousClient asyncClient, FeeWise.Client.IReadableConfiguration configuration)
+        public AccountsApi(FeeWise.Client.ISynchronousClient client, FeeWise.Client.IAsynchronousClient asyncClient, FeeWise.Client.IReadableConfiguration configuration)
         {
             if (client == null) throw new ArgumentNullException("client");
             if (asyncClient == null) throw new ArgumentNullException("asyncClient");
@@ -204,27 +208,35 @@ namespace FeeWise.Api
         }
 
         /// <summary>
-        /// Rotate API Key Produces a new API-KEY. This new key and the previous key will both be valid until they expire. The key expiry is set by system defaults but may be customised for this specific key in the request. 
+        /// Create an account Create an Office or Trust account for a Firm
         /// </summary>
         /// <exception cref="FeeWise.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="apiKeyRotation"> (optional)</param>
+        /// <param name="firmId"></param>
+        /// <param name="bankAccount">New account details</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <returns>ApiKeyResponse</returns>
-        public ApiKeyResponse RotateApiKey(ApiKeyRotation apiKeyRotation = default(ApiKeyRotation), int operationIndex = 0)
+        /// <returns>BankAccount</returns>
+        public BankAccount CreateFirmBankAccount(Guid firmId, BankAccount bankAccount, int operationIndex = 0)
         {
-            FeeWise.Client.ApiResponse<ApiKeyResponse> localVarResponse = RotateApiKeyWithHttpInfo(apiKeyRotation);
+            FeeWise.Client.ApiResponse<BankAccount> localVarResponse = CreateFirmBankAccountWithHttpInfo(firmId, bankAccount);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// Rotate API Key Produces a new API-KEY. This new key and the previous key will both be valid until they expire. The key expiry is set by system defaults but may be customised for this specific key in the request. 
+        /// Create an account Create an Office or Trust account for a Firm
         /// </summary>
         /// <exception cref="FeeWise.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="apiKeyRotation"> (optional)</param>
+        /// <param name="firmId"></param>
+        /// <param name="bankAccount">New account details</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <returns>ApiResponse of ApiKeyResponse</returns>
-        public FeeWise.Client.ApiResponse<ApiKeyResponse> RotateApiKeyWithHttpInfo(ApiKeyRotation apiKeyRotation = default(ApiKeyRotation), int operationIndex = 0)
+        /// <returns>ApiResponse of BankAccount</returns>
+        public FeeWise.Client.ApiResponse<BankAccount> CreateFirmBankAccountWithHttpInfo(Guid firmId, BankAccount bankAccount, int operationIndex = 0)
         {
+            // verify the required parameter 'bankAccount' is set
+            if (bankAccount == null)
+            {
+                throw new FeeWise.Client.ApiException(400, "Missing required parameter 'bankAccount' when calling AccountsApi->CreateFirmBankAccount");
+            }
+
             FeeWise.Client.RequestOptions localVarRequestOptions = new FeeWise.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
@@ -248,9 +260,10 @@ namespace FeeWise.Api
                 localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
             }
 
-            localVarRequestOptions.Data = apiKeyRotation;
+            localVarRequestOptions.PathParameters.Add("firm_id", FeeWise.Client.ClientUtils.ParameterToString(firmId)); // path parameter
+            localVarRequestOptions.Data = bankAccount;
 
-            localVarRequestOptions.Operation = "APIKeyApi.RotateApiKey";
+            localVarRequestOptions.Operation = "AccountsApi.CreateFirmBankAccount";
             localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (APIAuth) required
@@ -265,10 +278,10 @@ namespace FeeWise.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<ApiKeyResponse>("/api/v3/partner/rotatekey", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<BankAccount>("/api/v3/partner/firms/{firm_id}/accounts", localVarRequestOptions, this.Configuration);
             if (this.ExceptionFactory != null)
             {
-                Exception _exception = this.ExceptionFactory("RotateApiKey", localVarResponse);
+                Exception _exception = this.ExceptionFactory("CreateFirmBankAccount", localVarResponse);
                 if (_exception != null)
                 {
                     throw _exception;
@@ -279,29 +292,37 @@ namespace FeeWise.Api
         }
 
         /// <summary>
-        /// Rotate API Key Produces a new API-KEY. This new key and the previous key will both be valid until they expire. The key expiry is set by system defaults but may be customised for this specific key in the request. 
+        /// Create an account Create an Office or Trust account for a Firm
         /// </summary>
         /// <exception cref="FeeWise.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="apiKeyRotation"> (optional)</param>
+        /// <param name="firmId"></param>
+        /// <param name="bankAccount">New account details</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiKeyResponse</returns>
-        public async System.Threading.Tasks.Task<ApiKeyResponse> RotateApiKeyAsync(ApiKeyRotation apiKeyRotation = default(ApiKeyRotation), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        /// <returns>Task of BankAccount</returns>
+        public async System.Threading.Tasks.Task<BankAccount> CreateFirmBankAccountAsync(Guid firmId, BankAccount bankAccount, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            FeeWise.Client.ApiResponse<ApiKeyResponse> localVarResponse = await RotateApiKeyWithHttpInfoAsync(apiKeyRotation, operationIndex, cancellationToken).ConfigureAwait(false);
+            FeeWise.Client.ApiResponse<BankAccount> localVarResponse = await CreateFirmBankAccountWithHttpInfoAsync(firmId, bankAccount, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// Rotate API Key Produces a new API-KEY. This new key and the previous key will both be valid until they expire. The key expiry is set by system defaults but may be customised for this specific key in the request. 
+        /// Create an account Create an Office or Trust account for a Firm
         /// </summary>
         /// <exception cref="FeeWise.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="apiKeyRotation"> (optional)</param>
+        /// <param name="firmId"></param>
+        /// <param name="bankAccount">New account details</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (ApiKeyResponse)</returns>
-        public async System.Threading.Tasks.Task<FeeWise.Client.ApiResponse<ApiKeyResponse>> RotateApiKeyWithHttpInfoAsync(ApiKeyRotation apiKeyRotation = default(ApiKeyRotation), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (BankAccount)</returns>
+        public async System.Threading.Tasks.Task<FeeWise.Client.ApiResponse<BankAccount>> CreateFirmBankAccountWithHttpInfoAsync(Guid firmId, BankAccount bankAccount, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            // verify the required parameter 'bankAccount' is set
+            if (bankAccount == null)
+            {
+                throw new FeeWise.Client.ApiException(400, "Missing required parameter 'bankAccount' when calling AccountsApi->CreateFirmBankAccount");
+            }
+
 
             FeeWise.Client.RequestOptions localVarRequestOptions = new FeeWise.Client.RequestOptions();
 
@@ -326,9 +347,10 @@ namespace FeeWise.Api
                 localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
             }
 
-            localVarRequestOptions.Data = apiKeyRotation;
+            localVarRequestOptions.PathParameters.Add("firm_id", FeeWise.Client.ClientUtils.ParameterToString(firmId)); // path parameter
+            localVarRequestOptions.Data = bankAccount;
 
-            localVarRequestOptions.Operation = "APIKeyApi.RotateApiKey";
+            localVarRequestOptions.Operation = "AccountsApi.CreateFirmBankAccount";
             localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (APIAuth) required
@@ -343,11 +365,11 @@ namespace FeeWise.Api
             }
 
             // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.PostAsync<ApiKeyResponse>("/api/v3/partner/rotatekey", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<BankAccount>("/api/v3/partner/firms/{firm_id}/accounts", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
-                Exception _exception = this.ExceptionFactory("RotateApiKey", localVarResponse);
+                Exception _exception = this.ExceptionFactory("CreateFirmBankAccount", localVarResponse);
                 if (_exception != null)
                 {
                     throw _exception;

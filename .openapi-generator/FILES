@@ -5,6 +5,7 @@ README.md
 appveyor.yml
 docs/APIKeyApi.md
 docs/AccountType.md
+docs/AccountsApi.md
 docs/Address.md
 docs/AdjustInvoiceAmountRequest.md
 docs/AdjustTrustDepositAmountRequest.md
@@ -101,6 +102,7 @@ docs/WebhookSendStatus.md
 docs/WebhookStatus.md
 git_push.sh
 src/FeeWise.Test/Api/APIKeyApiTests.cs
+src/FeeWise.Test/Api/AccountsApiTests.cs
 src/FeeWise.Test/Api/BankAccountApiTests.cs
 src/FeeWise.Test/Api/FirmApiTests.cs
 src/FeeWise.Test/Api/PartnerApiTests.cs
@@ -198,6 +200,7 @@ src/FeeWise.Test/Model/WebhookSendStatusTests.cs
 src/FeeWise.Test/Model/WebhookStatusTests.cs
 src/FeeWise.Test/Model/WebhookTests.cs
 src/FeeWise/Api/APIKeyApi.cs
+src/FeeWise/Api/AccountsApi.cs
 src/FeeWise/Api/BankAccountApi.cs
 src/FeeWise/Api/FirmApi.cs
 src/FeeWise/Api/PartnerApi.cs
