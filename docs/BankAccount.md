@@ -6,14 +6,14 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AccountId** | **Guid** |  | [optional] 
 **AccountType** | **AccountType** |  | 
-**AccountName** | **string** |  | [optional] 
-**AccountHolderType** | **string** |  | [optional] 
+**AccountName** | **string** |  | 
+**AccountHolderType** | **string** |  | 
 **AccountNumber** | **string** |  | 
 **BranchCode** | **string** |  | 
 **Address** | **string** |  | [optional] 
 **Alias** | **string** |  | [optional] 
 **Bank** | **string** |  | [optional] 
-**CountryCode** | **string** |  | [optional] 
+**CountryCode** | **string** |  | 
 **IsDefault** | **bool** | Will be set to true, if the account is the default for this type (e.g. Office, Trust) | [optional] 
 **DefaultAccounts** | **List&lt;BankAccount.DefaultAccountsEnum&gt;** |  | [optional] 
 

@@ -105,8 +105,11 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **201** | Account created |  -  |
-| **404** | Firm not Found |  -  |
-| **500** | Internal Server Error |  -  |
+| **400** | Bad request |  -  |
+| **403** | Forbidden request |  -  |
+| **404** | Firm not found |  -  |
+| **409** | Firm bank account already exists |  -  |
+| **500** | Internal server error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
