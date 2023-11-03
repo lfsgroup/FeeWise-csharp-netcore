@@ -333,6 +333,7 @@ catch (ApiException e)
 | **200** | Created Charge |  -  |
 | **400** | Bad request, do not include charge_id or payment_uri in the request. |  -  |
 | **404** | Firm or Settlement Account could not be found. |  -  |
+| **409** | Invalid settlement account. |  -  |
 | **500** | Error processing |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -542,6 +543,7 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Created Invoice |  -  |
+| **409** | Invalid settlement account. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -642,6 +644,7 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Matter was created |  -  |
+| **409** | Invalid settlement account. |  -  |
 | **500** | Error processing |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -743,6 +746,7 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Created Trust Deposit |  -  |
+| **409** | Invalid settlement account. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
