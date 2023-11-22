@@ -6,6 +6,8 @@ An artifact (invoice, matter, deposit, etc...), which also contains the payment 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ReceiptId** | **Guid** | The receipt ID | 
+**MatterExternalId** | **string** | The external matter ID of the attached matter | [optional] 
+**MatterExternalReference** | **string** | The external matter reference of the attached matter | [optional] 
 **ArtifactId** | **Guid** | The artifact ID | 
 **ArtifactType** | **ArtifactType** |  | 
 **ExternalId** | **string** | The external ID | 
