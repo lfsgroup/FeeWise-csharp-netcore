@@ -82,6 +82,8 @@ docs/Person.md
 docs/PostFirmBrandingColourRequest.md
 docs/PostPartnerLogoUpload200Response.md
 docs/PostUpload200Response.md
+docs/SplitCharge.md
+docs/SplitChargesResponse.md
 docs/SurchargeChoice.md
 docs/TermsOfService.md
 docs/TokenType.md
@@ -183,6 +185,8 @@ src/FeeWise.Test/Model/PersonTests.cs
 src/FeeWise.Test/Model/PostFirmBrandingColourRequestTests.cs
 src/FeeWise.Test/Model/PostPartnerLogoUpload200ResponseTests.cs
 src/FeeWise.Test/Model/PostUpload200ResponseTests.cs
+src/FeeWise.Test/Model/SplitChargeTests.cs
+src/FeeWise.Test/Model/SplitChargesResponseTests.cs
 src/FeeWise.Test/Model/SurchargeChoiceTests.cs
 src/FeeWise.Test/Model/TermsOfServiceTests.cs
 src/FeeWise.Test/Model/TokenTypeTests.cs
@@ -298,6 +302,8 @@ src/FeeWise/Model/Person.cs
 src/FeeWise/Model/PostFirmBrandingColourRequest.cs
 src/FeeWise/Model/PostPartnerLogoUpload200Response.cs
 src/FeeWise/Model/PostUpload200Response.cs
+src/FeeWise/Model/SplitCharge.cs
+src/FeeWise/Model/SplitChargesResponse.cs
 src/FeeWise/Model/SurchargeChoice.cs
 src/FeeWise/Model/TermsOfService.cs
 src/FeeWise/Model/TokenType.cs
