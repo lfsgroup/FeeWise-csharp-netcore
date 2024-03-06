@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **PaymentId** | **Guid** | The id of the payment. nb A single payment may contain multiple transactions and may not be unique. | 
 **PaymentType** | **PaymentMethod** |  | [optional] 
 **ArtifactId** | **Guid** | The artifact (Invoice, TrustDeposit, ...) the payment is in relation to. | 
+**Reference** | **string** | The artifact reference. | [optional] 
 **ArtifactType** | **ArtifactType** |  | 
 **ExternalId** | **string** | This is the id of the artifact supplied by the channel partner / PMS. | [optional] 
 **ExternalPayment** | [**PaymentExternalPayment**](PaymentExternalPayment.md) |  | [optional] 

@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **PaymentReference** | **Guid** | UUID of the payment intent (in FeeWise). This is the Payment id shown in the payment receipt. | 
 **AccountId** | **Guid** | FW ID of the settlement account | [optional] 
 **PayoutId** | **Guid** | ID of the payout (if paid out). | [optional] 
+**PayoutDate** | **DateTime** | Timestamp when the associated payout was made to the firm from FeeWise. | [optional] 
 **Reference** | **string** | The artifact reference. | 
 **Debtor** | [**Debtor**](Debtor.md) |  | [optional] 
 **MatterReference** | **string** | The name of the matter the payment is made for. | [optional] 

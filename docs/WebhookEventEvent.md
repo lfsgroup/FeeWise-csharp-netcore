@@ -29,6 +29,7 @@ Name | Type | Description | Notes
 **PaymentId** | **Guid** | The payment ID | 
 **PaymentType** | **PaymentMethod** |  | [optional] 
 **ArtifactId** | **Guid** | The artifact (Invoice, TrustDeposit, ...) the payment is in relation to. | 
+**Reference** | **string** | The artifact reference. | [optional] 
 **ArtifactType** | **ArtifactType** |  | 
 **ExternalPayment** | [**PaymentExternalPayment**](PaymentExternalPayment.md) |  | [optional] 
 **Received** | **string** | The amount received from the client. | [optional] 
