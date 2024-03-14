@@ -428,6 +428,7 @@ void (empty response body)
 | **204** | Payment token has been successfully deleted. |  -  |
 | **400** | Bad request |  -  |
 | **404** | Firm or token not found |  -  |
+| **409** | Payment token in use. |  -  |
 | **500** | Error processing |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
