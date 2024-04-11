@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **TaxId** | **string** |  | 
 **TradingName** | **string** |  | 
 **Website** | **string** |  | 
-**SupportEmail** | [**CompanySupportEmail**](CompanySupportEmail.md) |  | [optional] 
+**SupportEmail** | **string** |  | [optional] 
 **SupportNumber** | **string** |  | [optional] 
 **ContactEmail** | **string** |  | 
 **ContactNumber** | **string** |  | 
