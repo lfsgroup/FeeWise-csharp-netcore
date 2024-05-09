@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **InvoiceId** | **Guid** | This is the uuid of the invoice. This will be used for and &#39;GET&#39; of the invoice and in webhooks about this invoice NB this is generated and must not be supplied when creating an invoice.  | [optional] 
-**FirmId** | **Guid** | The firm ID | 
+**FirmId** | **Guid** |  | 
 **Matter** | [**Matter**](Matter.md) |  | [optional] 
 **Debtor** | [**Debtor**](Debtor.md) |  | [optional] 
 **ExternalId** | **string** | Unique ID for the firm, set by partners | 
@@ -23,7 +23,7 @@ Name | Type | Description | Notes
 **SurchargeChoiceOverride** | **SurchargeChoice** |  | [optional] 
 **Description** | **string** | Freeform text for channel partner / PMS. | [optional] 
 **PaymentUri** | **string** | The URI to send to customer.    They will follow this link to make a payment.    NB This must not be set when creating an invoice.  | [optional] 
-**Status** | **FirmOnboardingStatus** |  | 
+**Status** | **string** | The status of the bank account. Pending - awaiting validation, Valid - successfully validated, Invalid - bank account number validation failed. | 
 **TrustDepositId** | **Guid** | This is the uuid of the Trust Deposit. This will be used for any &#39;GET&#39; of the Trust Deposit and in webhooks about this Trust Deposit NB this is generated and must not be supplied when creating a Trust Deposit.  | [optional] 
 **TransactionId** | **Guid** | The unique id of this single transaction in the payout. | 
 **PaymentId** | **Guid** | The payment ID | 
@@ -51,6 +51,17 @@ Name | Type | Description | Notes
 **TradingName** | **string** |  | [optional] 
 **PaymentStatus** | **string** | The status of the payment. Card payments have either a Successful or Failed status. Direct Debit payments can have a Processing, Successful or Failed status. | 
 **FailureMessage** | **string** | When the payment_status is Failed this will show the reason for payment failure. E.g. Card does not have sufficient funds. | [optional] 
+**AccountId** | **Guid** |  | [optional] 
+**AccountType** | **AccountType** |  | 
+**AccountName** | **string** |  | 
+**AccountHolderType** | **string** |  | 
+**AccountNumber** | **string** |  | 
+**BranchCode** | **string** |  | 
+**Address** | **string** |  | [optional] 
+**Alias** | **string** |  | [optional] 
+**Bank** | **string** |  | [optional] 
+**CountryCode** | **string** |  | 
+**LastUpdatedAt** | **DateTime** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
