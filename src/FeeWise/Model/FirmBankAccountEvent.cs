@@ -26,10 +26,10 @@ using OpenAPIDateConverter = FeeWise.Client.OpenAPIDateConverter;
 namespace FeeWise.Model
 {
     /// <summary>
-    /// BankAccount
+    /// FirmBankAccountEvent
     /// </summary>
-    [DataContract(Name = "BankAccount")]
-    public partial class BankAccount : IEquatable<BankAccount>, IValidatableObject
+    [DataContract(Name = "FirmBankAccountEvent")]
+    public partial class FirmBankAccountEvent : IEquatable<FirmBankAccountEvent>, IValidatableObject
     {
 
         /// <summary>
@@ -64,39 +64,48 @@ namespace FeeWise.Model
         [DataMember(Name = "account_holder_type", IsRequired = true, EmitDefaultValue = true)]
         public AccountHolderTypeEnum AccountHolderType { get; set; }
         /// <summary>
-        /// Defines DefaultAccounts
+        /// The status of the bank account. Pending - awaiting validation, Valid - successfully validated, Invalid - bank account number validation failed.
         /// </summary>
+        /// <value>The status of the bank account. Pending - awaiting validation, Valid - successfully validated, Invalid - bank account number validation failed.</value>
         [JsonConverter(typeof(StringEnumConverter))]
-        public enum DefaultAccountsEnum
+        public enum StatusEnum
         {
             /// <summary>
-            /// Enum Billing for value: Billing
+            /// Enum Pending for value: Pending
             /// </summary>
-            [EnumMember(Value = "Billing")]
-            Billing = 1,
+            [EnumMember(Value = "Pending")]
+            Pending = 1,
 
             /// <summary>
-            /// Enum Office for value: Office
+            /// Enum Valid for value: Valid
             /// </summary>
-            [EnumMember(Value = "Office")]
-            Office = 2,
+            [EnumMember(Value = "Valid")]
+            Valid = 2,
 
             /// <summary>
-            /// Enum Trust for value: Trust
+            /// Enum Invalid for value: Invalid
             /// </summary>
-            [EnumMember(Value = "Trust")]
-            Trust = 3
+            [EnumMember(Value = "Invalid")]
+            Invalid = 3
 
         }
 
+
         /// <summary>
-        /// Initializes a new instance of the <see cref="BankAccount" /> class.
+        /// The status of the bank account. Pending - awaiting validation, Valid - successfully validated, Invalid - bank account number validation failed.
+        /// </summary>
+        /// <value>The status of the bank account. Pending - awaiting validation, Valid - successfully validated, Invalid - bank account number validation failed.</value>
+        [DataMember(Name = "status", EmitDefaultValue = false)]
+        public StatusEnum? Status { get; set; }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FirmBankAccountEvent" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected BankAccount() { }
+        protected FirmBankAccountEvent() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="BankAccount" /> class.
+        /// Initializes a new instance of the <see cref="FirmBankAccountEvent" /> class.
         /// </summary>
+        /// <param name="firmId">firmId.</param>
         /// <param name="accountId">accountId.</param>
         /// <param name="accountType">accountType (required).</param>
         /// <param name="accountName">accountName (required).</param>
@@ -107,43 +116,50 @@ namespace FeeWise.Model
         /// <param name="alias">alias.</param>
         /// <param name="bank">bank.</param>
         /// <param name="countryCode">countryCode (required).</param>
-        /// <param name="isDefault">Will be set to true, if the account is the default for this type (e.g. Office, Trust).</param>
-        /// <param name="defaultAccounts">defaultAccounts.</param>
-        public BankAccount(Guid accountId = default(Guid), AccountType accountType = default(AccountType), string accountName = default(string), AccountHolderTypeEnum accountHolderType = default(AccountHolderTypeEnum), string accountNumber = default(string), string branchCode = default(string), string address = default(string), string alias = default(string), string bank = default(string), string countryCode = default(string), bool isDefault = default(bool), List<DefaultAccountsEnum> defaultAccounts = default(List<DefaultAccountsEnum>))
+        /// <param name="lastUpdatedAt">lastUpdatedAt.</param>
+        /// <param name="status">The status of the bank account. Pending - awaiting validation, Valid - successfully validated, Invalid - bank account number validation failed..</param>
+        public FirmBankAccountEvent(Guid firmId = default(Guid), Guid accountId = default(Guid), AccountType accountType = default(AccountType), string accountName = default(string), AccountHolderTypeEnum accountHolderType = default(AccountHolderTypeEnum), string accountNumber = default(string), string branchCode = default(string), string address = default(string), string alias = default(string), string bank = default(string), string countryCode = default(string), DateTime lastUpdatedAt = default(DateTime), StatusEnum? status = default(StatusEnum?))
         {
             this.AccountType = accountType;
             // to ensure "accountName" is required (not null)
             if (accountName == null)
             {
-                throw new ArgumentNullException("accountName is a required property for BankAccount and cannot be null");
+                throw new ArgumentNullException("accountName is a required property for FirmBankAccountEvent and cannot be null");
             }
             this.AccountName = accountName;
             this.AccountHolderType = accountHolderType;
             // to ensure "accountNumber" is required (not null)
             if (accountNumber == null)
             {
-                throw new ArgumentNullException("accountNumber is a required property for BankAccount and cannot be null");
+                throw new ArgumentNullException("accountNumber is a required property for FirmBankAccountEvent and cannot be null");
             }
             this.AccountNumber = accountNumber;
             // to ensure "branchCode" is required (not null)
             if (branchCode == null)
             {
-                throw new ArgumentNullException("branchCode is a required property for BankAccount and cannot be null");
+                throw new ArgumentNullException("branchCode is a required property for FirmBankAccountEvent and cannot be null");
             }
             this.BranchCode = branchCode;
             // to ensure "countryCode" is required (not null)
             if (countryCode == null)
             {
-                throw new ArgumentNullException("countryCode is a required property for BankAccount and cannot be null");
+                throw new ArgumentNullException("countryCode is a required property for FirmBankAccountEvent and cannot be null");
             }
             this.CountryCode = countryCode;
+            this.FirmId = firmId;
             this.AccountId = accountId;
             this.Address = address;
             this.Alias = alias;
             this.Bank = bank;
-            this.IsDefault = isDefault;
-            this.DefaultAccounts = defaultAccounts;
+            this.LastUpdatedAt = lastUpdatedAt;
+            this.Status = status;
         }
+
+        /// <summary>
+        /// Gets or Sets FirmId
+        /// </summary>
+        [DataMember(Name = "firm_id", EmitDefaultValue = false)]
+        public Guid FirmId { get; set; }
 
         /// <summary>
         /// Gets or Sets AccountId
@@ -194,17 +210,10 @@ namespace FeeWise.Model
         public string CountryCode { get; set; }
 
         /// <summary>
-        /// Will be set to true, if the account is the default for this type (e.g. Office, Trust)
+        /// Gets or Sets LastUpdatedAt
         /// </summary>
-        /// <value>Will be set to true, if the account is the default for this type (e.g. Office, Trust)</value>
-        [DataMember(Name = "is_default", EmitDefaultValue = true)]
-        public bool IsDefault { get; set; }
-
-        /// <summary>
-        /// Gets or Sets DefaultAccounts
-        /// </summary>
-        [DataMember(Name = "default_accounts", EmitDefaultValue = false)]
-        public List<BankAccount.DefaultAccountsEnum> DefaultAccounts { get; set; }
+        [DataMember(Name = "last_updated_at", EmitDefaultValue = false)]
+        public DateTime LastUpdatedAt { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -213,7 +222,8 @@ namespace FeeWise.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class BankAccount {\n");
+            sb.Append("class FirmBankAccountEvent {\n");
+            sb.Append("  FirmId: ").Append(FirmId).Append("\n");
             sb.Append("  AccountId: ").Append(AccountId).Append("\n");
             sb.Append("  AccountType: ").Append(AccountType).Append("\n");
             sb.Append("  AccountName: ").Append(AccountName).Append("\n");
@@ -224,8 +234,8 @@ namespace FeeWise.Model
             sb.Append("  Alias: ").Append(Alias).Append("\n");
             sb.Append("  Bank: ").Append(Bank).Append("\n");
             sb.Append("  CountryCode: ").Append(CountryCode).Append("\n");
-            sb.Append("  IsDefault: ").Append(IsDefault).Append("\n");
-            sb.Append("  DefaultAccounts: ").Append(DefaultAccounts).Append("\n");
+            sb.Append("  LastUpdatedAt: ").Append(LastUpdatedAt).Append("\n");
+            sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -246,21 +256,26 @@ namespace FeeWise.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as BankAccount);
+            return this.Equals(input as FirmBankAccountEvent);
         }
 
         /// <summary>
-        /// Returns true if BankAccount instances are equal
+        /// Returns true if FirmBankAccountEvent instances are equal
         /// </summary>
-        /// <param name="input">Instance of BankAccount to be compared</param>
+        /// <param name="input">Instance of FirmBankAccountEvent to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(BankAccount input)
+        public bool Equals(FirmBankAccountEvent input)
         {
             if (input == null)
             {
                 return false;
             }
             return 
+                (
+                    this.FirmId == input.FirmId ||
+                    (this.FirmId != null &&
+                    this.FirmId.Equals(input.FirmId))
+                ) && 
                 (
                     this.AccountId == input.AccountId ||
                     (this.AccountId != null &&
@@ -310,14 +325,13 @@ namespace FeeWise.Model
                     this.CountryCode.Equals(input.CountryCode))
                 ) && 
                 (
-                    this.IsDefault == input.IsDefault ||
-                    this.IsDefault.Equals(input.IsDefault)
+                    this.LastUpdatedAt == input.LastUpdatedAt ||
+                    (this.LastUpdatedAt != null &&
+                    this.LastUpdatedAt.Equals(input.LastUpdatedAt))
                 ) && 
                 (
-                    this.DefaultAccounts == input.DefaultAccounts ||
-                    this.DefaultAccounts != null &&
-                    input.DefaultAccounts != null &&
-                    this.DefaultAccounts.SequenceEqual(input.DefaultAccounts)
+                    this.Status == input.Status ||
+                    this.Status.Equals(input.Status)
                 );
         }
 
@@ -330,6 +344,10 @@ namespace FeeWise.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
+                if (this.FirmId != null)
+                {
+                    hashCode = (hashCode * 59) + this.FirmId.GetHashCode();
+                }
                 if (this.AccountId != null)
                 {
                     hashCode = (hashCode * 59) + this.AccountId.GetHashCode();
@@ -364,11 +382,11 @@ namespace FeeWise.Model
                 {
                     hashCode = (hashCode * 59) + this.CountryCode.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.IsDefault.GetHashCode();
-                if (this.DefaultAccounts != null)
+                if (this.LastUpdatedAt != null)
                 {
-                    hashCode = (hashCode * 59) + this.DefaultAccounts.GetHashCode();
+                    hashCode = (hashCode * 59) + this.LastUpdatedAt.GetHashCode();
                 }
+                hashCode = (hashCode * 59) + this.Status.GetHashCode();
                 return hashCode;
             }
         }

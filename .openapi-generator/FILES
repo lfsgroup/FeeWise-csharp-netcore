@@ -42,7 +42,7 @@ docs/ExternalPayment.md
 docs/ExternalPaymentResponse.md
 docs/Firm.md
 docs/FirmApi.md
-docs/FirmBankAccountUpdatedEvent.md
+docs/FirmBankAccountEvent.md
 docs/FirmDetails.md
 docs/FirmOnboardingStatus.md
 docs/FirmResponse.md
@@ -147,7 +147,7 @@ src/FeeWise.Test/Model/EventTopicsTests.cs
 src/FeeWise.Test/Model/EventsTests.cs
 src/FeeWise.Test/Model/ExternalPaymentResponseTests.cs
 src/FeeWise.Test/Model/ExternalPaymentTests.cs
-src/FeeWise.Test/Model/FirmBankAccountUpdatedEventTests.cs
+src/FeeWise.Test/Model/FirmBankAccountEventTests.cs
 src/FeeWise.Test/Model/FirmDetailsTests.cs
 src/FeeWise.Test/Model/FirmOnboardingStatusTests.cs
 src/FeeWise.Test/Model/FirmResponseTests.cs
@@ -265,7 +265,7 @@ src/FeeWise/Model/Events.cs
 src/FeeWise/Model/ExternalPayment.cs
 src/FeeWise/Model/ExternalPaymentResponse.cs
 src/FeeWise/Model/Firm.cs
-src/FeeWise/Model/FirmBankAccountUpdatedEvent.cs
+src/FeeWise/Model/FirmBankAccountEvent.cs
 src/FeeWise/Model/FirmDetails.cs
 src/FeeWise/Model/FirmOnboardingStatus.cs
 src/FeeWise/Model/FirmResponse.cs
