@@ -4,15 +4,15 @@ All URIs are relative to *http://localhost*
 
 | Method | HTTP request | Description |
 |--------|--------------|-------------|
-| [**PostPartnerLogoUpload**](DefaultApi.md#postpartnerlogoupload) | **POST** /api/v3/partner/upload |  |
+| [**DeleteFirmBankAccount**](DefaultApi.md#deletefirmbankaccount) | **DELETE** /api/v3/partner/firms/{firm_id}/accounts/{account_id} | Delete a bank account |
 
-<a name="postpartnerlogoupload"></a>
-# **PostPartnerLogoUpload**
-> PostUpload200Response PostPartnerLogoUpload (System.IO.Stream fwUploadFile = null)
+<a name="deletefirmbankaccount"></a>
+# **DeleteFirmBankAccount**
+> void DeleteFirmBankAccount (Guid firmId, Guid accountId)
 
+Delete a bank account
 
-
-Upload a partner logo to FeeWise. This logo will be used wherever FeeWise and the partner have agreed to show a logo in the FeeWise UI. nb Content-Type header must be multipart/form-data example  curl -X POST -F \"fwUploadFile=@/path/to/file.png\" \\     http://localhost:8080/api/v3/partner/upload \\       - -header 'X-CHANNEL-PARTNER-ID: <channel partner id>'                - -header 'X-API-KEY: <api key>' \\       - -header \"Content-Type: multipart/form-data\" 
+Delete a bank account for a Firm nb: If a bank account is related to an inflight transaction, payout or similar the bank account deletion will fail. Contact FeeWise support to resolve the issue. 
 
 ### Example
 ```csharp
@@ -24,7 +24,7 @@ using FeeWise.Model;
 
 namespace Example
 {
-    public class PostPartnerLogoUploadExample
+    public class DeleteFirmBankAccountExample
     {
         public static void Main()
         {
@@ -40,16 +40,17 @@ namespace Example
             // config.AddApiKeyPrefix("X-CHANNEL-PARTNER-ID", "Bearer");
 
             var apiInstance = new DefaultApi(config);
-            var fwUploadFile = new System.IO.MemoryStream(System.IO.File.ReadAllBytes("/path/to/file.txt"));  // System.IO.Stream |  (optional) 
+            var firmId = "firmId_example";  // Guid | 
+            var accountId = "accountId_example";  // Guid | 
 
             try
             {
-                PostUpload200Response result = apiInstance.PostPartnerLogoUpload(fwUploadFile);
-                Debug.WriteLine(result);
+                // Delete a bank account
+                apiInstance.DeleteFirmBankAccount(firmId, accountId);
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling DefaultApi.PostPartnerLogoUpload: " + e.Message);
+                Debug.Print("Exception when calling DefaultApi.DeleteFirmBankAccount: " + e.Message);
                 Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
@@ -58,20 +59,18 @@ namespace Example
 }
 ```
 
-#### Using the PostPartnerLogoUploadWithHttpInfo variant
+#### Using the DeleteFirmBankAccountWithHttpInfo variant
 This returns an ApiResponse object which contains the response data, status code and headers.
 
 ```csharp
 try
 {
-    ApiResponse<PostUpload200Response> response = apiInstance.PostPartnerLogoUploadWithHttpInfo(fwUploadFile);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
+    // Delete a bank account
+    apiInstance.DeleteFirmBankAccountWithHttpInfo(firmId, accountId);
 }
 catch (ApiException e)
 {
-    Debug.Print("Exception when calling DefaultApi.PostPartnerLogoUploadWithHttpInfo: " + e.Message);
+    Debug.Print("Exception when calling DefaultApi.DeleteFirmBankAccountWithHttpInfo: " + e.Message);
     Debug.Print("Status Code: " + e.ErrorCode);
     Debug.Print(e.StackTrace);
 }
@@ -81,11 +80,12 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **fwUploadFile** | **System.IO.Stream****System.IO.Stream** |  | [optional]  |
+| **firmId** | **Guid** |  |  |
+| **accountId** | **Guid** |  |  |
 
 ### Return type
 
-[**PostUpload200Response**](PostUpload200Response.md)
+void (empty response body)
 
 ### Authorization
 
@@ -93,17 +93,18 @@ catch (ApiException e)
 
 ### HTTP request headers
 
- - **Content-Type**: multipart/form-data
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Successful Response |  -  |
+| **204** | Account deleted |  -  |
 | **400** | Bad request |  -  |
-| **401** | Unauthorized request |  -  |
-| **500** | Generic Error |  -  |
+| **404** | Firm or account not found |  -  |
+| **409** | Account has ongoing artifacts, transactions, etc. |  -  |
+| **500** | Error processing |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
