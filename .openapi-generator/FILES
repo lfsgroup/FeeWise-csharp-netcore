@@ -89,6 +89,7 @@ docs/SurchargeChoice.md
 docs/TermsOfService.md
 docs/TokenType.md
 docs/Transaction.md
+docs/TransactionResponse.md
 docs/TransactionStatus.md
 docs/TransactionsApi.md
 docs/TransactionsResponse.md
@@ -192,6 +193,7 @@ src/FeeWise.Test/Model/SplitChargesResponseTests.cs
 src/FeeWise.Test/Model/SurchargeChoiceTests.cs
 src/FeeWise.Test/Model/TermsOfServiceTests.cs
 src/FeeWise.Test/Model/TokenTypeTests.cs
+src/FeeWise.Test/Model/TransactionResponseTests.cs
 src/FeeWise.Test/Model/TransactionStatusTests.cs
 src/FeeWise.Test/Model/TransactionTests.cs
 src/FeeWise.Test/Model/TransactionsResponseTests.cs
@@ -311,6 +313,7 @@ src/FeeWise/Model/SurchargeChoice.cs
 src/FeeWise/Model/TermsOfService.cs
 src/FeeWise/Model/TokenType.cs
 src/FeeWise/Model/Transaction.cs
+src/FeeWise/Model/TransactionResponse.cs
 src/FeeWise/Model/TransactionStatus.cs
 src/FeeWise/Model/TransactionsResponse.cs
 src/FeeWise/Model/TrustDeposit.cs

@@ -26,35 +26,44 @@ using OpenAPIDateConverter = FeeWise.Client.OpenAPIDateConverter;
 namespace FeeWise.Model
 {
     /// <summary>
-    /// Payouts
+    /// TransactionResponse
     /// </summary>
-    [DataContract(Name = "Payouts")]
-    public partial class Payouts : IEquatable<Payouts>, IValidatableObject
+    [DataContract(Name = "TransactionResponse")]
+    public partial class TransactionResponse : IEquatable<TransactionResponse>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Payouts" /> class.
+        /// Initializes a new instance of the <see cref="TransactionResponse" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected Payouts() { }
+        protected TransactionResponse() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="Payouts" /> class.
+        /// Initializes a new instance of the <see cref="TransactionResponse" /> class.
         /// </summary>
-        /// <param name="payouts">payouts (required).</param>
-        public Payouts(List<Payout> payouts = default(List<Payout>))
+        /// <param name="transaction">transaction (required).</param>
+        /// <param name="firmId">ID of the firm that the transaction is associated with. (required).</param>
+        public TransactionResponse(Transaction transaction = default(Transaction), Guid firmId = default(Guid))
         {
-            // to ensure "payouts" is required (not null)
-            if (payouts == null)
+            // to ensure "transaction" is required (not null)
+            if (transaction == null)
             {
-                throw new ArgumentNullException("payouts is a required property for Payouts and cannot be null");
+                throw new ArgumentNullException("transaction is a required property for TransactionResponse and cannot be null");
             }
-            this._Payouts = payouts;
+            this.Transaction = transaction;
+            this.FirmId = firmId;
         }
 
         /// <summary>
-        /// Gets or Sets _Payouts
+        /// Gets or Sets Transaction
         /// </summary>
-        [DataMember(Name = "payouts", IsRequired = true, EmitDefaultValue = true)]
-        public List<Payout> _Payouts { get; set; }
+        [DataMember(Name = "transaction", IsRequired = true, EmitDefaultValue = true)]
+        public Transaction Transaction { get; set; }
+
+        /// <summary>
+        /// ID of the firm that the transaction is associated with.
+        /// </summary>
+        /// <value>ID of the firm that the transaction is associated with.</value>
+        [DataMember(Name = "firm_id", IsRequired = true, EmitDefaultValue = true)]
+        public Guid FirmId { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -63,8 +72,9 @@ namespace FeeWise.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class Payouts {\n");
-            sb.Append("  _Payouts: ").Append(_Payouts).Append("\n");
+            sb.Append("class TransactionResponse {\n");
+            sb.Append("  Transaction: ").Append(Transaction).Append("\n");
+            sb.Append("  FirmId: ").Append(FirmId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -85,15 +95,15 @@ namespace FeeWise.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as Payouts);
+            return this.Equals(input as TransactionResponse);
         }
 
         /// <summary>
-        /// Returns true if Payouts instances are equal
+        /// Returns true if TransactionResponse instances are equal
         /// </summary>
-        /// <param name="input">Instance of Payouts to be compared</param>
+        /// <param name="input">Instance of TransactionResponse to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(Payouts input)
+        public bool Equals(TransactionResponse input)
         {
             if (input == null)
             {
@@ -101,10 +111,14 @@ namespace FeeWise.Model
             }
             return 
                 (
-                    this._Payouts == input._Payouts ||
-                    this._Payouts != null &&
-                    input._Payouts != null &&
-                    this._Payouts.SequenceEqual(input._Payouts)
+                    this.Transaction == input.Transaction ||
+                    (this.Transaction != null &&
+                    this.Transaction.Equals(input.Transaction))
+                ) && 
+                (
+                    this.FirmId == input.FirmId ||
+                    (this.FirmId != null &&
+                    this.FirmId.Equals(input.FirmId))
                 );
         }
 
@@ -117,9 +131,13 @@ namespace FeeWise.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this._Payouts != null)
+                if (this.Transaction != null)
                 {
-                    hashCode = (hashCode * 59) + this._Payouts.GetHashCode();
+                    hashCode = (hashCode * 59) + this.Transaction.GetHashCode();
+                }
+                if (this.FirmId != null)
+                {
+                    hashCode = (hashCode * 59) + this.FirmId.GetHashCode();
                 }
                 return hashCode;
             }
