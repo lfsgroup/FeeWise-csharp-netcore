@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **Address** | **string** |  | [optional] 
 **Alias** | **string** |  | [optional] 
 **Bank** | **string** |  | [optional] 
-**CountryCode** | **string** |  | 
+**CountryCode** | **string** | Two-letter ISO code representing the country the bank account is located in. | 
 **LastUpdatedAt** | **DateTime** |  | [optional] 
 **Status** | **string** | The status of the bank account. Pending - awaiting validation, Valid - successfully validated, Invalid - bank account number validation failed. | [optional] 
 

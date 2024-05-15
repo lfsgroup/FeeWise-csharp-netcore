@@ -60,7 +60,7 @@ Name | Type | Description | Notes
 **Address** | **string** |  | [optional] 
 **Alias** | **string** |  | [optional] 
 **Bank** | **string** |  | [optional] 
-**CountryCode** | **string** |  | 
+**CountryCode** | **string** | Two-letter ISO code representing the country the bank account is located in. | 
 **LastUpdatedAt** | **DateTime** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

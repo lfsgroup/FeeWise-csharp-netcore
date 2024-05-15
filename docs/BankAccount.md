@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **Address** | **string** |  | [optional] 
 **Alias** | **string** |  | [optional] 
 **Bank** | **string** |  | [optional] 
-**CountryCode** | **string** |  | 
+**CountryCode** | **string** | Two-letter ISO code representing the country the bank account is located in. | 
 **IsDefault** | **bool** | Will be set to true, if the account is the default for this type (e.g. Office, Trust) | [optional] 
 **DefaultAccounts** | **List&lt;BankAccount.DefaultAccountsEnum&gt;** |  | [optional] 
 

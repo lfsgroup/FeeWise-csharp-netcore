@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **LastName** | **string** |  | 
 **Title** | **string** |  | 
 **Phone** | **string** |  | [optional] 
-**NationalId** | **string** | This field may be required to be populated, depending on the region.  For the US , this is the social security number, and is required. For CA, this is the social insurance number.  | [optional] 
+**NationalId** | **string** | This field may be required to be populated, depending on the region.  For the US , this is the social security number, and is required. For CA, this is the social insurance number. For AU, this is the tax file number or driving licence number. For UK, this is the national insurance number.  | [optional] 
 **Email** | **string** |  | 
 **Address** | [**Address**](Address.md) |  | 
 **DateOfBirth** | **DateTime** |  | 
