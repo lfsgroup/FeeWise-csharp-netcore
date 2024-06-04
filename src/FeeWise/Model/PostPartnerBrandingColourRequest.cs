@@ -26,36 +26,36 @@ using OpenAPIDateConverter = FeeWise.Client.OpenAPIDateConverter;
 namespace FeeWise.Model
 {
     /// <summary>
-    /// Adjust the invoice amount 
+    /// PostPartnerBrandingColourRequest
     /// </summary>
-    [DataContract(Name = "adjustInvoiceAmount_request")]
-    public partial class AdjustInvoiceAmountRequest : IEquatable<AdjustInvoiceAmountRequest>, IValidatableObject
+    [DataContract(Name = "postPartnerBrandingColour_request")]
+    public partial class PostPartnerBrandingColourRequest : IEquatable<PostPartnerBrandingColourRequest>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="AdjustInvoiceAmountRequest" /> class.
+        /// Initializes a new instance of the <see cref="PostPartnerBrandingColourRequest" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected AdjustInvoiceAmountRequest() { }
+        protected PostPartnerBrandingColourRequest() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="AdjustInvoiceAmountRequest" /> class.
+        /// Initializes a new instance of the <see cref="PostPartnerBrandingColourRequest" /> class.
         /// </summary>
-        /// <param name="newAmount">The new total amount for the invoice. (required).</param>
-        public AdjustInvoiceAmountRequest(string newAmount = default(string))
+        /// <param name="colour">RGB hex colour code. Alpha channel not supported The branding colour will be used in the FeeWise dashboard as firm&#39;s default colour  (required).</param>
+        public PostPartnerBrandingColourRequest(string colour = default(string))
         {
-            // to ensure "newAmount" is required (not null)
-            if (newAmount == null)
+            // to ensure "colour" is required (not null)
+            if (colour == null)
             {
-                throw new ArgumentNullException("newAmount is a required property for AdjustInvoiceAmountRequest and cannot be null");
+                throw new ArgumentNullException("colour is a required property for PostPartnerBrandingColourRequest and cannot be null");
             }
-            this.NewAmount = newAmount;
+            this.Colour = colour;
         }
 
         /// <summary>
-        /// The new total amount for the invoice.
+        /// RGB hex colour code. Alpha channel not supported The branding colour will be used in the FeeWise dashboard as firm&#39;s default colour 
         /// </summary>
-        /// <value>The new total amount for the invoice.</value>
-        [DataMember(Name = "new_amount", IsRequired = true, EmitDefaultValue = true)]
-        public string NewAmount { get; set; }
+        /// <value>RGB hex colour code. Alpha channel not supported The branding colour will be used in the FeeWise dashboard as firm&#39;s default colour </value>
+        [DataMember(Name = "colour", IsRequired = true, EmitDefaultValue = true)]
+        public string Colour { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -64,8 +64,8 @@ namespace FeeWise.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class AdjustInvoiceAmountRequest {\n");
-            sb.Append("  NewAmount: ").Append(NewAmount).Append("\n");
+            sb.Append("class PostPartnerBrandingColourRequest {\n");
+            sb.Append("  Colour: ").Append(Colour).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -86,15 +86,15 @@ namespace FeeWise.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as AdjustInvoiceAmountRequest);
+            return this.Equals(input as PostPartnerBrandingColourRequest);
         }
 
         /// <summary>
-        /// Returns true if AdjustInvoiceAmountRequest instances are equal
+        /// Returns true if PostPartnerBrandingColourRequest instances are equal
         /// </summary>
-        /// <param name="input">Instance of AdjustInvoiceAmountRequest to be compared</param>
+        /// <param name="input">Instance of PostPartnerBrandingColourRequest to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(AdjustInvoiceAmountRequest input)
+        public bool Equals(PostPartnerBrandingColourRequest input)
         {
             if (input == null)
             {
@@ -102,9 +102,9 @@ namespace FeeWise.Model
             }
             return 
                 (
-                    this.NewAmount == input.NewAmount ||
-                    (this.NewAmount != null &&
-                    this.NewAmount.Equals(input.NewAmount))
+                    this.Colour == input.Colour ||
+                    (this.Colour != null &&
+                    this.Colour.Equals(input.Colour))
                 );
         }
 
@@ -117,9 +117,9 @@ namespace FeeWise.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.NewAmount != null)
+                if (this.Colour != null)
                 {
-                    hashCode = (hashCode * 59) + this.NewAmount.GetHashCode();
+                    hashCode = (hashCode * 59) + this.Colour.GetHashCode();
                 }
                 return hashCode;
             }
@@ -132,6 +132,13 @@ namespace FeeWise.Model
         /// <returns>Validation Result</returns>
         public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
+            // Colour (string) pattern
+            Regex regexColour = new Regex(@"^#([a-fA-F0-9]{6})$", RegexOptions.CultureInvariant);
+            if (false == regexColour.Match(this.Colour).Success)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Colour, must match a pattern of " + regexColour, new [] { "Colour" });
+            }
+
             yield break;
         }
     }

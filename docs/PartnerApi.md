@@ -5,6 +5,7 @@ All URIs are relative to *http://localhost*
 | Method | HTTP request | Description |
 |--------|--------------|-------------|
 | [**GetPartnerBranding**](PartnerApi.md#getpartnerbranding) | **GET** /api/v3/partner/branding | Get partner branding |
+| [**PostPartnerBrandingColour**](PartnerApi.md#postpartnerbrandingcolour) | **POST** /api/v3/partner/branding/colour | Set partner colour |
 | [**PostPartnerLogoUpload**](PartnerApi.md#postpartnerlogoupload) | **POST** /api/v3/partner/upload | Upload partner logo |
 
 <a name="getpartnerbranding"></a>
@@ -99,6 +100,105 @@ This endpoint does not need any parameter.
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Successful Response |  -  |
+| **400** | Bad request |  -  |
+| **401** | Unauthorized request |  -  |
+| **500** | Generic Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="postpartnerbrandingcolour"></a>
+# **PostPartnerBrandingColour**
+> void PostPartnerBrandingColour (PostPartnerBrandingColourRequest postPartnerBrandingColourRequest = null)
+
+Set partner colour
+
+Sets a partner colour. This colour will be used as default colour in FeeWise dashboard and can be overwritten by firm's branding colour.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using FeeWise.Api;
+using FeeWise.Client;
+using FeeWise.Model;
+
+namespace Example
+{
+    public class PostPartnerBrandingColourExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "http://localhost";
+            // Configure API key authorization: APIAuth
+            config.AddApiKey("X-API-KEY", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("X-API-KEY", "Bearer");
+            // Configure API key authorization: PartnerAuth
+            config.AddApiKey("X-CHANNEL-PARTNER-ID", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("X-CHANNEL-PARTNER-ID", "Bearer");
+
+            var apiInstance = new PartnerApi(config);
+            var postPartnerBrandingColourRequest = new PostPartnerBrandingColourRequest(); // PostPartnerBrandingColourRequest |  (optional) 
+
+            try
+            {
+                // Set partner colour
+                apiInstance.PostPartnerBrandingColour(postPartnerBrandingColourRequest);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling PartnerApi.PostPartnerBrandingColour: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the PostPartnerBrandingColourWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Set partner colour
+    apiInstance.PostPartnerBrandingColourWithHttpInfo(postPartnerBrandingColourRequest);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling PartnerApi.PostPartnerBrandingColourWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **postPartnerBrandingColourRequest** | [**PostPartnerBrandingColourRequest**](PostPartnerBrandingColourRequest.md) |  | [optional]  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[APIAuth](../README.md#APIAuth), [PartnerAuth](../README.md#PartnerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **204** | Successful Response |  -  |
 | **400** | Bad request |  -  |
 | **401** | Unauthorized request |  -  |
 | **500** | Generic Error |  -  |
