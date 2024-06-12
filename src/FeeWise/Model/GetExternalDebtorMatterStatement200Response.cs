@@ -26,33 +26,25 @@ using OpenAPIDateConverter = FeeWise.Client.OpenAPIDateConverter;
 namespace FeeWise.Model
 {
     /// <summary>
-    /// GetMagicLink200Response
+    /// GetExternalDebtorMatterStatement200Response
     /// </summary>
-    [DataContract(Name = "getMagicLink_200_response")]
-    public partial class GetMagicLink200Response : IEquatable<GetMagicLink200Response>, IValidatableObject
+    [DataContract(Name = "getExternalDebtorMatterStatement_200_response")]
+    public partial class GetExternalDebtorMatterStatement200Response : IEquatable<GetExternalDebtorMatterStatement200Response>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="GetMagicLink200Response" /> class.
+        /// Initializes a new instance of the <see cref="GetExternalDebtorMatterStatement200Response" /> class.
         /// </summary>
-        /// <param name="url">url.</param>
-        /// <param name="expires">expires.</param>
-        public GetMagicLink200Response(string url = default(string), DateTime expires = default(DateTime))
+        /// <param name="statements">statements.</param>
+        public GetExternalDebtorMatterStatement200Response(List<MatterStatement> statements = default(List<MatterStatement>))
         {
-            this.Url = url;
-            this.Expires = expires;
+            this.Statements = statements;
         }
 
         /// <summary>
-        /// Gets or Sets Url
+        /// Gets or Sets Statements
         /// </summary>
-        [DataMember(Name = "url", EmitDefaultValue = false)]
-        public string Url { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Expires
-        /// </summary>
-        [DataMember(Name = "expires", EmitDefaultValue = false)]
-        public DateTime Expires { get; set; }
+        [DataMember(Name = "statements", EmitDefaultValue = false)]
+        public List<MatterStatement> Statements { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -61,9 +53,8 @@ namespace FeeWise.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class GetMagicLink200Response {\n");
-            sb.Append("  Url: ").Append(Url).Append("\n");
-            sb.Append("  Expires: ").Append(Expires).Append("\n");
+            sb.Append("class GetExternalDebtorMatterStatement200Response {\n");
+            sb.Append("  Statements: ").Append(Statements).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -84,15 +75,15 @@ namespace FeeWise.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as GetMagicLink200Response);
+            return this.Equals(input as GetExternalDebtorMatterStatement200Response);
         }
 
         /// <summary>
-        /// Returns true if GetMagicLink200Response instances are equal
+        /// Returns true if GetExternalDebtorMatterStatement200Response instances are equal
         /// </summary>
-        /// <param name="input">Instance of GetMagicLink200Response to be compared</param>
+        /// <param name="input">Instance of GetExternalDebtorMatterStatement200Response to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(GetMagicLink200Response input)
+        public bool Equals(GetExternalDebtorMatterStatement200Response input)
         {
             if (input == null)
             {
@@ -100,14 +91,10 @@ namespace FeeWise.Model
             }
             return 
                 (
-                    this.Url == input.Url ||
-                    (this.Url != null &&
-                    this.Url.Equals(input.Url))
-                ) && 
-                (
-                    this.Expires == input.Expires ||
-                    (this.Expires != null &&
-                    this.Expires.Equals(input.Expires))
+                    this.Statements == input.Statements ||
+                    this.Statements != null &&
+                    input.Statements != null &&
+                    this.Statements.SequenceEqual(input.Statements)
                 );
         }
 
@@ -120,13 +107,9 @@ namespace FeeWise.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Url != null)
+                if (this.Statements != null)
                 {
-                    hashCode = (hashCode * 59) + this.Url.GetHashCode();
-                }
-                if (this.Expires != null)
-                {
-                    hashCode = (hashCode * 59) + this.Expires.GetHashCode();
+                    hashCode = (hashCode * 59) + this.Statements.GetHashCode();
                 }
                 return hashCode;
             }

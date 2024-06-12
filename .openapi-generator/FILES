@@ -49,6 +49,7 @@ docs/FirmOnboardingStatus.md
 docs/FirmResponse.md
 docs/FirmStatusUpdatedEvent.md
 docs/FirmsResponse.md
+docs/GetExternalDebtorMatterStatement200Response.md
 docs/GetMagicLink200Response.md
 docs/GetPartnerBranding200Response.md
 docs/Invoice.md
@@ -158,6 +159,7 @@ src/FeeWise.Test/Model/FirmResponseTests.cs
 src/FeeWise.Test/Model/FirmStatusUpdatedEventTests.cs
 src/FeeWise.Test/Model/FirmTests.cs
 src/FeeWise.Test/Model/FirmsResponseTests.cs
+src/FeeWise.Test/Model/GetExternalDebtorMatterStatement200ResponseTests.cs
 src/FeeWise.Test/Model/GetMagicLink200ResponseTests.cs
 src/FeeWise.Test/Model/GetPartnerBranding200ResponseTests.cs
 src/FeeWise.Test/Model/InvoiceResponseTests.cs
@@ -278,6 +280,7 @@ src/FeeWise/Model/FirmOnboardingStatus.cs
 src/FeeWise/Model/FirmResponse.cs
 src/FeeWise/Model/FirmStatusUpdatedEvent.cs
 src/FeeWise/Model/FirmsResponse.cs
+src/FeeWise/Model/GetExternalDebtorMatterStatement200Response.cs
 src/FeeWise/Model/GetMagicLink200Response.cs
 src/FeeWise/Model/GetPartnerBranding200Response.cs
 src/FeeWise/Model/Invoice.cs
