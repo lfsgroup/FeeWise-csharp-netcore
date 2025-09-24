@@ -7,20 +7,25 @@ All URIs are relative to *http://localhost*
 | [**AdjustInvoiceAmount**](PaymentsApi.md#adjustinvoiceamount) | **POST** /api/v3/partner/invoices/{invoice_id}/adjust-amount | Adjust an invoice. |
 | [**AdjustTrustDepositAmount**](PaymentsApi.md#adjusttrustdepositamount) | **POST** /api/v3/partner/trust-deposits/{trust_deposit_id}/adjust-amount | Adjust an trust deposit. |
 | [**CreateCharge**](PaymentsApi.md#createcharge) | **POST** /api/v3/partner/firms/{firm_id}/charges | Create a Charge |
-| [**CreateChargeAndPayWithCustomerPaymentToken**](PaymentsApi.md#createchargeandpaywithcustomerpaymenttoken) | **POST** /api/v3/partner/firms/{firm_id}/charges/payment_token/{payment_token} | Create Charge, and pay directly. |
+| [**CreateChargeAndPayWithCustomerPaymentToken**](PaymentsApi.md#createchargeandpaywithcustomerpaymenttoken) | **POST** /api/v3/partner/firms/{firm_id}/charges/payment_token/{payment_token} | DEPRECATED - Use /api/v4/partner/firms/{firm_id}/charges/payment-token/{payment_token} endpoint instead |
+| [**CreateChargePayment**](PaymentsApi.md#createchargepayment) | **POST** /api/v4/partner/firms/{firm_id}/charges/payment-token/{payment_token} | Create Charge, and pay directly. |
 | [**CreateInvoice**](PaymentsApi.md#createinvoice) | **POST** /api/v3/partner/invoices | Create an Invoice |
 | [**CreateMatter**](PaymentsApi.md#creatematter) | **POST** /api/v3/partner/matters | Create a matter |
 | [**CreateSplitCharge**](PaymentsApi.md#createsplitcharge) | **POST** /api/v3/partner/firms/{firm_id}/charges/split | Create split charges, each charge is distributed to its own settlement account. |
 | [**CreateTrustDeposit**](PaymentsApi.md#createtrustdeposit) | **POST** /api/v3/partner/trust-deposits | Create a Trust Deposit |
 | [**GetChannelPartnerPayments**](PaymentsApi.md#getchannelpartnerpayments) | **GET** /api/v3/partner/payments | DEPRECATED use /transactions - Search for payments for the channel partner |
 | [**GetDebtorMatterStatement**](PaymentsApi.md#getdebtormatterstatement) | **GET** /api/v3/partner/statements/debtors/{debtor_id}/matters/{matter_id} | Get a matter debtor statement |
-| [**GetExternalDebtorMatterStatement**](PaymentsApi.md#getexternaldebtormatterstatement) | **GET** /api/v3/partner/statements/external/debtors/{external_debtor_id}/matters/{external_matter_id} | Get a matter debtor statement |
+| [**GetDebtorStatement**](PaymentsApi.md#getdebtorstatement) | **GET** /api/v3/partner/statements/debtors/{debtor_id} | Get a debtor statement |
 | [**GetInvoiceByExternalId**](PaymentsApi.md#getinvoicebyexternalid) | **GET** /api/v3/partner/invoices/firm/{firm_id}/{external_id} | Get invoice by external_id |
 | [**GetInvoiceById**](PaymentsApi.md#getinvoicebyid) | **GET** /api/v3/partner/invoices/{invoice_id} | Get a specified invoice by id. |
 | [**GetMatterStatement**](PaymentsApi.md#getmatterstatement) | **GET** /api/v3/partner/statements/matters/{matter_id} | Get a matter statement |
+| [**GetRefundDetails**](PaymentsApi.md#getrefunddetails) | **GET** /api/v3/partner/firms/{firm_id}/payments/refund/details | Get Refund Details |
 | [**GetTrustDepositByExternalId**](PaymentsApi.md#gettrustdepositbyexternalid) | **GET** /api/v3/partner/trust-deposits/firm/{firm_id}/{external_id} | Get Trust Deposit by external_id |
 | [**GetTrustDepositById**](PaymentsApi.md#gettrustdepositbyid) | **GET** /api/v3/partner/trust-deposits/{trust_deposit_id} | Get a Trust Deposit by id. |
+| [**PostConfirmChargePayment**](PaymentsApi.md#postconfirmchargepayment) | **POST** /api/v3/partner/firms/{firm_id}/charges/{charge_id}/payments/{payment_id}/confirm | Confirm a pending charge payment. |
 | [**RecordExternalPayment**](PaymentsApi.md#recordexternalpayment) | **POST** /api/v3/partner/payments/external | Record external payment. |
+| [**UpdateArtifactAccount**](PaymentsApi.md#updateartifactaccount) | **POST** /api/v3/partner/firms/{firm_id}/artifacts/settlement-account/{settlement_account_id}/replace | Update the settlement account for unpaid artifacts. |
+| [**UpdateArtifactRedirectURL**](PaymentsApi.md#updateartifactredirecturl) | **PATCH** /api/v3/partner/firms/{firm_id}/artifacts/{artifact_id}/update-redirect | Update the payment redirect URL for an artifact |
 
 <a name="adjustinvoiceamount"></a>
 # **AdjustInvoiceAmount**
@@ -344,7 +349,7 @@ catch (ApiException e)
 # **CreateChargeAndPayWithCustomerPaymentToken**
 > ChargeAndPayResponse CreateChargeAndPayWithCustomerPaymentToken (Guid paymentToken, Guid firmId, Charge charge)
 
-Create Charge, and pay directly.
+DEPRECATED - Use /api/v4/partner/firms/{firm_id}/charges/payment-token/{payment_token} endpoint instead
 
 Create a charge (and pay for it) for a firm, using an existing customer payment token.  A list of customer payment tokens can be retrieved from the `/customers` endpoint.  NB the fields `charge_id`, and `payment_uri` must NOT be supplied. If supplied, BadResponse will be returned.   These are populated once the charge has been created and will be available in the response. 
 
@@ -380,7 +385,7 @@ namespace Example
 
             try
             {
-                // Create Charge, and pay directly.
+                // DEPRECATED - Use /api/v4/partner/firms/{firm_id}/charges/payment-token/{payment_token} endpoint instead
                 ChargeAndPayResponse result = apiInstance.CreateChargeAndPayWithCustomerPaymentToken(paymentToken, firmId, charge);
                 Debug.WriteLine(result);
             }
@@ -401,7 +406,7 @@ This returns an ApiResponse object which contains the response data, status code
 ```csharp
 try
 {
-    // Create Charge, and pay directly.
+    // DEPRECATED - Use /api/v4/partner/firms/{firm_id}/charges/payment-token/{payment_token} endpoint instead
     ApiResponse<ChargeAndPayResponse> response = apiInstance.CreateChargeAndPayWithCustomerPaymentTokenWithHttpInfo(paymentToken, firmId, charge);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
@@ -448,13 +453,122 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a name="createchargepayment"></a>
+# **CreateChargePayment**
+> ChargePaymentDetails CreateChargePayment (Guid paymentToken, Guid firmId, CreateChargePaymentRequest createChargePaymentRequest)
+
+Create Charge, and pay directly.
+
+Create a charge (and pay for it) for a firm, using an existing customer payment token.  A list of customer payment tokens can be retrieved from the `/customers` endpoint.  NB the fields `charge_id`, and `payment_uri` must NOT be supplied. If supplied, BadResponse will be returned.   These are populated once the charge has been created and will be available in the response. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using FeeWise.Api;
+using FeeWise.Client;
+using FeeWise.Model;
+
+namespace Example
+{
+    public class CreateChargePaymentExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "http://localhost";
+            // Configure API key authorization: APIAuth
+            config.AddApiKey("X-API-KEY", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("X-API-KEY", "Bearer");
+            // Configure API key authorization: PartnerAuth
+            config.AddApiKey("X-CHANNEL-PARTNER-ID", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("X-CHANNEL-PARTNER-ID", "Bearer");
+
+            var apiInstance = new PaymentsApi(config);
+            var paymentToken = "paymentToken_example";  // Guid | 
+            var firmId = "firmId_example";  // Guid | 
+            var createChargePaymentRequest = new CreateChargePaymentRequest(); // CreateChargePaymentRequest | Charge details, using an existing customer payment token
+
+            try
+            {
+                // Create Charge, and pay directly.
+                ChargePaymentDetails result = apiInstance.CreateChargePayment(paymentToken, firmId, createChargePaymentRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling PaymentsApi.CreateChargePayment: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the CreateChargePaymentWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Create Charge, and pay directly.
+    ApiResponse<ChargePaymentDetails> response = apiInstance.CreateChargePaymentWithHttpInfo(paymentToken, firmId, createChargePaymentRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling PaymentsApi.CreateChargePaymentWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **paymentToken** | **Guid** |  |  |
+| **firmId** | **Guid** |  |  |
+| **createChargePaymentRequest** | [**CreateChargePaymentRequest**](CreateChargePaymentRequest.md) | Charge details, using an existing customer payment token |  |
+
+### Return type
+
+[**ChargePaymentDetails**](ChargePaymentDetails.md)
+
+### Authorization
+
+[APIAuth](../README.md#APIAuth), [PartnerAuth](../README.md#PartnerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Charge created and paid |  -  |
+| **400** | Bad request, do not include charge_id or payment_uri in the request. |  -  |
+| **402** | Payment requires a review |  -  |
+| **404** | Firm or Settlement Account could not be found. |  -  |
+| **409** | Charge was unsuccessful and the payment failed to process. |  -  |
+| **500** | Error processing charge |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a name="createinvoice"></a>
 # **CreateInvoice**
-> InvoiceResponse CreateInvoice (Invoice invoice)
+> InvoiceResponse CreateInvoice (Invoice invoice, string sourceId = null)
 
 Create an Invoice
 
-Create an invoice for a channel partner.   NB the fields `invoice_id`, `payment_uri` and `status` must NOT be supplied. If supplied, BadResponse will be returned.   These are populated once the invoice has been created and will be available in the response. The external_id is a unique field, if the same external_id is provided, the matching invoice will be updated instead. 
+Create an invoice for a firm.   NB the fields `invoice_id`, `payment_uri` and `status` must NOT be supplied. If supplied, BadResponse will be returned.   These are populated once the invoice has been created and will be available in the response. The external_id is a unique field, if the same external_id is provided, the matching invoice will be updated instead. 
 
 ### Example
 ```csharp
@@ -472,10 +586,10 @@ namespace Example
         {
             Configuration config = new Configuration();
             config.BasePath = "http://localhost";
-            // Configure API key authorization: APIAuth
-            config.AddApiKey("X-API-KEY", "YOUR_API_KEY");
+            // Configure API key authorization: FirmAuth
+            config.AddApiKey("X-FIRM-ID", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("X-API-KEY", "Bearer");
+            // config.AddApiKeyPrefix("X-FIRM-ID", "Bearer");
             // Configure API key authorization: PartnerAuth
             config.AddApiKey("X-CHANNEL-PARTNER-ID", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -483,11 +597,12 @@ namespace Example
 
             var apiInstance = new PaymentsApi(config);
             var invoice = new Invoice(); // Invoice | Invoice details
+            var sourceId = "sourceId_example";  // string |  (optional) 
 
             try
             {
                 // Create an Invoice
-                InvoiceResponse result = apiInstance.CreateInvoice(invoice);
+                InvoiceResponse result = apiInstance.CreateInvoice(invoice, sourceId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -508,7 +623,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Create an Invoice
-    ApiResponse<InvoiceResponse> response = apiInstance.CreateInvoiceWithHttpInfo(invoice);
+    ApiResponse<InvoiceResponse> response = apiInstance.CreateInvoiceWithHttpInfo(invoice, sourceId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -526,6 +641,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **invoice** | [**Invoice**](Invoice.md) | Invoice details |  |
+| **sourceId** | **string** |  | [optional]  |
 
 ### Return type
 
@@ -533,7 +649,7 @@ catch (ApiException e)
 
 ### Authorization
 
-[APIAuth](../README.md#APIAuth), [PartnerAuth](../README.md#PartnerAuth)
+[FirmAuth](../README.md#FirmAuth), [PartnerAuth](../README.md#PartnerAuth)
 
 ### HTTP request headers
 
@@ -551,7 +667,7 @@ catch (ApiException e)
 
 <a name="creatematter"></a>
 # **CreateMatter**
-> MatterResponse CreateMatter (MatterRequest matterRequest = null)
+> MatterResponse CreateMatter (string sourceId = null, MatterRequest matterRequest = null)
 
 Create a matter
 
@@ -583,12 +699,13 @@ namespace Example
             // config.AddApiKeyPrefix("X-CHANNEL-PARTNER-ID", "Bearer");
 
             var apiInstance = new PaymentsApi(config);
+            var sourceId = "sourceId_example";  // string |  (optional) 
             var matterRequest = new MatterRequest(); // MatterRequest |  (optional) 
 
             try
             {
                 // Create a matter
-                MatterResponse result = apiInstance.CreateMatter(matterRequest);
+                MatterResponse result = apiInstance.CreateMatter(sourceId, matterRequest);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -609,7 +726,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Create a matter
-    ApiResponse<MatterResponse> response = apiInstance.CreateMatterWithHttpInfo(matterRequest);
+    ApiResponse<MatterResponse> response = apiInstance.CreateMatterWithHttpInfo(sourceId, matterRequest);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -626,6 +743,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
+| **sourceId** | **string** |  | [optional]  |
 | **matterRequest** | [**MatterRequest**](MatterRequest.md) |  | [optional]  |
 
 ### Return type
@@ -759,7 +877,7 @@ catch (ApiException e)
 
 <a name="createtrustdeposit"></a>
 # **CreateTrustDeposit**
-> TrustDepositResponse CreateTrustDeposit (TrustDeposit trustDeposit)
+> TrustDepositResponse CreateTrustDeposit (TrustDeposit trustDeposit, string sourceId = null)
 
 Create a Trust Deposit
 
@@ -792,11 +910,12 @@ namespace Example
 
             var apiInstance = new PaymentsApi(config);
             var trustDeposit = new TrustDeposit(); // TrustDeposit | Trust deposit details
+            var sourceId = "sourceId_example";  // string |  (optional) 
 
             try
             {
                 // Create a Trust Deposit
-                TrustDepositResponse result = apiInstance.CreateTrustDeposit(trustDeposit);
+                TrustDepositResponse result = apiInstance.CreateTrustDeposit(trustDeposit, sourceId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -817,7 +936,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Create a Trust Deposit
-    ApiResponse<TrustDepositResponse> response = apiInstance.CreateTrustDepositWithHttpInfo(trustDeposit);
+    ApiResponse<TrustDepositResponse> response = apiInstance.CreateTrustDepositWithHttpInfo(trustDeposit, sourceId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -835,6 +954,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **trustDeposit** | [**TrustDeposit**](TrustDeposit.md) | Trust deposit details |  |
+| **sourceId** | **string** |  | [optional]  |
 
 ### Return type
 
@@ -968,7 +1088,7 @@ catch (ApiException e)
 
 <a name="getdebtormatterstatement"></a>
 # **GetDebtorMatterStatement**
-> MatterStatement GetDebtorMatterStatement (Guid debtorId, Guid matterId, int? to = null, int? from = null)
+> MatterStatement GetDebtorMatterStatement (Guid debtorId, Guid matterId, string sourceId = null, Guid? refArtifactId = null, int? to = null, int? from = null)
 
 Get a matter debtor statement
 
@@ -1002,13 +1122,15 @@ namespace Example
             var apiInstance = new PaymentsApi(config);
             var debtorId = "debtorId_example";  // Guid | 
             var matterId = "matterId_example";  // Guid | 
+            var sourceId = "sourceId_example";  // string |  (optional) 
+            var refArtifactId = "refArtifactId_example";  // Guid? | Optional referring artifact id.  If provided, details of the originating artifact, e.g. invoice or trust deposit, may be displayed on the payment pages.   (optional) 
             var to = 56;  // int? |  (optional) 
             var from = 56;  // int? |  (optional) 
 
             try
             {
                 // Get a matter debtor statement
-                MatterStatement result = apiInstance.GetDebtorMatterStatement(debtorId, matterId, to, from);
+                MatterStatement result = apiInstance.GetDebtorMatterStatement(debtorId, matterId, sourceId, refArtifactId, to, from);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -1029,7 +1151,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Get a matter debtor statement
-    ApiResponse<MatterStatement> response = apiInstance.GetDebtorMatterStatementWithHttpInfo(debtorId, matterId, to, from);
+    ApiResponse<MatterStatement> response = apiInstance.GetDebtorMatterStatementWithHttpInfo(debtorId, matterId, sourceId, refArtifactId, to, from);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -1048,6 +1170,8 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **debtorId** | **Guid** |  |  |
 | **matterId** | **Guid** |  |  |
+| **sourceId** | **string** |  | [optional]  |
+| **refArtifactId** | **Guid?** | Optional referring artifact id.  If provided, details of the originating artifact, e.g. invoice or trust deposit, may be displayed on the payment pages.   | [optional]  |
 | **to** | **int?** |  | [optional]  |
 | **from** | **int?** |  | [optional]  |
 
@@ -1074,13 +1198,13 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getexternaldebtormatterstatement"></a>
-# **GetExternalDebtorMatterStatement**
-> GetExternalDebtorMatterStatement200Response GetExternalDebtorMatterStatement (string externalDebtorId, string externalMatterId)
+<a name="getdebtorstatement"></a>
+# **GetDebtorStatement**
+> DebtorStatement GetDebtorStatement (Guid debtorId)
 
-Get a matter debtor statement
+Get a debtor statement
 
-Get a matter statement that is payable by the client via the returned URL.  External IDs (Provided by the channel partner at invoice creation are used for the retrieval.) Deprecated The preferred approach is to use /api/v3/partner/statements/debtors/{debtor_id}/matters/{matter_id}. The preferred approach guarantees uniqueness in debtor and matter ID, as they are created by FeeWise. nb: Since external IDs are created outside of FeeWise, there's no way for FeeWise to guarantee that an external ID  is unique within FeeWise, therefore, this endpoint response will return an array of items. If the calling partner is  confident that the external ID used is unique, there should only be a single item in the array. 
+Get a debtor statement that is payable by the client via the returned URL. 
 
 ### Example
 ```csharp
@@ -1092,7 +1216,7 @@ using FeeWise.Model;
 
 namespace Example
 {
-    public class GetExternalDebtorMatterStatementExample
+    public class GetDebtorStatementExample
     {
         public static void Main()
         {
@@ -1108,18 +1232,17 @@ namespace Example
             // config.AddApiKeyPrefix("X-CHANNEL-PARTNER-ID", "Bearer");
 
             var apiInstance = new PaymentsApi(config);
-            var externalDebtorId = "externalDebtorId_example";  // string | 
-            var externalMatterId = "externalMatterId_example";  // string | 
+            var debtorId = "debtorId_example";  // Guid | 
 
             try
             {
-                // Get a matter debtor statement
-                GetExternalDebtorMatterStatement200Response result = apiInstance.GetExternalDebtorMatterStatement(externalDebtorId, externalMatterId);
+                // Get a debtor statement
+                DebtorStatement result = apiInstance.GetDebtorStatement(debtorId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling PaymentsApi.GetExternalDebtorMatterStatement: " + e.Message);
+                Debug.Print("Exception when calling PaymentsApi.GetDebtorStatement: " + e.Message);
                 Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
@@ -1128,21 +1251,21 @@ namespace Example
 }
 ```
 
-#### Using the GetExternalDebtorMatterStatementWithHttpInfo variant
+#### Using the GetDebtorStatementWithHttpInfo variant
 This returns an ApiResponse object which contains the response data, status code and headers.
 
 ```csharp
 try
 {
-    // Get a matter debtor statement
-    ApiResponse<GetExternalDebtorMatterStatement200Response> response = apiInstance.GetExternalDebtorMatterStatementWithHttpInfo(externalDebtorId, externalMatterId);
+    // Get a debtor statement
+    ApiResponse<DebtorStatement> response = apiInstance.GetDebtorStatementWithHttpInfo(debtorId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
 }
 catch (ApiException e)
 {
-    Debug.Print("Exception when calling PaymentsApi.GetExternalDebtorMatterStatementWithHttpInfo: " + e.Message);
+    Debug.Print("Exception when calling PaymentsApi.GetDebtorStatementWithHttpInfo: " + e.Message);
     Debug.Print("Status Code: " + e.ErrorCode);
     Debug.Print(e.StackTrace);
 }
@@ -1152,12 +1275,11 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **externalDebtorId** | **string** |  |  |
-| **externalMatterId** | **string** |  |  |
+| **debtorId** | **Guid** |  |  |
 
 ### Return type
 
-[**GetExternalDebtorMatterStatement200Response**](GetExternalDebtorMatterStatement200Response.md)
+[**DebtorStatement**](DebtorStatement.md)
 
 ### Authorization
 
@@ -1172,8 +1294,10 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Matter Statement was returned |  -  |
-| **400** | Incompatible filters provided. Must at least provide an external_matter_id and external_debtor_id. |  -  |
+| **200** | Debtor Statement was returned |  -  |
+| **400** | Bad request. |  -  |
+| **403** | Forbidden request. |  -  |
+| **404** | Debtor not found. |  -  |
 | **500** | Error processing |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -1307,10 +1431,10 @@ namespace Example
         {
             Configuration config = new Configuration();
             config.BasePath = "http://localhost";
-            // Configure API key authorization: APIAuth
-            config.AddApiKey("X-API-KEY", "YOUR_API_KEY");
+            // Configure API key authorization: FirmAuth
+            config.AddApiKey("X-FIRM-ID", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("X-API-KEY", "Bearer");
+            // config.AddApiKeyPrefix("X-FIRM-ID", "Bearer");
             // Configure API key authorization: PartnerAuth
             config.AddApiKey("X-CHANNEL-PARTNER-ID", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -1368,7 +1492,7 @@ catch (ApiException e)
 
 ### Authorization
 
-[APIAuth](../README.md#APIAuth), [PartnerAuth](../README.md#PartnerAuth)
+[FirmAuth](../README.md#FirmAuth), [PartnerAuth](../README.md#PartnerAuth)
 
 ### HTTP request headers
 
@@ -1488,6 +1612,113 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Matter Statement was returned |  -  |
 | **400** | Incompatible filters provided. Must provide at least a matter_id. |  -  |
+| **500** | Error processing |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="getrefunddetails"></a>
+# **GetRefundDetails**
+> RefundResponse GetRefundDetails (Guid firmId, Guid paymentId, Guid artifactId)
+
+Get Refund Details
+
+Get refund details by Payment ID (UUID) and Artifact ID (UUID).  Both values can be found in the /transactions and /payouts responses. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using FeeWise.Api;
+using FeeWise.Client;
+using FeeWise.Model;
+
+namespace Example
+{
+    public class GetRefundDetailsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "http://localhost";
+            // Configure API key authorization: FirmAuth
+            config.AddApiKey("X-FIRM-ID", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("X-FIRM-ID", "Bearer");
+            // Configure API key authorization: PartnerAuth
+            config.AddApiKey("X-CHANNEL-PARTNER-ID", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("X-CHANNEL-PARTNER-ID", "Bearer");
+
+            var apiInstance = new PaymentsApi(config);
+            var firmId = "firmId_example";  // Guid | The ID of the firm
+            var paymentId = "paymentId_example";  // Guid | Payment ID (UUID)
+            var artifactId = "artifactId_example";  // Guid | Artifact ID (UUID)
+
+            try
+            {
+                // Get Refund Details
+                RefundResponse result = apiInstance.GetRefundDetails(firmId, paymentId, artifactId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling PaymentsApi.GetRefundDetails: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetRefundDetailsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Get Refund Details
+    ApiResponse<RefundResponse> response = apiInstance.GetRefundDetailsWithHttpInfo(firmId, paymentId, artifactId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling PaymentsApi.GetRefundDetailsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **firmId** | **Guid** | The ID of the firm |  |
+| **paymentId** | **Guid** | Payment ID (UUID) |  |
+| **artifactId** | **Guid** | Artifact ID (UUID) |  |
+
+### Return type
+
+[**RefundResponse**](RefundResponse.md)
+
+### Authorization
+
+[FirmAuth](../README.md#FirmAuth), [PartnerAuth](../README.md#PartnerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Returns the refund, by the given ID pairing. |  -  |
+| **400** | Bad request |  -  |
+| **404** | Refund not found |  -  |
 | **500** | Error processing |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -1700,6 +1931,117 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a name="postconfirmchargepayment"></a>
+# **PostConfirmChargePayment**
+> ChargePaymentDetails PostConfirmChargePayment (Guid firmId, Guid chargeId, Guid paymentId, PostConfirmChargePaymentRequest postConfirmChargePaymentRequest = null)
+
+Confirm a pending charge payment.
+
+confirm the payment of a pending charge using the provided charge_id and payment_id
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using FeeWise.Api;
+using FeeWise.Client;
+using FeeWise.Model;
+
+namespace Example
+{
+    public class PostConfirmChargePaymentExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "http://localhost";
+            // Configure API key authorization: APIAuth
+            config.AddApiKey("X-API-KEY", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("X-API-KEY", "Bearer");
+            // Configure API key authorization: PartnerAuth
+            config.AddApiKey("X-CHANNEL-PARTNER-ID", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("X-CHANNEL-PARTNER-ID", "Bearer");
+
+            var apiInstance = new PaymentsApi(config);
+            var firmId = "firmId_example";  // Guid | 
+            var chargeId = "chargeId_example";  // Guid | 
+            var paymentId = "paymentId_example";  // Guid | 
+            var postConfirmChargePaymentRequest = new PostConfirmChargePaymentRequest(); // PostConfirmChargePaymentRequest | POST Body contains optional Metadata and Debtor info to apply to the charge. Warning, will replace the charge's existing metadata. Debtor external_id can not be updated at this point in the flow and will be ignored. (optional) 
+
+            try
+            {
+                // Confirm a pending charge payment.
+                ChargePaymentDetails result = apiInstance.PostConfirmChargePayment(firmId, chargeId, paymentId, postConfirmChargePaymentRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling PaymentsApi.PostConfirmChargePayment: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the PostConfirmChargePaymentWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Confirm a pending charge payment.
+    ApiResponse<ChargePaymentDetails> response = apiInstance.PostConfirmChargePaymentWithHttpInfo(firmId, chargeId, paymentId, postConfirmChargePaymentRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling PaymentsApi.PostConfirmChargePaymentWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **firmId** | **Guid** |  |  |
+| **chargeId** | **Guid** |  |  |
+| **paymentId** | **Guid** |  |  |
+| **postConfirmChargePaymentRequest** | [**PostConfirmChargePaymentRequest**](PostConfirmChargePaymentRequest.md) | POST Body contains optional Metadata and Debtor info to apply to the charge. Warning, will replace the charge&#39;s existing metadata. Debtor external_id can not be updated at this point in the flow and will be ignored. | [optional]  |
+
+### Return type
+
+[**ChargePaymentDetails**](ChargePaymentDetails.md)
+
+### Authorization
+
+[APIAuth](../README.md#APIAuth), [PartnerAuth](../README.md#PartnerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | successful response |  -  |
+| **400** | Bad request |  -  |
+| **403** | Firm is unable to transact |  -  |
+| **404** | Firm, charge or payment not found |  -  |
+| **409** | Charge has already been paid or payment is out of sync |  -  |
+| **500** | generic server error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a name="recordexternalpayment"></a>
 # **RecordExternalPayment**
 > ExternalPaymentResponse RecordExternalPayment (ExternalPayment externalPayment)
@@ -1799,6 +2141,218 @@ catch (ApiException e)
 | **200** | The payment was recorded |  -  |
 | **404** | Artifact not found |  -  |
 | **409** | External payment already exists |  -  |
+| **500** | Error processing |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="updateartifactaccount"></a>
+# **UpdateArtifactAccount**
+> UpdatedCount UpdateArtifactAccount (Guid firmId, Guid settlementAccountId, UpdateArtifactAccountRequest updateArtifactAccountRequest)
+
+Update the settlement account for unpaid artifacts.
+
+Swaps the settlement account id on all artifacts with the given artifact type.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using FeeWise.Api;
+using FeeWise.Client;
+using FeeWise.Model;
+
+namespace Example
+{
+    public class UpdateArtifactAccountExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "http://localhost";
+            // Configure API key authorization: APIAuth
+            config.AddApiKey("X-API-KEY", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("X-API-KEY", "Bearer");
+            // Configure API key authorization: PartnerAuth
+            config.AddApiKey("X-CHANNEL-PARTNER-ID", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("X-CHANNEL-PARTNER-ID", "Bearer");
+
+            var apiInstance = new PaymentsApi(config);
+            var firmId = "firmId_example";  // Guid | 
+            var settlementAccountId = "settlementAccountId_example";  // Guid | 
+            var updateArtifactAccountRequest = new UpdateArtifactAccountRequest(); // UpdateArtifactAccountRequest | Contains the type of the artifact and the ID of the account the artifacts should be paid to.
+
+            try
+            {
+                // Update the settlement account for unpaid artifacts.
+                UpdatedCount result = apiInstance.UpdateArtifactAccount(firmId, settlementAccountId, updateArtifactAccountRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling PaymentsApi.UpdateArtifactAccount: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the UpdateArtifactAccountWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Update the settlement account for unpaid artifacts.
+    ApiResponse<UpdatedCount> response = apiInstance.UpdateArtifactAccountWithHttpInfo(firmId, settlementAccountId, updateArtifactAccountRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling PaymentsApi.UpdateArtifactAccountWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **firmId** | **Guid** |  |  |
+| **settlementAccountId** | **Guid** |  |  |
+| **updateArtifactAccountRequest** | [**UpdateArtifactAccountRequest**](UpdateArtifactAccountRequest.md) | Contains the type of the artifact and the ID of the account the artifacts should be paid to. |  |
+
+### Return type
+
+[**UpdatedCount**](UpdatedCount.md)
+
+### Authorization
+
+[APIAuth](../README.md#APIAuth), [PartnerAuth](../README.md#PartnerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Successfully updated the artifacts. |  -  |
+| **400** | Bad request |  -  |
+| **404** | Firm not found |  -  |
+| **500** | Error processing |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="updateartifactredirecturl"></a>
+# **UpdateArtifactRedirectURL**
+> ArtifactResponse UpdateArtifactRedirectURL (Guid artifactId, Guid firmId)
+
+Update the payment redirect URL for an artifact
+
+Update the optional URL the payer will be redirected to after payment.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using FeeWise.Api;
+using FeeWise.Client;
+using FeeWise.Model;
+
+namespace Example
+{
+    public class UpdateArtifactRedirectURLExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "http://localhost";
+            // Configure API key authorization: FirmAuth
+            config.AddApiKey("X-FIRM-ID", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("X-FIRM-ID", "Bearer");
+            // Configure API key authorization: PartnerAuth
+            config.AddApiKey("X-CHANNEL-PARTNER-ID", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("X-CHANNEL-PARTNER-ID", "Bearer");
+
+            var apiInstance = new PaymentsApi(config);
+            var artifactId = "artifactId_example";  // Guid | 
+            var firmId = "firmId_example";  // Guid | 
+
+            try
+            {
+                // Update the payment redirect URL for an artifact
+                ArtifactResponse result = apiInstance.UpdateArtifactRedirectURL(artifactId, firmId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling PaymentsApi.UpdateArtifactRedirectURL: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the UpdateArtifactRedirectURLWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Update the payment redirect URL for an artifact
+    ApiResponse<ArtifactResponse> response = apiInstance.UpdateArtifactRedirectURLWithHttpInfo(artifactId, firmId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling PaymentsApi.UpdateArtifactRedirectURLWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **artifactId** | **Guid** |  |  |
+| **firmId** | **Guid** |  |  |
+
+### Return type
+
+[**ArtifactResponse**](ArtifactResponse.md)
+
+### Authorization
+
+[FirmAuth](../README.md#FirmAuth), [PartnerAuth](../README.md#PartnerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Updated the redirect URL for the requested artifact |  -  |
+| **400** | Bad request |  -  |
+| **404** | Requested artifact not found |  -  |
 | **500** | Error processing |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

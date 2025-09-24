@@ -1,4 +1,5 @@
 # FeeWise.Model.AccountType
+The type of the bank account.
 
 ## Properties
 

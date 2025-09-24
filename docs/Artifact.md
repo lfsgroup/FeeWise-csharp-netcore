@@ -22,6 +22,9 @@ Name | Type | Description | Notes
 **SurchargeChoiceOverride** | **SurchargeChoice** |  | [optional] 
 **Description** | **string** | Freeform text for API user. | [optional] 
 **Status** | **string** | The status of the artifact | [optional] 
+**ArtifactSubtype** | **ArtifactSubtype** |  | [optional] 
+**CreatedAt** | **DateTime** | The date the partner created the artifact. | [optional] 
+**SourceId** | **string** | The source ID that was passed in when creating the artifact. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

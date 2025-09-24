@@ -1,4 +1,5 @@
 # FeeWise.Model.Transaction
+Paginated transaction - prefer TransactionV2, used in the v4 /transactions endpoint
 
 ## Properties
 

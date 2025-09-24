@@ -1,4 +1,5 @@
 # FeeWise.Model.TransactionsResponse
+Prefer TransactionsResponseV2, used in the v4 /transactions endpoint
 
 ## Properties
 

@@ -24,6 +24,10 @@ Name | Type | Description | Notes
 **Description** | **string** | Freeform text for channel partner / PMS. | [optional] 
 **PaymentUri** | **string** | The URI to send to customer.    They will follow this link to make a payment.    NB This must not be set when creating an invoice.  | [optional] 
 **Status** | **string** | The status of the bank account. Pending - awaiting validation, Valid - successfully validated, Invalid - bank account number validation failed. | 
+**ArtifactSubtype** | **ArtifactSubtype** |  | [optional] 
+**CreatedAt** | **DateTime** | The date the partner created the artifact. | [optional] 
+**SourceId** | **string** | The source ID that was passed in when creating the artifact. | [optional] 
+**PaymentRedirectUrl** | **string** | Optional URL the payer will be redirected to after payment | [optional] 
 **TrustDepositId** | **Guid** | This is the uuid of the Trust Deposit. This will be used for any &#39;GET&#39; of the Trust Deposit and in webhooks about this Trust Deposit NB this is generated and must not be supplied when creating a Trust Deposit.  | [optional] 
 **TransactionId** | **Guid** | The unique id of this single transaction in the payout. | 
 **PaymentId** | **Guid** | The payment ID | 
@@ -36,7 +40,7 @@ Name | Type | Description | Notes
 **Refunded** | **string** | The amount refunded (back to the client) against this payment. | [optional] 
 **PaidOut** | **string** | The total amount paid to the firm for this payment | 
 **Date** | **DateTime** | When the payout was made. | 
-**Metadata** | **Dictionary&lt;string, string&gt;** | Set of key value pairs attached to the payment object when it was created. | [optional] 
+**Metadata** | **Dictionary&lt;string, string&gt;** | Set of key value pairs attached to the object when it was created. | 
 **PayoutReference** | **string** | The unique reference of the payout. This will appear in the bank account statement the payout was made to. | 
 **PayoutTotal** | **string** | The total paid out to the firm. This is the sum of the transactions paid_out amounts. | 
 **Account** | [**PayoutAccount**](PayoutAccount.md) |  | 
@@ -62,6 +66,9 @@ Name | Type | Description | Notes
 **Bank** | **string** |  | [optional] 
 **CountryCode** | **string** | Two-letter ISO code representing the country the bank account is located in. | 
 **LastUpdatedAt** | **DateTime** |  | [optional] 
+**SurchargeSettings** | [**SurchargeSettings**](SurchargeSettings.md) |  | 
+**Products** | [**List&lt;Product&gt;**](Product.md) |  | 
+**AffiliateId** | **Guid** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

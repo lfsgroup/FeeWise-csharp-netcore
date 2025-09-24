@@ -4,22 +4,126 @@ All URIs are relative to *http://localhost*
 
 | Method | HTTP request | Description |
 |--------|--------------|-------------|
+| [**Associate**](FirmApi.md#associate) | **POST** /api/v3/partner/firms/connect/{firm_connect_id}/associate | Associate a firm with an affiliate |
 | [**CreateFirm**](FirmApi.md#createfirm) | **POST** /api/v3/partner/firms | Create a new firm |
 | [**CreateFirmAccountOwner**](FirmApi.md#createfirmaccountowner) | **POST** /api/v3/partner/firms/{firm_id}/owner | Create Firm Account Owner |
+| [**CreateFirmBankAccount**](FirmApi.md#createfirmbankaccount) | **POST** /api/v3/partner/firms/{firm_id}/accounts | Create a bank account |
 | [**CreatePaymentToken**](FirmApi.md#createpaymenttoken) | **POST** /api/v3/partner/firms/{firm_id}/payment_token | Create a payment token for a customer. |
-| [**DeletePaymentToken**](FirmApi.md#deletepaymenttoken) | **DELETE** /api/v3/partner/firms/{firm_id}/payment_token/{payment_token} | Delete a payment token. |
+| [**DeleteFirmBankAccount**](FirmApi.md#deletefirmbankaccount) | **DELETE** /api/v3/partner/firms/{firm_id}/accounts/{account_id} | Delete a bank account |
+| [**DeletePaymentToken**](FirmApi.md#deletepaymenttoken) | **DELETE** /api/v3/partner/firms/{firm_id}/payment_token/{payment_token} | Delete a payment token |
 | [**GetFirm**](FirmApi.md#getfirm) | **GET** /api/v3/partner/firms/{firm_id} | Get a firm |
-| [**GetFirmBankAccountByID**](FirmApi.md#getfirmbankaccountbyid) | **GET** /api/v3/partner/firms/{firm_id}/accounts/{account_id} | Get a bank account by ID. |
-| [**GetFirmBankAccounts**](FirmApi.md#getfirmbankaccounts) | **GET** /api/v3/partner/firms/{firm_id}/accounts | List all firms bank account&#39;s. |
+| [**GetFirmBankAccountByID**](FirmApi.md#getfirmbankaccountbyid) | **GET** /api/v3/partner/firms/{firm_id}/accounts/{account_id} | Get a bank account by ID |
+| [**GetFirmBankAccounts**](FirmApi.md#getfirmbankaccounts) | **GET** /api/v3/partner/firms/{firm_id}/accounts | List bank accounts |
+| [**GetFirmBranding**](FirmApi.md#getfirmbranding) | **GET** /api/v3/partner/firms/{firm_id}/branding | Get firm branding |
 | [**GetFirmCustomers**](FirmApi.md#getfirmcustomers) | **GET** /api/v3/partner/firms/{firm_id}/customers | List all the customers for a firm. |
 | [**GetFirmDetails**](FirmApi.md#getfirmdetails) | **GET** /api/v3/partner/firms/firm-details | Get firm details |
+| [**GetFirmPricing**](FirmApi.md#getfirmpricing) | **GET** /api/v3/partner/firms/{firm_id}/pricing | List the pricing products for a firm and their constraints. |
 | [**GetFirms**](FirmApi.md#getfirms) | **GET** /api/v3/partner/firms | Get firms |
 | [**GetMagicLink**](FirmApi.md#getmagiclink) | **POST** /api/v3/partner/firms/{firm_id}/magic-link | Create a magic link |
 | [**PostFirmBrandingColour**](FirmApi.md#postfirmbrandingcolour) | **POST** /api/v3/partner/firms/{firm_id}/branding/colour | Set firm branding colour for firm dashboard |
 | [**PostUpload**](FirmApi.md#postupload) | **POST** /api/v3/partner/firms/{firm_id}/upload | Upload file |
+| [**PutSurchargingStatus**](FirmApi.md#putsurchargingstatus) | **PUT** /api/v3/partner/firms/{firm_id}/surcharging/status/{status} | Toggle surcharging status |
 | [**SearchChargesByMetadata**](FirmApi.md#searchchargesbymetadata) | **GET** /api/v3/partner/firms/{firm_id}/charges/search | Query metadata to search for Charges, for the given firm |
 | [**SetFirmsDefaultBankAccount**](FirmApi.md#setfirmsdefaultbankaccount) | **POST** /api/v3/partner/firms/{firm_id}/accounts/{account_id}/default | Set firms default bank account. |
 | [**SyncFirm**](FirmApi.md#syncfirm) | **POST** /api/v3/partner/firms/sync/{connect_id} | Sync a firm by the FeeWise Connect ID |
+| [**ToggleFirmProducts**](FirmApi.md#togglefirmproducts) | **POST** /api/v3/partner/firms/{firm_id}/products |  |
+
+<a name="associate"></a>
+# **Associate**
+> void Associate (string firmConnectId, Guid affiliateId)
+
+Associate a firm with an affiliate
+
+Enables partners to establish an affiliation with FeeWise-registered firms. Partners must obtain the firm's unique FeeWise Connect ID from the firm's dashboard and submit it through this endpoint to create the association. The FeeWise Connect ID can be retrieved by the firm from the settings page.  On association, a `FirmAffiliationCreated` webhook event will be emitted. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using FeeWise.Api;
+using FeeWise.Client;
+using FeeWise.Model;
+
+namespace Example
+{
+    public class AssociateExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "http://localhost";
+            // Configure API key authorization: PartnerAuth
+            config.AddApiKey("X-CHANNEL-PARTNER-ID", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("X-CHANNEL-PARTNER-ID", "Bearer");
+
+            var apiInstance = new FirmApi(config);
+            var firmConnectId = "firmConnectId_example";  // string | 
+            var affiliateId = "affiliateId_example";  // Guid | 
+
+            try
+            {
+                // Associate a firm with an affiliate
+                apiInstance.Associate(firmConnectId, affiliateId);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling FirmApi.Associate: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the AssociateWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Associate a firm with an affiliate
+    apiInstance.AssociateWithHttpInfo(firmConnectId, affiliateId);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling FirmApi.AssociateWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **firmConnectId** | **string** |  |  |
+| **affiliateId** | **Guid** |  |  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[PartnerAuth](../README.md#PartnerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: Not defined
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | Affiliation successfully created |  -  |
+| **500** | Server Error |  -  |
+| **401** | Access to Firm or Affiliate Unauthorized |  -  |
+| **404** | Firm or affiliate not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a name="createfirm"></a>
 # **CreateFirm**
@@ -227,13 +331,120 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a name="createfirmbankaccount"></a>
+# **CreateFirmBankAccount**
+> BankAccount CreateFirmBankAccount (Guid firmId, BankAccount bankAccount)
+
+Create a bank account
+
+Create an Office or Trust account for a Firm.  If the account doesn't already exist, the new account will be created in `Pending` state. You need to listen for the `firm.bank-account.updated` webhook to know when the account is `Valid` or `Invalid`.  New account validation is subject to [Stripe's validation rules](https://docs.stripe.com/connect/payouts-bank-accounts?bank-account-collection-integration=direct-api&bank-account-collection-method=manual-entry&account-country=US#collecting-external-accounts), which vary by region. Please refer to these rules if the `firm.bank-account.updated` webhook says your account is `Invalid`. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using FeeWise.Api;
+using FeeWise.Client;
+using FeeWise.Model;
+
+namespace Example
+{
+    public class CreateFirmBankAccountExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "http://localhost";
+            // Configure API key authorization: APIAuth
+            config.AddApiKey("X-API-KEY", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("X-API-KEY", "Bearer");
+            // Configure API key authorization: PartnerAuth
+            config.AddApiKey("X-CHANNEL-PARTNER-ID", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("X-CHANNEL-PARTNER-ID", "Bearer");
+
+            var apiInstance = new FirmApi(config);
+            var firmId = "firmId_example";  // Guid | 
+            var bankAccount = new BankAccount(); // BankAccount | New account details
+
+            try
+            {
+                // Create a bank account
+                BankAccount result = apiInstance.CreateFirmBankAccount(firmId, bankAccount);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling FirmApi.CreateFirmBankAccount: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the CreateFirmBankAccountWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Create a bank account
+    ApiResponse<BankAccount> response = apiInstance.CreateFirmBankAccountWithHttpInfo(firmId, bankAccount);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling FirmApi.CreateFirmBankAccountWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **firmId** | **Guid** |  |  |
+| **bankAccount** | [**BankAccount**](BankAccount.md) | New account details |  |
+
+### Return type
+
+[**BankAccount**](BankAccount.md)
+
+### Authorization
+
+[APIAuth](../README.md#APIAuth), [PartnerAuth](../README.md#PartnerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | Account created |  -  |
+| **400** | Bad request |  -  |
+| **403** | Forbidden request |  -  |
+| **404** | Firm not found |  -  |
+| **409** | Firm bank account already exists |  -  |
+| **500** | Internal server error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a name="createpaymenttoken"></a>
 # **CreatePaymentToken**
 > PaymentTokenResponse CreatePaymentToken (Guid firmId, PaymentTokenBody paymentTokenBody)
 
 Create a payment token for a customer.
 
-Create a payment token for a customer to capture their payment method details and later use to charge them via the charge and pay endpoint /api/v3/partner/charges/pay/payment_token/{payment_token}.
+Create a payment token for a customer to capture their payment method details and later use to charge them via the charge and pay endpoint /api/v4/partner/firms/{firm_id}/charges/payment-token/{payment_token}.
 
 ### Example
 ```csharp
@@ -331,11 +542,113 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a name="deletefirmbankaccount"></a>
+# **DeleteFirmBankAccount**
+> void DeleteFirmBankAccount (Guid firmId, Guid accountId)
+
+Delete a bank account
+
+Delete a bank account for a Firm nb: If a bank account is related to an inflight transaction, payout or similar the bank account deletion will fail. Contact FeeWise support to resolve the issue. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using FeeWise.Api;
+using FeeWise.Client;
+using FeeWise.Model;
+
+namespace Example
+{
+    public class DeleteFirmBankAccountExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "http://localhost";
+            // Configure API key authorization: APIAuth
+            config.AddApiKey("X-API-KEY", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("X-API-KEY", "Bearer");
+            // Configure API key authorization: PartnerAuth
+            config.AddApiKey("X-CHANNEL-PARTNER-ID", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("X-CHANNEL-PARTNER-ID", "Bearer");
+
+            var apiInstance = new FirmApi(config);
+            var firmId = "firmId_example";  // Guid | 
+            var accountId = "accountId_example";  // Guid | 
+
+            try
+            {
+                // Delete a bank account
+                apiInstance.DeleteFirmBankAccount(firmId, accountId);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling FirmApi.DeleteFirmBankAccount: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the DeleteFirmBankAccountWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Delete a bank account
+    apiInstance.DeleteFirmBankAccountWithHttpInfo(firmId, accountId);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling FirmApi.DeleteFirmBankAccountWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **firmId** | **Guid** |  |  |
+| **accountId** | **Guid** |  |  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[APIAuth](../README.md#APIAuth), [PartnerAuth](../README.md#PartnerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **204** | Account deleted |  -  |
+| **400** | Bad request |  -  |
+| **404** | Firm or account not found |  -  |
+| **409** | Account has ongoing artifacts, transactions, etc. |  -  |
+| **500** | Error processing |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a name="deletepaymenttoken"></a>
 # **DeletePaymentToken**
 > void DeletePaymentToken (Guid firmId, Guid paymentToken)
 
-Delete a payment token.
+Delete a payment token
 
 Delete a payment token for given firm
 
@@ -370,7 +683,7 @@ namespace Example
 
             try
             {
-                // Delete a payment token.
+                // Delete a payment token
                 apiInstance.DeletePaymentToken(firmId, paymentToken);
             }
             catch (ApiException  e)
@@ -390,7 +703,7 @@ This returns an ApiResponse object which contains the response data, status code
 ```csharp
 try
 {
-    // Delete a payment token.
+    // Delete a payment token
     apiInstance.DeletePaymentTokenWithHttpInfo(firmId, paymentToken);
 }
 catch (ApiException e)
@@ -539,7 +852,7 @@ catch (ApiException e)
 # **GetFirmBankAccountByID**
 > BankAccount GetFirmBankAccountByID (Guid firmId, Guid accountId)
 
-Get a bank account by ID.
+Get a bank account by ID
 
 Get a bank account by ID.
 
@@ -574,7 +887,7 @@ namespace Example
 
             try
             {
-                // Get a bank account by ID.
+                // Get a bank account by ID
                 BankAccount result = apiInstance.GetFirmBankAccountByID(firmId, accountId);
                 Debug.WriteLine(result);
             }
@@ -595,7 +908,7 @@ This returns an ApiResponse object which contains the response data, status code
 ```csharp
 try
 {
-    // Get a bank account by ID.
+    // Get a bank account by ID
     ApiResponse<BankAccount> response = apiInstance.GetFirmBankAccountByIDWithHttpInfo(firmId, accountId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
@@ -643,7 +956,7 @@ catch (ApiException e)
 # **GetFirmBankAccounts**
 > BankAccountsResponse GetFirmBankAccounts (Guid firmId)
 
-List all firms bank account's.
+List bank accounts
 
 Return all bank accounts linked to a firm.  If no accounts are linked an empty array is returned.
 
@@ -663,10 +976,10 @@ namespace Example
         {
             Configuration config = new Configuration();
             config.BasePath = "http://localhost";
-            // Configure API key authorization: APIAuth
-            config.AddApiKey("X-API-KEY", "YOUR_API_KEY");
+            // Configure API key authorization: FirmAuth
+            config.AddApiKey("X-FIRM-ID", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("X-API-KEY", "Bearer");
+            // config.AddApiKeyPrefix("X-FIRM-ID", "Bearer");
             // Configure API key authorization: PartnerAuth
             config.AddApiKey("X-CHANNEL-PARTNER-ID", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -677,7 +990,7 @@ namespace Example
 
             try
             {
-                // List all firms bank account's.
+                // List bank accounts
                 BankAccountsResponse result = apiInstance.GetFirmBankAccounts(firmId);
                 Debug.WriteLine(result);
             }
@@ -698,7 +1011,7 @@ This returns an ApiResponse object which contains the response data, status code
 ```csharp
 try
 {
-    // List all firms bank account's.
+    // List bank accounts
     ApiResponse<BankAccountsResponse> response = apiInstance.GetFirmBankAccountsWithHttpInfo(firmId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
@@ -724,7 +1037,7 @@ catch (ApiException e)
 
 ### Authorization
 
-[APIAuth](../README.md#APIAuth), [PartnerAuth](../README.md#PartnerAuth)
+[FirmAuth](../README.md#FirmAuth), [PartnerAuth](../README.md#PartnerAuth)
 
 ### HTTP request headers
 
@@ -738,6 +1051,109 @@ catch (ApiException e)
 | **200** | Return the list of bank accounts. |  -  |
 | **404** | Firm not found |  -  |
 | **500** | Error processing |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="getfirmbranding"></a>
+# **GetFirmBranding**
+> GetPartnerBranding200Response GetFirmBranding (Guid firmId)
+
+Get firm branding
+
+Get firm branding. Nb if branding is not set, an empty model will be returned. nb To avoid overwriting the Firms existing brand settings by mistake, this GET endpoint should be used to retrieve the firms current branding PRIOR to using the POST endpoint.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using FeeWise.Api;
+using FeeWise.Client;
+using FeeWise.Model;
+
+namespace Example
+{
+    public class GetFirmBrandingExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "http://localhost";
+            // Configure API key authorization: APIAuth
+            config.AddApiKey("X-API-KEY", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("X-API-KEY", "Bearer");
+            // Configure API key authorization: PartnerAuth
+            config.AddApiKey("X-CHANNEL-PARTNER-ID", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("X-CHANNEL-PARTNER-ID", "Bearer");
+
+            var apiInstance = new FirmApi(config);
+            var firmId = "firmId_example";  // Guid | 
+
+            try
+            {
+                // Get firm branding
+                GetPartnerBranding200Response result = apiInstance.GetFirmBranding(firmId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling FirmApi.GetFirmBranding: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetFirmBrandingWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Get firm branding
+    ApiResponse<GetPartnerBranding200Response> response = apiInstance.GetFirmBrandingWithHttpInfo(firmId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling FirmApi.GetFirmBrandingWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **firmId** | **Guid** |  |  |
+
+### Return type
+
+[**GetPartnerBranding200Response**](GetPartnerBranding200Response.md)
+
+### Authorization
+
+[APIAuth](../README.md#APIAuth), [PartnerAuth](../README.md#PartnerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Successful Response |  -  |
+| **400** | Bad request |  -  |
+| **401** | Unauthorized request |  -  |
+| **500** | Generic Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -849,7 +1265,7 @@ catch (ApiException e)
 
 Get firm details
 
-Get firm details by Firm ID (UUID) - This is the FeeWise unique ID for a firm OR by External ID (string), the partner's own unique id for a firm. Both will return the same model 
+Get firm details by Firm ID (UUID) - This is the FeeWise unique ID for a firm OR by External ID (string), the partner's own unique id for a firm. Both will return the same model Firm surcharge settings is defined here. Surcharge price rates can be found as customer variable fee and customer fixed fee per product here: '/api/v3/partner/firms/{firm_id}/pricing'. 
 
 ### Example
 ```csharp
@@ -943,6 +1359,110 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Return the Firm. |  -  |
 | **400** | Bad request |  -  |
+| **404** | Firm not found |  -  |
+| **500** | Error processing |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="getfirmpricing"></a>
+# **GetFirmPricing**
+> ToggleFirmProducts200Response GetFirmPricing (Guid firmId, string amount = null)
+
+List the pricing products for a firm and their constraints.
+
+Returns an array of pricing products for a specific firm. Surcharge price rates are customer variable fee and customer fixed fee.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using FeeWise.Api;
+using FeeWise.Client;
+using FeeWise.Model;
+
+namespace Example
+{
+    public class GetFirmPricingExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "http://localhost";
+            // Configure API key authorization: APIAuth
+            config.AddApiKey("X-API-KEY", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("X-API-KEY", "Bearer");
+            // Configure API key authorization: PartnerAuth
+            config.AddApiKey("X-CHANNEL-PARTNER-ID", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("X-CHANNEL-PARTNER-ID", "Bearer");
+
+            var apiInstance = new FirmApi(config);
+            var firmId = "firmId_example";  // Guid | 
+            var amount = "amount_example";  // string | An example amount.  When supplied, each payment method in the response will contain an `example_amount`, representing the full amount that would be charged including fees, given the amount passed in.  (optional) 
+
+            try
+            {
+                // List the pricing products for a firm and their constraints.
+                ToggleFirmProducts200Response result = apiInstance.GetFirmPricing(firmId, amount);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling FirmApi.GetFirmPricing: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetFirmPricingWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // List the pricing products for a firm and their constraints.
+    ApiResponse<ToggleFirmProducts200Response> response = apiInstance.GetFirmPricingWithHttpInfo(firmId, amount);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling FirmApi.GetFirmPricingWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **firmId** | **Guid** |  |  |
+| **amount** | **string** | An example amount.  When supplied, each payment method in the response will contain an &#x60;example_amount&#x60;, representing the full amount that would be charged including fees, given the amount passed in.  | [optional]  |
+
+### Return type
+
+[**ToggleFirmProducts200Response**](ToggleFirmProducts200Response.md)
+
+### Authorization
+
+[APIAuth](../README.md#APIAuth), [PartnerAuth](../README.md#PartnerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | successful response |  -  |
 | **404** | Firm not found |  -  |
 | **500** | Error processing |  -  |
 
@@ -1069,10 +1589,10 @@ namespace Example
         {
             Configuration config = new Configuration();
             config.BasePath = "http://localhost";
-            // Configure API key authorization: APIAuth
-            config.AddApiKey("X-API-KEY", "YOUR_API_KEY");
+            // Configure API key authorization: FirmAuth
+            config.AddApiKey("X-FIRM-ID", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("X-API-KEY", "Bearer");
+            // config.AddApiKeyPrefix("X-FIRM-ID", "Bearer");
             // Configure API key authorization: PartnerAuth
             config.AddApiKey("X-CHANNEL-PARTNER-ID", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -1132,7 +1652,7 @@ catch (ApiException e)
 
 ### Authorization
 
-[APIAuth](../README.md#APIAuth), [PartnerAuth](../README.md#PartnerAuth)
+[FirmAuth](../README.md#FirmAuth), [PartnerAuth](../README.md#PartnerAuth)
 
 ### HTTP request headers
 
@@ -1360,6 +1880,114 @@ catch (ApiException e)
 | **401** | Unauthorized request |  -  |
 | **403** | Forbidden request |  -  |
 | **500** | Generic Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="putsurchargingstatus"></a>
+# **PutSurchargingStatus**
+> SurchargeSettingsResponse PutSurchargingStatus (Guid firmId, string status, PutSurchargingStatusRequest putSurchargingStatusRequest = null)
+
+Toggle surcharging status
+
+Allows partners to toggle surcharging on or off for a firm. Surcharge pricing values can be found using the endpoint, firms/{firm_id}/pricing 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using FeeWise.Api;
+using FeeWise.Client;
+using FeeWise.Model;
+
+namespace Example
+{
+    public class PutSurchargingStatusExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "http://localhost";
+            // Configure API key authorization: APIAuth
+            config.AddApiKey("X-API-KEY", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("X-API-KEY", "Bearer");
+            // Configure API key authorization: PartnerAuth
+            config.AddApiKey("X-CHANNEL-PARTNER-ID", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("X-CHANNEL-PARTNER-ID", "Bearer");
+
+            var apiInstance = new FirmApi(config);
+            var firmId = "firmId_example";  // Guid | Firm ID (UUID)
+            var status = "enable";  // string | enable: The firm would like to enable surcharging disable: The firm would like to disable surcharging ### Region specific rules US environment, there is a 30 day waiting period, for surcharging to be enabled AU environment, surcharging is enabled immediately. * nb: Once surcharging has been enabled a FirmSurchargeStatusChanged webhook will be triggered 
+            var putSurchargingStatusRequest = new PutSurchargingStatusRequest(); // PutSurchargingStatusRequest | Optional parameters for surcharging configuration (optional) 
+
+            try
+            {
+                // Toggle surcharging status
+                SurchargeSettingsResponse result = apiInstance.PutSurchargingStatus(firmId, status, putSurchargingStatusRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling FirmApi.PutSurchargingStatus: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the PutSurchargingStatusWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Toggle surcharging status
+    ApiResponse<SurchargeSettingsResponse> response = apiInstance.PutSurchargingStatusWithHttpInfo(firmId, status, putSurchargingStatusRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling FirmApi.PutSurchargingStatusWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **firmId** | **Guid** | Firm ID (UUID) |  |
+| **status** | **string** | enable: The firm would like to enable surcharging disable: The firm would like to disable surcharging ### Region specific rules US environment, there is a 30 day waiting period, for surcharging to be enabled AU environment, surcharging is enabled immediately. * nb: Once surcharging has been enabled a FirmSurchargeStatusChanged webhook will be triggered  |  |
+| **putSurchargingStatusRequest** | [**PutSurchargingStatusRequest**](PutSurchargingStatusRequest.md) | Optional parameters for surcharging configuration | [optional]  |
+
+### Return type
+
+[**SurchargeSettingsResponse**](SurchargeSettingsResponse.md)
+
+### Authorization
+
+[APIAuth](../README.md#APIAuth), [PartnerAuth](../README.md#PartnerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Toggle success |  -  |
+| **400** | Bad request |  -  |
+| **404** | Firm not found |  -  |
+| **409** | Current surcharging state does not allow disable |  -  |
+| **500** | Error processing |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1669,6 +2297,110 @@ catch (ApiException e)
 | **200** | Return the Firm ID and status. |  -  |
 | **404** | Firm not found |  -  |
 | **500** | Error processing |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="togglefirmproducts"></a>
+# **ToggleFirmProducts**
+> ToggleFirmProducts200Response ToggleFirmProducts (Guid firmId, OptionalProductSettings optionalProductSettings)
+
+
+
+Toggle the optional products that are enabled for a firm.  Can be used to enable or disable optional payment types, such as Klarna and Affirm. The products with `Enabled` values will be enabled, products with `Disabled` will be disabled, and omitted products will be ignored. All enabled products for the firm will be returned. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using FeeWise.Api;
+using FeeWise.Client;
+using FeeWise.Model;
+
+namespace Example
+{
+    public class ToggleFirmProductsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "http://localhost";
+            // Configure API key authorization: APIAuth
+            config.AddApiKey("X-API-KEY", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("X-API-KEY", "Bearer");
+            // Configure API key authorization: PartnerAuth
+            config.AddApiKey("X-CHANNEL-PARTNER-ID", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("X-CHANNEL-PARTNER-ID", "Bearer");
+
+            var apiInstance = new FirmApi(config);
+            var firmId = "firmId_example";  // Guid | 
+            var optionalProductSettings = new OptionalProductSettings(); // OptionalProductSettings | An object of optional products that should be enabled for a firm. Only present values will be updated.
+
+            try
+            {
+                ToggleFirmProducts200Response result = apiInstance.ToggleFirmProducts(firmId, optionalProductSettings);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling FirmApi.ToggleFirmProducts: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the ToggleFirmProductsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    ApiResponse<ToggleFirmProducts200Response> response = apiInstance.ToggleFirmProductsWithHttpInfo(firmId, optionalProductSettings);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling FirmApi.ToggleFirmProductsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **firmId** | **Guid** |  |  |
+| **optionalProductSettings** | [**OptionalProductSettings**](OptionalProductSettings.md) | An object of optional products that should be enabled for a firm. Only present values will be updated. |  |
+
+### Return type
+
+[**ToggleFirmProducts200Response**](ToggleFirmProducts200Response.md)
+
+### Authorization
+
+[APIAuth](../README.md#APIAuth), [PartnerAuth](../README.md#PartnerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Successful Response |  -  |
+| **400** | Bad request |  -  |
+| **401** | Unauthorized request |  -  |
+| **403** | Forbidden request |  -  |
+| **500** | Generic Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **Type** | **string** | Free form type of the matter. | [optional] 
 **SuggestedOfficeReplenishment** | **string** | Suggested amount to show to a customer during payments, for an Office Replenishment | [optional] 
 **SuggestedTrustReplenishment** | **string** | Suggested amount to show to a customer during payments, for a Trust Replenishment | [optional] 
+**SourceId** | **string** | The source ID that was passed in when creating the matter. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

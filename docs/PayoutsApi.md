@@ -220,7 +220,7 @@ catch (ApiException e)
 
 
 
-Search for payouts for a channel partner..         Filters supplied in the query params must *all* be met. 
+Search for payouts for a specific firm         Filters supplied in the query params must *all* be met. 
 
 ### Example
 ```csharp
@@ -238,10 +238,10 @@ namespace Example
         {
             Configuration config = new Configuration();
             config.BasePath = "http://localhost";
-            // Configure API key authorization: APIAuth
-            config.AddApiKey("X-API-KEY", "YOUR_API_KEY");
+            // Configure API key authorization: FirmAuth
+            config.AddApiKey("X-FIRM-ID", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("X-API-KEY", "Bearer");
+            // config.AddApiKeyPrefix("X-FIRM-ID", "Bearer");
             // Configure API key authorization: PartnerAuth
             config.AddApiKey("X-CHANNEL-PARTNER-ID", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -313,7 +313,7 @@ catch (ApiException e)
 
 ### Authorization
 
-[APIAuth](../README.md#APIAuth), [PartnerAuth](../README.md#PartnerAuth)
+[FirmAuth](../README.md#FirmAuth), [PartnerAuth](../README.md#PartnerAuth)
 
 ### HTTP request headers
 

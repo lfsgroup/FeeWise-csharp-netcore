@@ -102,7 +102,7 @@ catch (ApiException e)
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/json, application/jsopn
+ - **Accept**: application/json
 
 
 ### HTTP response details
@@ -235,10 +235,10 @@ namespace Example
         {
             Configuration config = new Configuration();
             config.BasePath = "http://localhost";
-            // Configure API key authorization: APIAuth
-            config.AddApiKey("X-API-KEY", "YOUR_API_KEY");
+            // Configure API key authorization: FirmAuth
+            config.AddApiKey("X-FIRM-ID", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("X-API-KEY", "Bearer");
+            // config.AddApiKeyPrefix("X-FIRM-ID", "Bearer");
             // Configure API key authorization: PartnerAuth
             config.AddApiKey("X-CHANNEL-PARTNER-ID", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -291,7 +291,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[APIAuth](../README.md#APIAuth), [PartnerAuth](../README.md#PartnerAuth)
+[FirmAuth](../README.md#FirmAuth), [PartnerAuth](../README.md#PartnerAuth)
 
 ### HTTP request headers
 
@@ -500,7 +500,7 @@ This endpoint does not need any parameter.
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/jsopn
+ - **Accept**: application/json
 
 
 ### HTTP response details

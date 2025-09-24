@@ -24,6 +24,9 @@ Name | Type | Description | Notes
 **Description** | **string** | Freeform text for channel partner / PMS. | [optional] 
 **PaymentUri** | **string** | The URI to send to customer.    They will follow this link to make a payment.    NB This must not be set when creating an invoice.  | [optional] 
 **Status** | **string** | The status of the trust deposit. This must not be set when creating an trust deposit. | [optional] 
+**ArtifactSubtype** | **ArtifactSubtype** |  | [optional] 
+**CreatedAt** | **DateTime** | The date the partner created the artifact. | [optional] 
+**SourceId** | **string** | The source ID that was passed in when creating the artifact. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
