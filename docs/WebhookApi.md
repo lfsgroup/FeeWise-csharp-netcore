@@ -235,6 +235,14 @@ namespace Example
         {
             Configuration config = new Configuration();
             config.BasePath = "http://localhost";
+            // Configure API key authorization: APIAuth
+            config.AddApiKey("X-API-KEY", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("X-API-KEY", "Bearer");
+            // Configure API key authorization: FirmApiKey
+            config.AddApiKey("X-FIRM-API-KEY", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("X-FIRM-API-KEY", "Bearer");
             // Configure API key authorization: FirmAuth
             config.AddApiKey("X-FIRM-ID", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -291,7 +299,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[FirmAuth](../README.md#FirmAuth), [PartnerAuth](../README.md#PartnerAuth)
+[APIAuth](../README.md#APIAuth), [FirmApiKey](../README.md#FirmApiKey), [FirmAuth](../README.md#FirmAuth), [PartnerAuth](../README.md#PartnerAuth)
 
 ### HTTP request headers
 
