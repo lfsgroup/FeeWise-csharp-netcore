@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **Address** | [**Address**](Address.md) |  | 
 **OfficeAccount** | [**BankAccount**](BankAccount.md) |  | 
 **TrustAccount** | [**BankAccount**](BankAccount.md) |  | [optional] 
+**RiskAssessment** | [**RiskAssessment**](RiskAssessment.md) |  | [optional] 
 **Roles** | [**List&lt;Person&gt;**](Person.md) | Roles can be either Representative, Executives or Owners. | [optional] 
 **Metadata** | **Dictionary&lt;string, string&gt;** |  | [optional] 
 **TermsOfService** | [**TermsOfService**](TermsOfService.md) |  | 

@@ -105,6 +105,7 @@ docs/PutSurchargingStatusRequest.md
 docs/Refund.md
 docs/RefundResponse.md
 docs/RefundStatus.md
+docs/RiskAssessment.md
 docs/SplitCharge.md
 docs/SplitChargesResponse.md
 docs/SurchargeChoice.md
@@ -241,6 +242,7 @@ src/FeeWise.Test/Model/PutSurchargingStatusRequestTests.cs
 src/FeeWise.Test/Model/RefundResponseTests.cs
 src/FeeWise.Test/Model/RefundStatusTests.cs
 src/FeeWise.Test/Model/RefundTests.cs
+src/FeeWise.Test/Model/RiskAssessmentTests.cs
 src/FeeWise.Test/Model/SplitChargeTests.cs
 src/FeeWise.Test/Model/SplitChargesResponseTests.cs
 src/FeeWise.Test/Model/SurchargeChoiceTests.cs
@@ -391,6 +393,7 @@ src/FeeWise/Model/PutSurchargingStatusRequest.cs
 src/FeeWise/Model/Refund.cs
 src/FeeWise/Model/RefundResponse.cs
 src/FeeWise/Model/RefundStatus.cs
+src/FeeWise/Model/RiskAssessment.cs
 src/FeeWise/Model/SplitCharge.cs
 src/FeeWise/Model/SplitChargesResponse.cs
 src/FeeWise/Model/SurchargeChoice.cs
