@@ -127,6 +127,7 @@ docs/TransactionsResponseV2.md
 docs/TrustDeposit.md
 docs/TrustDepositResponse.md
 docs/UpdateArtifactAccountRequest.md
+docs/UpdateArtifactRedirectURLRequest.md
 docs/UpdatedCount.md
 docs/Webhook.md
 docs/WebhookApi.md
@@ -264,6 +265,7 @@ src/FeeWise.Test/Model/TransactionsResponseV2Tests.cs
 src/FeeWise.Test/Model/TrustDepositResponseTests.cs
 src/FeeWise.Test/Model/TrustDepositTests.cs
 src/FeeWise.Test/Model/UpdateArtifactAccountRequestTests.cs
+src/FeeWise.Test/Model/UpdateArtifactRedirectURLRequestTests.cs
 src/FeeWise.Test/Model/UpdatedCountTests.cs
 src/FeeWise.Test/Model/WebhookApiAuthenticationTests.cs
 src/FeeWise.Test/Model/WebhookEventEventTests.cs
@@ -416,6 +418,7 @@ src/FeeWise/Model/TransactionsResponseV2.cs
 src/FeeWise/Model/TrustDeposit.cs
 src/FeeWise/Model/TrustDepositResponse.cs
 src/FeeWise/Model/UpdateArtifactAccountRequest.cs
+src/FeeWise/Model/UpdateArtifactRedirectURLRequest.cs
 src/FeeWise/Model/UpdatedCount.cs
 src/FeeWise/Model/Webhook.cs
 src/FeeWise/Model/WebhookApiAuthentication.cs

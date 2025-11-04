@@ -26,35 +26,36 @@ using OpenAPIDateConverter = FeeWise.Client.OpenAPIDateConverter;
 namespace FeeWise.Model
 {
     /// <summary>
-    /// ChargeResponse
+    /// The artifact redirect URL to be set. 
     /// </summary>
-    [DataContract(Name = "ChargeResponse")]
-    public partial class ChargeResponse : IEquatable<ChargeResponse>, IValidatableObject
+    [DataContract(Name = "updateArtifactRedirectURL_request")]
+    public partial class UpdateArtifactRedirectURLRequest : IEquatable<UpdateArtifactRedirectURLRequest>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ChargeResponse" /> class.
+        /// Initializes a new instance of the <see cref="UpdateArtifactRedirectURLRequest" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected ChargeResponse() { }
+        protected UpdateArtifactRedirectURLRequest() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="ChargeResponse" /> class.
+        /// Initializes a new instance of the <see cref="UpdateArtifactRedirectURLRequest" /> class.
         /// </summary>
-        /// <param name="charge">charge (required).</param>
-        public ChargeResponse(Charge charge = default(Charge))
+        /// <param name="paymentRedirectUrl">URL the payer will be redirected to after payment (required).</param>
+        public UpdateArtifactRedirectURLRequest(string paymentRedirectUrl = default(string))
         {
-            // to ensure "charge" is required (not null)
-            if (charge == null)
+            // to ensure "paymentRedirectUrl" is required (not null)
+            if (paymentRedirectUrl == null)
             {
-                throw new ArgumentNullException("charge is a required property for ChargeResponse and cannot be null");
+                throw new ArgumentNullException("paymentRedirectUrl is a required property for UpdateArtifactRedirectURLRequest and cannot be null");
             }
-            this.Charge = charge;
+            this.PaymentRedirectUrl = paymentRedirectUrl;
         }
 
         /// <summary>
-        /// Gets or Sets Charge
+        /// URL the payer will be redirected to after payment
         /// </summary>
-        [DataMember(Name = "charge", IsRequired = true, EmitDefaultValue = true)]
-        public Charge Charge { get; set; }
+        /// <value>URL the payer will be redirected to after payment</value>
+        [DataMember(Name = "payment_redirect_url", IsRequired = true, EmitDefaultValue = true)]
+        public string PaymentRedirectUrl { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -63,8 +64,8 @@ namespace FeeWise.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class ChargeResponse {\n");
-            sb.Append("  Charge: ").Append(Charge).Append("\n");
+            sb.Append("class UpdateArtifactRedirectURLRequest {\n");
+            sb.Append("  PaymentRedirectUrl: ").Append(PaymentRedirectUrl).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -85,15 +86,15 @@ namespace FeeWise.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as ChargeResponse);
+            return this.Equals(input as UpdateArtifactRedirectURLRequest);
         }
 
         /// <summary>
-        /// Returns true if ChargeResponse instances are equal
+        /// Returns true if UpdateArtifactRedirectURLRequest instances are equal
         /// </summary>
-        /// <param name="input">Instance of ChargeResponse to be compared</param>
+        /// <param name="input">Instance of UpdateArtifactRedirectURLRequest to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(ChargeResponse input)
+        public bool Equals(UpdateArtifactRedirectURLRequest input)
         {
             if (input == null)
             {
@@ -101,9 +102,9 @@ namespace FeeWise.Model
             }
             return 
                 (
-                    this.Charge == input.Charge ||
-                    (this.Charge != null &&
-                    this.Charge.Equals(input.Charge))
+                    this.PaymentRedirectUrl == input.PaymentRedirectUrl ||
+                    (this.PaymentRedirectUrl != null &&
+                    this.PaymentRedirectUrl.Equals(input.PaymentRedirectUrl))
                 );
         }
 
@@ -116,9 +117,9 @@ namespace FeeWise.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Charge != null)
+                if (this.PaymentRedirectUrl != null)
                 {
-                    hashCode = (hashCode * 59) + this.Charge.GetHashCode();
+                    hashCode = (hashCode * 59) + this.PaymentRedirectUrl.GetHashCode();
                 }
                 return hashCode;
             }
@@ -131,6 +132,13 @@ namespace FeeWise.Model
         /// <returns>Validation Result</returns>
         public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
+            // PaymentRedirectUrl (string) pattern
+            Regex regexPaymentRedirectUrl = new Regex(@"^https:\/\/.+", RegexOptions.CultureInvariant);
+            if (false == regexPaymentRedirectUrl.Match(this.PaymentRedirectUrl).Success)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for PaymentRedirectUrl, must match a pattern of " + regexPaymentRedirectUrl, new [] { "PaymentRedirectUrl" });
+            }
+
             yield break;
         }
     }

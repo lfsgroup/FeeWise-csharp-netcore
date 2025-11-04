@@ -2278,7 +2278,7 @@ catch (ApiException e)
 
 <a name="updateartifactredirecturl"></a>
 # **UpdateArtifactRedirectURL**
-> ArtifactResponse UpdateArtifactRedirectURL (Guid artifactId, Guid firmId)
+> ArtifactResponse UpdateArtifactRedirectURL (Guid artifactId, Guid firmId, UpdateArtifactRedirectURLRequest updateArtifactRedirectURLRequest)
 
 Update the payment redirect URL for an artifact
 
@@ -2320,11 +2320,12 @@ namespace Example
             var apiInstance = new PaymentsApi(config);
             var artifactId = "artifactId_example";  // Guid | 
             var firmId = "firmId_example";  // Guid | 
+            var updateArtifactRedirectURLRequest = new UpdateArtifactRedirectURLRequest(); // UpdateArtifactRedirectURLRequest | 
 
             try
             {
                 // Update the payment redirect URL for an artifact
-                ArtifactResponse result = apiInstance.UpdateArtifactRedirectURL(artifactId, firmId);
+                ArtifactResponse result = apiInstance.UpdateArtifactRedirectURL(artifactId, firmId, updateArtifactRedirectURLRequest);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -2345,7 +2346,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Update the payment redirect URL for an artifact
-    ApiResponse<ArtifactResponse> response = apiInstance.UpdateArtifactRedirectURLWithHttpInfo(artifactId, firmId);
+    ApiResponse<ArtifactResponse> response = apiInstance.UpdateArtifactRedirectURLWithHttpInfo(artifactId, firmId, updateArtifactRedirectURLRequest);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -2364,6 +2365,7 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **artifactId** | **Guid** |  |  |
 | **firmId** | **Guid** |  |  |
+| **updateArtifactRedirectURLRequest** | [**UpdateArtifactRedirectURLRequest**](UpdateArtifactRedirectURLRequest.md) |  |  |
 
 ### Return type
 
@@ -2375,7 +2377,7 @@ catch (ApiException e)
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 

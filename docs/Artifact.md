@@ -25,6 +25,7 @@ Name | Type | Description | Notes
 **ArtifactSubtype** | **ArtifactSubtype** |  | [optional] 
 **CreatedAt** | **DateTime** | The date the partner created the artifact. | [optional] 
 **SourceId** | **string** | The source ID that was passed in when creating the artifact. | [optional] 
+**PaymentRedirectUrl** | **string** | Optional URL the payer will be redirected to after payment | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
