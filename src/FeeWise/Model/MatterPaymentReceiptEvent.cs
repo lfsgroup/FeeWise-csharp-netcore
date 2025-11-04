@@ -26,10 +26,10 @@ using OpenAPIDateConverter = FeeWise.Client.OpenAPIDateConverter;
 namespace FeeWise.Model
 {
     /// <summary>
-    /// PaymentAuthorisedEvent
+    /// MatterPaymentReceiptEvent
     /// </summary>
-    [DataContract(Name = "PaymentAuthorisedEvent")]
-    public partial class PaymentAuthorisedEvent : IEquatable<PaymentAuthorisedEvent>, IValidatableObject
+    [DataContract(Name = "MatterPaymentReceiptEvent")]
+    public partial class MatterPaymentReceiptEvent : IEquatable<MatterPaymentReceiptEvent>, IValidatableObject
     {
 
         /// <summary>
@@ -38,37 +38,46 @@ namespace FeeWise.Model
         [DataMember(Name = "payment_method", IsRequired = true, EmitDefaultValue = true)]
         public PaymentMethod PaymentMethod { get; set; }
         /// <summary>
-        /// Initializes a new instance of the <see cref="PaymentAuthorisedEvent" /> class.
+        /// Initializes a new instance of the <see cref="MatterPaymentReceiptEvent" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected PaymentAuthorisedEvent() { }
+        protected MatterPaymentReceiptEvent() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="PaymentAuthorisedEvent" /> class.
+        /// Initializes a new instance of the <see cref="MatterPaymentReceiptEvent" /> class.
         /// </summary>
         /// <param name="artifacts">artifacts (required).</param>
         /// <param name="paymentId">The payment ID (required).</param>
         /// <param name="amountPaid">The amount paid (required).</param>
+        /// <param name="paymentDate">paymentDate (required).</param>
         /// <param name="cardPayment">cardPayment.</param>
         /// <param name="debitPayment">debitPayment.</param>
         /// <param name="firmId">The firm ID (required).</param>
+        /// <param name="externalFirmId">The firm ID from the partner&#39;s system (required).</param>
         /// <param name="paymentMethod">paymentMethod (required).</param>
         /// <param name="paymentMethodDetail">The payment method detail.</param>
-        public PaymentAuthorisedEvent(List<ArtifactReceipt> artifacts = default(List<ArtifactReceipt>), Guid paymentId = default(Guid), string amountPaid = default(string), CardPayment cardPayment = default(CardPayment), DebitPayment debitPayment = default(DebitPayment), Guid firmId = default(Guid), PaymentMethod paymentMethod = default(PaymentMethod), string paymentMethodDetail = default(string))
+        public MatterPaymentReceiptEvent(List<ArtifactReceipt> artifacts = default(List<ArtifactReceipt>), Guid paymentId = default(Guid), string amountPaid = default(string), DateTime paymentDate = default(DateTime), CardPayment cardPayment = default(CardPayment), DebitPayment debitPayment = default(DebitPayment), Guid firmId = default(Guid), string externalFirmId = default(string), PaymentMethod paymentMethod = default(PaymentMethod), string paymentMethodDetail = default(string))
         {
             // to ensure "artifacts" is required (not null)
             if (artifacts == null)
             {
-                throw new ArgumentNullException("artifacts is a required property for PaymentAuthorisedEvent and cannot be null");
+                throw new ArgumentNullException("artifacts is a required property for MatterPaymentReceiptEvent and cannot be null");
             }
             this.Artifacts = artifacts;
             this.PaymentId = paymentId;
             // to ensure "amountPaid" is required (not null)
             if (amountPaid == null)
             {
-                throw new ArgumentNullException("amountPaid is a required property for PaymentAuthorisedEvent and cannot be null");
+                throw new ArgumentNullException("amountPaid is a required property for MatterPaymentReceiptEvent and cannot be null");
             }
             this.AmountPaid = amountPaid;
+            this.PaymentDate = paymentDate;
             this.FirmId = firmId;
+            // to ensure "externalFirmId" is required (not null)
+            if (externalFirmId == null)
+            {
+                throw new ArgumentNullException("externalFirmId is a required property for MatterPaymentReceiptEvent and cannot be null");
+            }
+            this.ExternalFirmId = externalFirmId;
             this.PaymentMethod = paymentMethod;
             this.CardPayment = cardPayment;
             this.DebitPayment = debitPayment;
@@ -96,6 +105,12 @@ namespace FeeWise.Model
         public string AmountPaid { get; set; }
 
         /// <summary>
+        /// Gets or Sets PaymentDate
+        /// </summary>
+        [DataMember(Name = "payment_date", IsRequired = true, EmitDefaultValue = true)]
+        public DateTime PaymentDate { get; set; }
+
+        /// <summary>
         /// Gets or Sets CardPayment
         /// </summary>
         [DataMember(Name = "card_payment", EmitDefaultValue = false)]
@@ -115,6 +130,13 @@ namespace FeeWise.Model
         public Guid FirmId { get; set; }
 
         /// <summary>
+        /// The firm ID from the partner&#39;s system
+        /// </summary>
+        /// <value>The firm ID from the partner&#39;s system</value>
+        [DataMember(Name = "external_firm_id", IsRequired = true, EmitDefaultValue = true)]
+        public string ExternalFirmId { get; set; }
+
+        /// <summary>
         /// The payment method detail
         /// </summary>
         /// <value>The payment method detail</value>
@@ -128,13 +150,15 @@ namespace FeeWise.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class PaymentAuthorisedEvent {\n");
+            sb.Append("class MatterPaymentReceiptEvent {\n");
             sb.Append("  Artifacts: ").Append(Artifacts).Append("\n");
             sb.Append("  PaymentId: ").Append(PaymentId).Append("\n");
             sb.Append("  AmountPaid: ").Append(AmountPaid).Append("\n");
+            sb.Append("  PaymentDate: ").Append(PaymentDate).Append("\n");
             sb.Append("  CardPayment: ").Append(CardPayment).Append("\n");
             sb.Append("  DebitPayment: ").Append(DebitPayment).Append("\n");
             sb.Append("  FirmId: ").Append(FirmId).Append("\n");
+            sb.Append("  ExternalFirmId: ").Append(ExternalFirmId).Append("\n");
             sb.Append("  PaymentMethod: ").Append(PaymentMethod).Append("\n");
             sb.Append("  PaymentMethodDetail: ").Append(PaymentMethodDetail).Append("\n");
             sb.Append("}\n");
@@ -157,15 +181,15 @@ namespace FeeWise.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as PaymentAuthorisedEvent);
+            return this.Equals(input as MatterPaymentReceiptEvent);
         }
 
         /// <summary>
-        /// Returns true if PaymentAuthorisedEvent instances are equal
+        /// Returns true if MatterPaymentReceiptEvent instances are equal
         /// </summary>
-        /// <param name="input">Instance of PaymentAuthorisedEvent to be compared</param>
+        /// <param name="input">Instance of MatterPaymentReceiptEvent to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(PaymentAuthorisedEvent input)
+        public bool Equals(MatterPaymentReceiptEvent input)
         {
             if (input == null)
             {
@@ -189,6 +213,11 @@ namespace FeeWise.Model
                     this.AmountPaid.Equals(input.AmountPaid))
                 ) && 
                 (
+                    this.PaymentDate == input.PaymentDate ||
+                    (this.PaymentDate != null &&
+                    this.PaymentDate.Equals(input.PaymentDate))
+                ) && 
+                (
                     this.CardPayment == input.CardPayment ||
                     (this.CardPayment != null &&
                     this.CardPayment.Equals(input.CardPayment))
@@ -202,6 +231,11 @@ namespace FeeWise.Model
                     this.FirmId == input.FirmId ||
                     (this.FirmId != null &&
                     this.FirmId.Equals(input.FirmId))
+                ) && 
+                (
+                    this.ExternalFirmId == input.ExternalFirmId ||
+                    (this.ExternalFirmId != null &&
+                    this.ExternalFirmId.Equals(input.ExternalFirmId))
                 ) && 
                 (
                     this.PaymentMethod == input.PaymentMethod ||
@@ -235,6 +269,10 @@ namespace FeeWise.Model
                 {
                     hashCode = (hashCode * 59) + this.AmountPaid.GetHashCode();
                 }
+                if (this.PaymentDate != null)
+                {
+                    hashCode = (hashCode * 59) + this.PaymentDate.GetHashCode();
+                }
                 if (this.CardPayment != null)
                 {
                     hashCode = (hashCode * 59) + this.CardPayment.GetHashCode();
@@ -246,6 +284,10 @@ namespace FeeWise.Model
                 if (this.FirmId != null)
                 {
                     hashCode = (hashCode * 59) + this.FirmId.GetHashCode();
+                }
+                if (this.ExternalFirmId != null)
+                {
+                    hashCode = (hashCode * 59) + this.ExternalFirmId.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.PaymentMethod.GetHashCode();
                 if (this.PaymentMethodDetail != null)

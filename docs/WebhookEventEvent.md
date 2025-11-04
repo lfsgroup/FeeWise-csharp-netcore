@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **InvoiceId** | **Guid** | This is the uuid of the invoice. This will be used for and &#39;GET&#39; of the invoice and in webhooks about this invoice NB this is generated and must not be supplied when creating an invoice.  | [optional] 
-**FirmId** | **Guid** |  | 
+**FirmId** | **Guid** | The firm ID | 
 **Matter** | [**Matter**](Matter.md) |  | [optional] 
 **Debtor** | [**Debtor**](Debtor.md) |  | [optional] 
 **ExternalId** | **string** | Unique ID for the firm, set by partners | 
@@ -69,6 +69,8 @@ Name | Type | Description | Notes
 **SurchargeSettings** | [**SurchargeSettings**](SurchargeSettings.md) |  | 
 **Products** | [**List&lt;Product&gt;**](Product.md) |  | 
 **AffiliateId** | **Guid** |  | 
+**PaymentDate** | **DateTime** |  | 
+**ExternalFirmId** | **string** | The firm ID from the partner&#39;s system | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
