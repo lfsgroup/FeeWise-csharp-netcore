@@ -26,67 +26,37 @@ using OpenAPIDateConverter = FeeWise.Client.OpenAPIDateConverter;
 namespace FeeWise.Model
 {
     /// <summary>
-    /// Details of the settlement account
+    /// The bank account object belonging to Payout events
     /// </summary>
-    [DataContract(Name = "ArtifactReceipt_account")]
-    public partial class ArtifactReceiptAccount : IEquatable<ArtifactReceiptAccount>, IValidatableObject
+    [DataContract(Name = "BankAccountSummary")]
+    public partial class BankAccountSummary : IEquatable<BankAccountSummary>, IValidatableObject
     {
 
         /// <summary>
         /// Gets or Sets AccountType
         /// </summary>
-        [DataMember(Name = "account_type", IsRequired = true, EmitDefaultValue = true)]
-        public AccountType AccountType { get; set; }
+        [DataMember(Name = "account_type", EmitDefaultValue = false)]
+        public AccountType? AccountType { get; set; }
         /// <summary>
-        /// Initializes a new instance of the <see cref="ArtifactReceiptAccount" /> class.
+        /// Initializes a new instance of the <see cref="BankAccountSummary" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected ArtifactReceiptAccount() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ArtifactReceiptAccount" /> class.
-        /// </summary>
-        /// <param name="accountType">accountType (required).</param>
-        /// <param name="branchCode">branchCode (required).</param>
-        /// <param name="accountNumber">accountNumber (required).</param>
+        /// <param name="accountType">accountType.</param>
         /// <param name="accountId">FW ID of the settlement account.</param>
-        /// <param name="alias">The name of the account for the Firm.</param>
-        /// <param name="countryCode">The country the account is in (required).</param>
-        public ArtifactReceiptAccount(AccountType accountType = default(AccountType), string branchCode = default(string), string accountNumber = default(string), Guid accountId = default(Guid), string alias = default(string), string countryCode = default(string))
+        /// <param name="externalAccountId">The ID of the account in the PMS.</param>
+        /// <param name="branchCode">branchCode.</param>
+        /// <param name="accountNumber">accountNumber.</param>
+        /// <param name="alias">The name of the account for the PMS.</param>
+        /// <param name="countryCode">Two-letter ISO code representing the country the bank account is located in..</param>
+        public BankAccountSummary(AccountType? accountType = default(AccountType?), Guid accountId = default(Guid), string externalAccountId = default(string), string branchCode = default(string), string accountNumber = default(string), string alias = default(string), string countryCode = default(string))
         {
             this.AccountType = accountType;
-            // to ensure "branchCode" is required (not null)
-            if (branchCode == null)
-            {
-                throw new ArgumentNullException("branchCode is a required property for ArtifactReceiptAccount and cannot be null");
-            }
-            this.BranchCode = branchCode;
-            // to ensure "accountNumber" is required (not null)
-            if (accountNumber == null)
-            {
-                throw new ArgumentNullException("accountNumber is a required property for ArtifactReceiptAccount and cannot be null");
-            }
-            this.AccountNumber = accountNumber;
-            // to ensure "countryCode" is required (not null)
-            if (countryCode == null)
-            {
-                throw new ArgumentNullException("countryCode is a required property for ArtifactReceiptAccount and cannot be null");
-            }
-            this.CountryCode = countryCode;
             this.AccountId = accountId;
+            this.ExternalAccountId = externalAccountId;
+            this.BranchCode = branchCode;
+            this.AccountNumber = accountNumber;
             this.Alias = alias;
+            this.CountryCode = countryCode;
         }
-
-        /// <summary>
-        /// Gets or Sets BranchCode
-        /// </summary>
-        [DataMember(Name = "branch_code", IsRequired = true, EmitDefaultValue = true)]
-        public string BranchCode { get; set; }
-
-        /// <summary>
-        /// Gets or Sets AccountNumber
-        /// </summary>
-        [DataMember(Name = "account_number", IsRequired = true, EmitDefaultValue = true)]
-        public string AccountNumber { get; set; }
 
         /// <summary>
         /// FW ID of the settlement account
@@ -96,17 +66,36 @@ namespace FeeWise.Model
         public Guid AccountId { get; set; }
 
         /// <summary>
-        /// The name of the account for the Firm
+        /// The ID of the account in the PMS
         /// </summary>
-        /// <value>The name of the account for the Firm</value>
+        /// <value>The ID of the account in the PMS</value>
+        [DataMember(Name = "external_account_id", EmitDefaultValue = false)]
+        public string ExternalAccountId { get; set; }
+
+        /// <summary>
+        /// Gets or Sets BranchCode
+        /// </summary>
+        [DataMember(Name = "branch_code", EmitDefaultValue = false)]
+        public string BranchCode { get; set; }
+
+        /// <summary>
+        /// Gets or Sets AccountNumber
+        /// </summary>
+        [DataMember(Name = "account_number", EmitDefaultValue = false)]
+        public string AccountNumber { get; set; }
+
+        /// <summary>
+        /// The name of the account for the PMS
+        /// </summary>
+        /// <value>The name of the account for the PMS</value>
         [DataMember(Name = "alias", EmitDefaultValue = false)]
         public string Alias { get; set; }
 
         /// <summary>
-        /// The country the account is in
+        /// Two-letter ISO code representing the country the bank account is located in.
         /// </summary>
-        /// <value>The country the account is in</value>
-        [DataMember(Name = "country_code", IsRequired = true, EmitDefaultValue = true)]
+        /// <value>Two-letter ISO code representing the country the bank account is located in.</value>
+        [DataMember(Name = "country_code", EmitDefaultValue = false)]
         public string CountryCode { get; set; }
 
         /// <summary>
@@ -116,11 +105,12 @@ namespace FeeWise.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class ArtifactReceiptAccount {\n");
+            sb.Append("class BankAccountSummary {\n");
             sb.Append("  AccountType: ").Append(AccountType).Append("\n");
+            sb.Append("  AccountId: ").Append(AccountId).Append("\n");
+            sb.Append("  ExternalAccountId: ").Append(ExternalAccountId).Append("\n");
             sb.Append("  BranchCode: ").Append(BranchCode).Append("\n");
             sb.Append("  AccountNumber: ").Append(AccountNumber).Append("\n");
-            sb.Append("  AccountId: ").Append(AccountId).Append("\n");
             sb.Append("  Alias: ").Append(Alias).Append("\n");
             sb.Append("  CountryCode: ").Append(CountryCode).Append("\n");
             sb.Append("}\n");
@@ -143,15 +133,15 @@ namespace FeeWise.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as ArtifactReceiptAccount);
+            return this.Equals(input as BankAccountSummary);
         }
 
         /// <summary>
-        /// Returns true if ArtifactReceiptAccount instances are equal
+        /// Returns true if BankAccountSummary instances are equal
         /// </summary>
-        /// <param name="input">Instance of ArtifactReceiptAccount to be compared</param>
+        /// <param name="input">Instance of BankAccountSummary to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(ArtifactReceiptAccount input)
+        public bool Equals(BankAccountSummary input)
         {
             if (input == null)
             {
@@ -163,6 +153,16 @@ namespace FeeWise.Model
                     this.AccountType.Equals(input.AccountType)
                 ) && 
                 (
+                    this.AccountId == input.AccountId ||
+                    (this.AccountId != null &&
+                    this.AccountId.Equals(input.AccountId))
+                ) && 
+                (
+                    this.ExternalAccountId == input.ExternalAccountId ||
+                    (this.ExternalAccountId != null &&
+                    this.ExternalAccountId.Equals(input.ExternalAccountId))
+                ) && 
+                (
                     this.BranchCode == input.BranchCode ||
                     (this.BranchCode != null &&
                     this.BranchCode.Equals(input.BranchCode))
@@ -171,11 +171,6 @@ namespace FeeWise.Model
                     this.AccountNumber == input.AccountNumber ||
                     (this.AccountNumber != null &&
                     this.AccountNumber.Equals(input.AccountNumber))
-                ) && 
-                (
-                    this.AccountId == input.AccountId ||
-                    (this.AccountId != null &&
-                    this.AccountId.Equals(input.AccountId))
                 ) && 
                 (
                     this.Alias == input.Alias ||
@@ -199,6 +194,14 @@ namespace FeeWise.Model
             {
                 int hashCode = 41;
                 hashCode = (hashCode * 59) + this.AccountType.GetHashCode();
+                if (this.AccountId != null)
+                {
+                    hashCode = (hashCode * 59) + this.AccountId.GetHashCode();
+                }
+                if (this.ExternalAccountId != null)
+                {
+                    hashCode = (hashCode * 59) + this.ExternalAccountId.GetHashCode();
+                }
                 if (this.BranchCode != null)
                 {
                     hashCode = (hashCode * 59) + this.BranchCode.GetHashCode();
@@ -206,10 +209,6 @@ namespace FeeWise.Model
                 if (this.AccountNumber != null)
                 {
                     hashCode = (hashCode * 59) + this.AccountNumber.GetHashCode();
-                }
-                if (this.AccountId != null)
-                {
-                    hashCode = (hashCode * 59) + this.AccountId.GetHashCode();
                 }
                 if (this.Alias != null)
                 {

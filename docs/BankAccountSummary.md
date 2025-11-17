@@ -1,0 +1,17 @@
+# FeeWise.Model.BankAccountSummary
+The bank account object belonging to Payout events
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**AccountType** | **AccountType** |  | [optional] 
+**AccountId** | **Guid** | FW ID of the settlement account | [optional] 
+**ExternalAccountId** | **string** | The ID of the account in the PMS | [optional] 
+**BranchCode** | **string** |  | [optional] 
+**AccountNumber** | **string** |  | [optional] 
+**Alias** | **string** | The name of the account for the PMS | [optional] 
+**CountryCode** | **string** | Two-letter ISO code representing the country the bank account is located in. | [optional] 
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+

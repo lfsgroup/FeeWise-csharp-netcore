@@ -20,6 +20,7 @@ docs/AuthApi.md
 docs/BankAccount.md
 docs/BankAccountApi.md
 docs/BankAccountResponse.md
+docs/BankAccountSummary.md
 docs/BankAccountsResponse.md
 docs/CardPayment.md
 docs/Charge.md
@@ -89,7 +90,6 @@ docs/PaymentTokenResponse.md
 docs/Payments.md
 docs/PaymentsApi.md
 docs/Payout.md
-docs/PayoutAccount.md
 docs/PayoutStatus.md
 docs/Payouts.md
 docs/PayoutsApi.md
@@ -162,6 +162,7 @@ src/FeeWise.Test/Model/ArtifactSubtypeTests.cs
 src/FeeWise.Test/Model/ArtifactTests.cs
 src/FeeWise.Test/Model/ArtifactTypeTests.cs
 src/FeeWise.Test/Model/BankAccountResponseTests.cs
+src/FeeWise.Test/Model/BankAccountSummaryTests.cs
 src/FeeWise.Test/Model/BankAccountTests.cs
 src/FeeWise.Test/Model/BankAccountsResponseTests.cs
 src/FeeWise.Test/Model/CardPaymentTests.cs
@@ -228,7 +229,6 @@ src/FeeWise.Test/Model/PaymentTests.cs
 src/FeeWise.Test/Model/PaymentTokenBodyTests.cs
 src/FeeWise.Test/Model/PaymentTokenResponseTests.cs
 src/FeeWise.Test/Model/PaymentsTests.cs
-src/FeeWise.Test/Model/PayoutAccountTests.cs
 src/FeeWise.Test/Model/PayoutStatusTests.cs
 src/FeeWise.Test/Model/PayoutTests.cs
 src/FeeWise.Test/Model/PayoutsResponseTests.cs
@@ -316,6 +316,7 @@ src/FeeWise/Model/ArtifactSubtype.cs
 src/FeeWise/Model/ArtifactType.cs
 src/FeeWise/Model/BankAccount.cs
 src/FeeWise/Model/BankAccountResponse.cs
+src/FeeWise/Model/BankAccountSummary.cs
 src/FeeWise/Model/BankAccountsResponse.cs
 src/FeeWise/Model/CardPayment.cs
 src/FeeWise/Model/Charge.cs
@@ -382,7 +383,6 @@ src/FeeWise/Model/PaymentTokenBody.cs
 src/FeeWise/Model/PaymentTokenResponse.cs
 src/FeeWise/Model/Payments.cs
 src/FeeWise/Model/Payout.cs
-src/FeeWise/Model/PayoutAccount.cs
 src/FeeWise/Model/PayoutStatus.cs
 src/FeeWise/Model/Payouts.cs
 src/FeeWise/Model/PayoutsResponse.cs

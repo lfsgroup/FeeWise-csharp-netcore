@@ -43,7 +43,8 @@ Name | Type | Description | Notes
 **Metadata** | **Dictionary&lt;string, string&gt;** | Set of key value pairs attached to the object when it was created. | 
 **PayoutReference** | **string** | The unique reference of the payout. This will appear in the bank account statement the payout was made to. | 
 **PayoutTotal** | **string** | The total paid out to the firm. This is the sum of the transactions paid_out amounts. | 
-**Account** | [**PayoutAccount**](PayoutAccount.md) |  | 
+**Account** | [**BankAccountSummary**](BankAccountSummary.md) |  | 
+**ExternalFirmId** | **string** | The firm ID from the partner&#39;s system | 
 **Transactions** | [**List&lt;Payment&gt;**](Payment.md) | A list of the payments that are included in this payout | 
 **Artifacts** | [**List&lt;ArtifactReceipt&gt;**](ArtifactReceipt.md) |  | 
 **AmountPaid** | **string** | The amount paid | 
@@ -70,7 +71,6 @@ Name | Type | Description | Notes
 **Products** | [**List&lt;Product&gt;**](Product.md) |  | 
 **AffiliateId** | **Guid** |  | 
 **PaymentDate** | **DateTime** |  | 
-**ExternalFirmId** | **string** | The firm ID from the partner&#39;s system | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

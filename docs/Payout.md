@@ -8,8 +8,9 @@ Name | Type | Description | Notes
 **PayoutReference** | **string** | The unique reference of the payout. This will appear in the bank account statement the payout was made to. | 
 **Date** | **DateTime** | When the payout was made. | 
 **PayoutTotal** | **string** | The total paid out to the firm. This is the sum of the transactions paid_out amounts. | 
-**Account** | [**PayoutAccount**](PayoutAccount.md) |  | 
+**Account** | [**BankAccountSummary**](BankAccountSummary.md) |  | 
 **FirmId** | **Guid** | The id of the firm the payout was made to. | 
+**ExternalFirmId** | **string** | The ID of the firm in the PMS | [optional] 
 **Status** | **PayoutStatus** |  | 
 **Transactions** | [**List&lt;Payment&gt;**](Payment.md) | A list of the payments that are included in this payout | 
 **Metadata** | **Dictionary&lt;string, string&gt;** | Set of key value pairs attached to the object when it was created. | [optional] 
