@@ -23,7 +23,7 @@ Name | Type | Description | Notes
 **SurchargeChoiceOverride** | **SurchargeChoice** |  | [optional] 
 **Description** | **string** | Freeform text for channel partner / PMS. | [optional] 
 **PaymentUri** | **string** | The URI to send to customer.    They will follow this link to make a payment.    NB This must not be set when creating an invoice.  | [optional] 
-**Status** | **string** | The status of the bank account. Pending - awaiting validation, Valid - successfully validated, Invalid - bank account number validation failed. | 
+**Status** | **PayoutStatus** |  | 
 **ArtifactSubtype** | **ArtifactSubtype** |  | [optional] 
 **CreatedAt** | **DateTime** | The date the partner created the artifact. | [optional] 
 **SourceId** | **string** | The source ID that was passed in when creating the artifact. | [optional] 

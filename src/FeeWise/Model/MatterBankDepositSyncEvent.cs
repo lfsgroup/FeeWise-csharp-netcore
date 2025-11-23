@@ -26,10 +26,10 @@ using OpenAPIDateConverter = FeeWise.Client.OpenAPIDateConverter;
 namespace FeeWise.Model
 {
     /// <summary>
-    /// Describes a payout made by the system to a channel partner&#39;s firm
+    /// For FeeWise specific features, PaymentLinks, PaymentPlan Payments, Card Safe etc... The Channel Partner can elect to allow firms to associate FeeWise specific feature payments with artifacts in their own system. Firm users (e.g. bookkeepers) can then use the FeeWise transactions dashboard to select matters / invoices in the partners systems to associate the payments with. (nb: The Channel partner must provide FeeWise an endpoint to retrieve matters/invoices for the firm; to be be used for the association).     The MatterBankDepositSyncEvent is used to notify the Channel Partner that:   The firm user has used the FeeWise transactions dashboard to associate a matter / invoice in the Channel Partners system with FeeWise specific features. (At this point, the payout has already been made from FeeWise to the firm&#39;s bank account) A deposit for this payment can now be made, in the Channel Partners system The event is emitted after a payout has been paid AND all unintegrated payments associated with the payout have been associated with a partner artifact. 
     /// </summary>
-    [DataContract(Name = "Payout")]
-    public partial class Payout : IEquatable<Payout>, IValidatableObject
+    [DataContract(Name = "MatterBankDepositSyncEvent")]
+    public partial class MatterBankDepositSyncEvent : IEquatable<MatterBankDepositSyncEvent>, IValidatableObject
     {
 
         /// <summary>
@@ -38,12 +38,12 @@ namespace FeeWise.Model
         [DataMember(Name = "status", IsRequired = true, EmitDefaultValue = true)]
         public PayoutStatus Status { get; set; }
         /// <summary>
-        /// Initializes a new instance of the <see cref="Payout" /> class.
+        /// Initializes a new instance of the <see cref="MatterBankDepositSyncEvent" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected Payout() { }
+        protected MatterBankDepositSyncEvent() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="Payout" /> class.
+        /// Initializes a new instance of the <see cref="MatterBankDepositSyncEvent" /> class.
         /// </summary>
         /// <param name="payoutReference">The unique reference of the payout. This will appear in the bank account statement the payout was made to. (required).</param>
         /// <param name="date">When the payout was made. (required).</param>
@@ -54,25 +54,25 @@ namespace FeeWise.Model
         /// <param name="status">status (required).</param>
         /// <param name="transactions">A list of the payments that are included in this payout (required).</param>
         /// <param name="metadata">Set of key value pairs attached to the object when it was created..</param>
-        public Payout(string payoutReference = default(string), DateTime date = default(DateTime), string payoutTotal = default(string), BankAccountSummary account = default(BankAccountSummary), Guid firmId = default(Guid), string externalFirmId = default(string), PayoutStatus status = default(PayoutStatus), List<Payment> transactions = default(List<Payment>), Dictionary<string, string> metadata = default(Dictionary<string, string>))
+        public MatterBankDepositSyncEvent(string payoutReference = default(string), DateTime date = default(DateTime), string payoutTotal = default(string), BankAccountSummary account = default(BankAccountSummary), Guid firmId = default(Guid), string externalFirmId = default(string), PayoutStatus status = default(PayoutStatus), List<Payment> transactions = default(List<Payment>), Dictionary<string, string> metadata = default(Dictionary<string, string>))
         {
             // to ensure "payoutReference" is required (not null)
             if (payoutReference == null)
             {
-                throw new ArgumentNullException("payoutReference is a required property for Payout and cannot be null");
+                throw new ArgumentNullException("payoutReference is a required property for MatterBankDepositSyncEvent and cannot be null");
             }
             this.PayoutReference = payoutReference;
             this.Date = date;
             // to ensure "payoutTotal" is required (not null)
             if (payoutTotal == null)
             {
-                throw new ArgumentNullException("payoutTotal is a required property for Payout and cannot be null");
+                throw new ArgumentNullException("payoutTotal is a required property for MatterBankDepositSyncEvent and cannot be null");
             }
             this.PayoutTotal = payoutTotal;
             // to ensure "account" is required (not null)
             if (account == null)
             {
-                throw new ArgumentNullException("account is a required property for Payout and cannot be null");
+                throw new ArgumentNullException("account is a required property for MatterBankDepositSyncEvent and cannot be null");
             }
             this.Account = account;
             this.FirmId = firmId;
@@ -80,7 +80,7 @@ namespace FeeWise.Model
             // to ensure "transactions" is required (not null)
             if (transactions == null)
             {
-                throw new ArgumentNullException("transactions is a required property for Payout and cannot be null");
+                throw new ArgumentNullException("transactions is a required property for MatterBankDepositSyncEvent and cannot be null");
             }
             this.Transactions = transactions;
             this.ExternalFirmId = externalFirmId;
@@ -149,7 +149,7 @@ namespace FeeWise.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class Payout {\n");
+            sb.Append("class MatterBankDepositSyncEvent {\n");
             sb.Append("  PayoutReference: ").Append(PayoutReference).Append("\n");
             sb.Append("  Date: ").Append(Date).Append("\n");
             sb.Append("  PayoutTotal: ").Append(PayoutTotal).Append("\n");
@@ -179,15 +179,15 @@ namespace FeeWise.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as Payout);
+            return this.Equals(input as MatterBankDepositSyncEvent);
         }
 
         /// <summary>
-        /// Returns true if Payout instances are equal
+        /// Returns true if MatterBankDepositSyncEvent instances are equal
         /// </summary>
-        /// <param name="input">Instance of Payout to be compared</param>
+        /// <param name="input">Instance of MatterBankDepositSyncEvent to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(Payout input)
+        public bool Equals(MatterBankDepositSyncEvent input)
         {
             if (input == null)
             {
