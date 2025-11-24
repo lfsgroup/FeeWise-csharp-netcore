@@ -26,43 +26,26 @@ using OpenAPIDateConverter = FeeWise.Client.OpenAPIDateConverter;
 namespace FeeWise.Model
 {
     /// <summary>
-    /// CustomerDetails
+    /// PatchFirmBankAccountExternalAccountIDRequest
     /// </summary>
-    [DataContract(Name = "CustomerDetails")]
-    public partial class CustomerDetails : IEquatable<CustomerDetails>, IValidatableObject
+    [DataContract(Name = "patchFirmBankAccountExternalAccountID_request")]
+    public partial class PatchFirmBankAccountExternalAccountIDRequest : IEquatable<PatchFirmBankAccountExternalAccountIDRequest>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="CustomerDetails" /> class.
+        /// Initializes a new instance of the <see cref="PatchFirmBankAccountExternalAccountIDRequest" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected CustomerDetails() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="CustomerDetails" /> class.
-        /// </summary>
-        /// <param name="debtor">debtor (required).</param>
-        /// <param name="paymentMethods">paymentMethods.</param>
-        public CustomerDetails(Debtor debtor = default(Debtor), List<CustomerPaymentMethod> paymentMethods = default(List<CustomerPaymentMethod>))
+        /// <param name="externalId">The ID of the account in the PMS.</param>
+        public PatchFirmBankAccountExternalAccountIDRequest(string externalId = default(string))
         {
-            // to ensure "debtor" is required (not null)
-            if (debtor == null)
-            {
-                throw new ArgumentNullException("debtor is a required property for CustomerDetails and cannot be null");
-            }
-            this.Debtor = debtor;
-            this.PaymentMethods = paymentMethods;
+            this.ExternalId = externalId;
         }
 
         /// <summary>
-        /// Gets or Sets Debtor
+        /// The ID of the account in the PMS
         /// </summary>
-        [DataMember(Name = "debtor", IsRequired = true, EmitDefaultValue = true)]
-        public Debtor Debtor { get; set; }
-
-        /// <summary>
-        /// Gets or Sets PaymentMethods
-        /// </summary>
-        [DataMember(Name = "payment_methods", EmitDefaultValue = false)]
-        public List<CustomerPaymentMethod> PaymentMethods { get; set; }
+        /// <value>The ID of the account in the PMS</value>
+        [DataMember(Name = "external_id", EmitDefaultValue = false)]
+        public string ExternalId { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -71,9 +54,8 @@ namespace FeeWise.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class CustomerDetails {\n");
-            sb.Append("  Debtor: ").Append(Debtor).Append("\n");
-            sb.Append("  PaymentMethods: ").Append(PaymentMethods).Append("\n");
+            sb.Append("class PatchFirmBankAccountExternalAccountIDRequest {\n");
+            sb.Append("  ExternalId: ").Append(ExternalId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -94,15 +76,15 @@ namespace FeeWise.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as CustomerDetails);
+            return this.Equals(input as PatchFirmBankAccountExternalAccountIDRequest);
         }
 
         /// <summary>
-        /// Returns true if CustomerDetails instances are equal
+        /// Returns true if PatchFirmBankAccountExternalAccountIDRequest instances are equal
         /// </summary>
-        /// <param name="input">Instance of CustomerDetails to be compared</param>
+        /// <param name="input">Instance of PatchFirmBankAccountExternalAccountIDRequest to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(CustomerDetails input)
+        public bool Equals(PatchFirmBankAccountExternalAccountIDRequest input)
         {
             if (input == null)
             {
@@ -110,15 +92,9 @@ namespace FeeWise.Model
             }
             return 
                 (
-                    this.Debtor == input.Debtor ||
-                    (this.Debtor != null &&
-                    this.Debtor.Equals(input.Debtor))
-                ) && 
-                (
-                    this.PaymentMethods == input.PaymentMethods ||
-                    this.PaymentMethods != null &&
-                    input.PaymentMethods != null &&
-                    this.PaymentMethods.SequenceEqual(input.PaymentMethods)
+                    this.ExternalId == input.ExternalId ||
+                    (this.ExternalId != null &&
+                    this.ExternalId.Equals(input.ExternalId))
                 );
         }
 
@@ -131,13 +107,9 @@ namespace FeeWise.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Debtor != null)
+                if (this.ExternalId != null)
                 {
-                    hashCode = (hashCode * 59) + this.Debtor.GetHashCode();
-                }
-                if (this.PaymentMethods != null)
-                {
-                    hashCode = (hashCode * 59) + this.PaymentMethods.GetHashCode();
+                    hashCode = (hashCode * 59) + this.ExternalId.GetHashCode();
                 }
                 return hashCode;
             }

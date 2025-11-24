@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AccountId** | **Guid** | The FeeWise ID of the bank account, do not use when creating an account. | [optional] 
+**ExternalId** | **string** | The ID of the account in the PMS | [optional] 
 **AccountType** | **AccountType** |  | 
 **AccountName** | **string** | The name attached to the bank account. | 
 **AccountHolderType** | **string** | The type of account holder. | 

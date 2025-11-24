@@ -79,6 +79,7 @@ docs/OptionalProductSettings.md
 docs/PaginationMetadata.md
 docs/PartnerApi.md
 docs/PartyBranding.md
+docs/PatchFirmBankAccountExternalAccountIDRequest.md
 docs/Payer.md
 docs/Payment.md
 docs/PaymentAuthorisedEvent.md
@@ -221,6 +222,7 @@ src/FeeWise.Test/Model/MetadataSearchTests.cs
 src/FeeWise.Test/Model/OptionalProductSettingsTests.cs
 src/FeeWise.Test/Model/PaginationMetadataTests.cs
 src/FeeWise.Test/Model/PartyBrandingTests.cs
+src/FeeWise.Test/Model/PatchFirmBankAccountExternalAccountIDRequestTests.cs
 src/FeeWise.Test/Model/PayerTests.cs
 src/FeeWise.Test/Model/PaymentAuthorisedEventTests.cs
 src/FeeWise.Test/Model/PaymentDetailsTests.cs
@@ -375,6 +377,7 @@ src/FeeWise/Model/MetadataSearch.cs
 src/FeeWise/Model/OptionalProductSettings.cs
 src/FeeWise/Model/PaginationMetadata.cs
 src/FeeWise/Model/PartyBranding.cs
+src/FeeWise/Model/PatchFirmBankAccountExternalAccountIDRequest.cs
 src/FeeWise/Model/Payer.cs
 src/FeeWise/Model/Payment.cs
 src/FeeWise/Model/PaymentAuthorisedEvent.cs
