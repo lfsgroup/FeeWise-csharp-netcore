@@ -26,30 +26,26 @@ using OpenAPIDateConverter = FeeWise.Client.OpenAPIDateConverter;
 namespace FeeWise.Model
 {
     /// <summary>
-    /// UpdatedCount
+    /// MatterBankDepositSyncEventAllOf
     /// </summary>
-    [DataContract(Name = "UpdatedCount")]
-    public partial class UpdatedCount : IEquatable<UpdatedCount>, IValidatableObject
+    [DataContract(Name = "MatterBankDepositSyncEvent_allOf")]
+    public partial class MatterBankDepositSyncEventAllOf : IEquatable<MatterBankDepositSyncEventAllOf>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="UpdatedCount" /> class.
+        /// Initializes a new instance of the <see cref="MatterBankDepositSyncEventAllOf" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected UpdatedCount() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="UpdatedCount" /> class.
-        /// </summary>
-        /// <param name="updated">updated (required).</param>
-        public UpdatedCount(int updated = default(int))
+        /// <param name="version">Future feature implementation.</param>
+        public MatterBankDepositSyncEventAllOf(string version = default(string))
         {
-            this.Updated = updated;
+            this._Version = version;
         }
 
         /// <summary>
-        /// Gets or Sets Updated
+        /// Future feature implementation
         /// </summary>
-        [DataMember(Name = "updated", IsRequired = true, EmitDefaultValue = true)]
-        public int Updated { get; set; }
+        /// <value>Future feature implementation</value>
+        [DataMember(Name = "version", EmitDefaultValue = false)]
+        public string _Version { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -58,8 +54,8 @@ namespace FeeWise.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class UpdatedCount {\n");
-            sb.Append("  Updated: ").Append(Updated).Append("\n");
+            sb.Append("class MatterBankDepositSyncEventAllOf {\n");
+            sb.Append("  _Version: ").Append(_Version).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -80,15 +76,15 @@ namespace FeeWise.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as UpdatedCount);
+            return this.Equals(input as MatterBankDepositSyncEventAllOf);
         }
 
         /// <summary>
-        /// Returns true if UpdatedCount instances are equal
+        /// Returns true if MatterBankDepositSyncEventAllOf instances are equal
         /// </summary>
-        /// <param name="input">Instance of UpdatedCount to be compared</param>
+        /// <param name="input">Instance of MatterBankDepositSyncEventAllOf to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(UpdatedCount input)
+        public bool Equals(MatterBankDepositSyncEventAllOf input)
         {
             if (input == null)
             {
@@ -96,8 +92,9 @@ namespace FeeWise.Model
             }
             return 
                 (
-                    this.Updated == input.Updated ||
-                    this.Updated.Equals(input.Updated)
+                    this._Version == input._Version ||
+                    (this._Version != null &&
+                    this._Version.Equals(input._Version))
                 );
         }
 
@@ -110,7 +107,10 @@ namespace FeeWise.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.Updated.GetHashCode();
+                if (this._Version != null)
+                {
+                    hashCode = (hashCode * 59) + this._Version.GetHashCode();
+                }
                 return hashCode;
             }
         }

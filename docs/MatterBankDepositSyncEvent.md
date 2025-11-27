@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **Status** | **PayoutStatus** |  | 
 **Transactions** | [**List&lt;Payment&gt;**](Payment.md) | A list of the payments that are included in this payout | 
 **Metadata** | **Dictionary&lt;string, string&gt;** | Set of key value pairs attached to the object when it was created. | [optional] 
+**_Version** | **string** | Future feature implementation | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
