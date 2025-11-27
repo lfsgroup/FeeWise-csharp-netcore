@@ -70,7 +70,7 @@ Name | Type | Description | Notes
 **SurchargeSettings** | [**SurchargeSettings**](SurchargeSettings.md) |  | 
 **Products** | [**List&lt;Product&gt;**](Product.md) |  | 
 **AffiliateId** | **Guid** |  | 
-**_Version** | **string** | Future feature implementation | [optional] 
+**_Version** | **string** | Future feature implementation | 
 **PaymentDate** | **DateTime** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
