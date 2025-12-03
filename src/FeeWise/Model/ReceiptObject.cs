@@ -26,35 +26,33 @@ using OpenAPIDateConverter = FeeWise.Client.OpenAPIDateConverter;
 namespace FeeWise.Model
 {
     /// <summary>
-    /// ArtifactResponse
+    /// The relationship between FW artifact ID and the ID used to create the receipt in the external PMS system. 
     /// </summary>
-    [DataContract(Name = "ArtifactResponse")]
-    public partial class ArtifactResponse : IEquatable<ArtifactResponse>, IValidatableObject
+    [DataContract(Name = "ReceiptObject")]
+    public partial class ReceiptObject : IEquatable<ReceiptObject>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ArtifactResponse" /> class.
+        /// Initializes a new instance of the <see cref="ReceiptObject" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected ArtifactResponse() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ArtifactResponse" /> class.
-        /// </summary>
-        /// <param name="artifact">artifact (required).</param>
-        public ArtifactResponse(Artifact artifact = default(Artifact))
+        /// <param name="artifactId">artifactId.</param>
+        /// <param name="receiptId">receiptId.</param>
+        public ReceiptObject(Guid artifactId = default(Guid), Guid receiptId = default(Guid))
         {
-            // to ensure "artifact" is required (not null)
-            if (artifact == null)
-            {
-                throw new ArgumentNullException("artifact is a required property for ArtifactResponse and cannot be null");
-            }
-            this.Artifact = artifact;
+            this.ArtifactId = artifactId;
+            this.ReceiptId = receiptId;
         }
 
         /// <summary>
-        /// Gets or Sets Artifact
+        /// Gets or Sets ArtifactId
         /// </summary>
-        [DataMember(Name = "artifact", IsRequired = true, EmitDefaultValue = true)]
-        public Artifact Artifact { get; set; }
+        [DataMember(Name = "artifact_id", EmitDefaultValue = false)]
+        public Guid ArtifactId { get; set; }
+
+        /// <summary>
+        /// Gets or Sets ReceiptId
+        /// </summary>
+        [DataMember(Name = "receipt_id", EmitDefaultValue = false)]
+        public Guid ReceiptId { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -63,8 +61,9 @@ namespace FeeWise.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class ArtifactResponse {\n");
-            sb.Append("  Artifact: ").Append(Artifact).Append("\n");
+            sb.Append("class ReceiptObject {\n");
+            sb.Append("  ArtifactId: ").Append(ArtifactId).Append("\n");
+            sb.Append("  ReceiptId: ").Append(ReceiptId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -85,15 +84,15 @@ namespace FeeWise.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as ArtifactResponse);
+            return this.Equals(input as ReceiptObject);
         }
 
         /// <summary>
-        /// Returns true if ArtifactResponse instances are equal
+        /// Returns true if ReceiptObject instances are equal
         /// </summary>
-        /// <param name="input">Instance of ArtifactResponse to be compared</param>
+        /// <param name="input">Instance of ReceiptObject to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(ArtifactResponse input)
+        public bool Equals(ReceiptObject input)
         {
             if (input == null)
             {
@@ -101,9 +100,14 @@ namespace FeeWise.Model
             }
             return 
                 (
-                    this.Artifact == input.Artifact ||
-                    (this.Artifact != null &&
-                    this.Artifact.Equals(input.Artifact))
+                    this.ArtifactId == input.ArtifactId ||
+                    (this.ArtifactId != null &&
+                    this.ArtifactId.Equals(input.ArtifactId))
+                ) && 
+                (
+                    this.ReceiptId == input.ReceiptId ||
+                    (this.ReceiptId != null &&
+                    this.ReceiptId.Equals(input.ReceiptId))
                 );
         }
 
@@ -116,9 +120,13 @@ namespace FeeWise.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Artifact != null)
+                if (this.ArtifactId != null)
                 {
-                    hashCode = (hashCode * 59) + this.Artifact.GetHashCode();
+                    hashCode = (hashCode * 59) + this.ArtifactId.GetHashCode();
+                }
+                if (this.ReceiptId != null)
+                {
+                    hashCode = (hashCode * 59) + this.ReceiptId.GetHashCode();
                 }
                 return hashCode;
             }

@@ -70,8 +70,9 @@ Name | Type | Description | Notes
 **SurchargeSettings** | [**SurchargeSettings**](SurchargeSettings.md) |  | 
 **Products** | [**List&lt;Product&gt;**](Product.md) |  | 
 **AffiliateId** | **Guid** |  | 
-**_Version** | **string** | Future feature implementation | 
+**ReceiptIds** | [**List&lt;ReceiptObject&gt;**](ReceiptObject.md) | Receipt IDs from the partner system that associate the payments in this event to the partner artifacts (invoices, trust deposits, etc...)  | 
 **PaymentDate** | **DateTime** |  | 
+**SettlementAccountExternalId** | **Guid** | The id of the account the artifact settlement will be receipted to, in the partner&#39;s system.  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

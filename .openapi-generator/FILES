@@ -106,6 +106,7 @@ docs/PostUpload200Response.md
 docs/Product.md
 docs/ProductType.md
 docs/PutSurchargingStatusRequest.md
+docs/ReceiptObject.md
 docs/Refund.md
 docs/RefundResponse.md
 docs/RefundStatus.md
@@ -248,6 +249,7 @@ src/FeeWise.Test/Model/PostUpload200ResponseTests.cs
 src/FeeWise.Test/Model/ProductTests.cs
 src/FeeWise.Test/Model/ProductTypeTests.cs
 src/FeeWise.Test/Model/PutSurchargingStatusRequestTests.cs
+src/FeeWise.Test/Model/ReceiptObjectTests.cs
 src/FeeWise.Test/Model/RefundResponseTests.cs
 src/FeeWise.Test/Model/RefundStatusTests.cs
 src/FeeWise.Test/Model/RefundTests.cs
@@ -404,6 +406,7 @@ src/FeeWise/Model/PostUpload200Response.cs
 src/FeeWise/Model/Product.cs
 src/FeeWise/Model/ProductType.cs
 src/FeeWise/Model/PutSurchargingStatusRequest.cs
+src/FeeWise/Model/ReceiptObject.cs
 src/FeeWise/Model/Refund.cs
 src/FeeWise/Model/RefundResponse.cs
 src/FeeWise/Model/RefundStatus.cs

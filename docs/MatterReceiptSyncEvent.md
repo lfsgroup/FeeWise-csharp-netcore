@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **ExternalFirmId** | **string** | The firm ID from the partner&#39;s system | 
 **PaymentMethod** | **PaymentMethod** |  | 
 **PaymentMethodDetail** | **string** | The payment method detail | [optional] 
+**SettlementAccountExternalId** | **Guid** | The id of the account the artifact settlement will be receipted to, in the partner&#39;s system.  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
