@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **AccountId** | **Guid** | FW ID of the settlement account | [optional] 
 **Alias** | **string** | The name of the account for the Firm | [optional] 
 **CountryCode** | **string** | The country the account is in | 
+**ExternalId** | **string** | The external ID of the account | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
