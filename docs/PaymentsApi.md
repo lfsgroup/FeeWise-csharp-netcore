@@ -13,6 +13,8 @@ All URIs are relative to *http://localhost*
 | [**CreateMatter**](PaymentsApi.md#creatematter) | **POST** /api/v3/partner/matters | Create a matter |
 | [**CreateSplitCharge**](PaymentsApi.md#createsplitcharge) | **POST** /api/v3/partner/firms/{firm_id}/charges/split | Create split charges, each charge is distributed to its own settlement account. |
 | [**CreateTrustDeposit**](PaymentsApi.md#createtrustdeposit) | **POST** /api/v3/partner/trust-deposits | Create a Trust Deposit |
+| [**GenerateBulkCRN**](PaymentsApi.md#generatebulkcrn) | **POST** /api/v3/partner/firms/{firm_id}/bpay/bulk | Generate bulk BPAY CRN numbers. Used in AU only |
+| [**GenerateCRN**](PaymentsApi.md#generatecrn) | **POST** /api/v3/partner/firms/{firm_id}/bpay | Generate a BPAY CRN number. Used in AU only |
 | [**GetChannelPartnerPayments**](PaymentsApi.md#getchannelpartnerpayments) | **GET** /api/v3/partner/payments | DEPRECATED use /transactions - Search for payments for the channel partner |
 | [**GetDebtorMatterStatement**](PaymentsApi.md#getdebtormatterstatement) | **GET** /api/v3/partner/statements/debtors/{debtor_id}/matters/{matter_id} | Get a matter debtor statement |
 | [**GetDebtorStatement**](PaymentsApi.md#getdebtorstatement) | **GET** /api/v3/partner/statements/debtors/{debtor_id} | Get a debtor statement |
@@ -982,6 +984,228 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Created Trust Deposit |  -  |
+| **409** | Invalid settlement account. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="generatebulkcrn"></a>
+# **GenerateBulkCRN**
+> BpayBulkResponse GenerateBulkCRN (Guid firmId, List<BpayMapping> bpayMapping)
+
+Generate bulk BPAY CRN numbers. Used in AU only
+
+Generate Bulk CRNs for a firm 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using FeeWise.Api;
+using FeeWise.Client;
+using FeeWise.Model;
+
+namespace Example
+{
+    public class GenerateBulkCRNExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "http://localhost";
+            // Configure API key authorization: APIAuth
+            config.AddApiKey("X-API-KEY", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("X-API-KEY", "Bearer");
+            // Configure API key authorization: FirmApiKey
+            config.AddApiKey("X-FIRM-API-KEY", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("X-FIRM-API-KEY", "Bearer");
+            // Configure API key authorization: FirmAuth
+            config.AddApiKey("X-FIRM-ID", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("X-FIRM-ID", "Bearer");
+            // Configure API key authorization: PartnerAuth
+            config.AddApiKey("X-CHANNEL-PARTNER-ID", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("X-CHANNEL-PARTNER-ID", "Bearer");
+
+            var apiInstance = new PaymentsApi(config);
+            var firmId = "firmId_example";  // Guid | 
+            var bpayMapping = new List<BpayMapping>(); // List<BpayMapping> | CRN details
+
+            try
+            {
+                // Generate bulk BPAY CRN numbers. Used in AU only
+                BpayBulkResponse result = apiInstance.GenerateBulkCRN(firmId, bpayMapping);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling PaymentsApi.GenerateBulkCRN: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GenerateBulkCRNWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Generate bulk BPAY CRN numbers. Used in AU only
+    ApiResponse<BpayBulkResponse> response = apiInstance.GenerateBulkCRNWithHttpInfo(firmId, bpayMapping);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling PaymentsApi.GenerateBulkCRNWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **firmId** | **Guid** |  |  |
+| **bpayMapping** | [**List&lt;BpayMapping&gt;**](BpayMapping.md) | CRN details |  |
+
+### Return type
+
+[**BpayBulkResponse**](BpayBulkResponse.md)
+
+### Authorization
+
+[APIAuth](../README.md#APIAuth), [FirmApiKey](../README.md#FirmApiKey), [FirmAuth](../README.md#FirmAuth), [PartnerAuth](../README.md#PartnerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Created CRN |  -  |
+| **409** | Invalid settlement account. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="generatecrn"></a>
+# **GenerateCRN**
+> BpayResponse GenerateCRN (Guid firmId, BpayMapping bpayMapping)
+
+Generate a BPAY CRN number. Used in AU only
+
+Generate CRN 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using FeeWise.Api;
+using FeeWise.Client;
+using FeeWise.Model;
+
+namespace Example
+{
+    public class GenerateCRNExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "http://localhost";
+            // Configure API key authorization: APIAuth
+            config.AddApiKey("X-API-KEY", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("X-API-KEY", "Bearer");
+            // Configure API key authorization: FirmApiKey
+            config.AddApiKey("X-FIRM-API-KEY", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("X-FIRM-API-KEY", "Bearer");
+            // Configure API key authorization: FirmAuth
+            config.AddApiKey("X-FIRM-ID", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("X-FIRM-ID", "Bearer");
+            // Configure API key authorization: PartnerAuth
+            config.AddApiKey("X-CHANNEL-PARTNER-ID", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("X-CHANNEL-PARTNER-ID", "Bearer");
+
+            var apiInstance = new PaymentsApi(config);
+            var firmId = "firmId_example";  // Guid | 
+            var bpayMapping = new BpayMapping(); // BpayMapping | CRN details
+
+            try
+            {
+                // Generate a BPAY CRN number. Used in AU only
+                BpayResponse result = apiInstance.GenerateCRN(firmId, bpayMapping);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling PaymentsApi.GenerateCRN: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GenerateCRNWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Generate a BPAY CRN number. Used in AU only
+    ApiResponse<BpayResponse> response = apiInstance.GenerateCRNWithHttpInfo(firmId, bpayMapping);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling PaymentsApi.GenerateCRNWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **firmId** | **Guid** |  |  |
+| **bpayMapping** | [**BpayMapping**](BpayMapping.md) | CRN details |  |
+
+### Return type
+
+[**BpayResponse**](BpayResponse.md)
+
+### Authorization
+
+[APIAuth](../README.md#APIAuth), [FirmApiKey](../README.md#FirmApiKey), [FirmAuth](../README.md#FirmAuth), [PartnerAuth](../README.md#PartnerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Created CRN |  -  |
 | **409** | Invalid settlement account. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

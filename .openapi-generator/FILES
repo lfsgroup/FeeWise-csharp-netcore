@@ -22,6 +22,9 @@ docs/BankAccountApi.md
 docs/BankAccountResponse.md
 docs/BankAccountSummary.md
 docs/BankAccountsResponse.md
+docs/BpayBulkResponse.md
+docs/BpayMapping.md
+docs/BpayResponse.md
 docs/CardPayment.md
 docs/Charge.md
 docs/ChargeAndPayResponse.md
@@ -169,6 +172,9 @@ src/FeeWise.Test/Model/BankAccountResponseTests.cs
 src/FeeWise.Test/Model/BankAccountSummaryTests.cs
 src/FeeWise.Test/Model/BankAccountTests.cs
 src/FeeWise.Test/Model/BankAccountsResponseTests.cs
+src/FeeWise.Test/Model/BpayBulkResponseTests.cs
+src/FeeWise.Test/Model/BpayMappingTests.cs
+src/FeeWise.Test/Model/BpayResponseTests.cs
 src/FeeWise.Test/Model/CardPaymentTests.cs
 src/FeeWise.Test/Model/ChargeAndPayResponseTests.cs
 src/FeeWise.Test/Model/ChargePaymentDetailsTests.cs
@@ -326,6 +332,9 @@ src/FeeWise/Model/BankAccount.cs
 src/FeeWise/Model/BankAccountResponse.cs
 src/FeeWise/Model/BankAccountSummary.cs
 src/FeeWise/Model/BankAccountsResponse.cs
+src/FeeWise/Model/BpayBulkResponse.cs
+src/FeeWise/Model/BpayMapping.cs
+src/FeeWise/Model/BpayResponse.cs
 src/FeeWise/Model/CardPayment.cs
 src/FeeWise/Model/Charge.cs
 src/FeeWise/Model/ChargeAndPayResponse.cs
