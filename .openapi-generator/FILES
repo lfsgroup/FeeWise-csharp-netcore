@@ -71,6 +71,9 @@ docs/Invoice.md
 docs/InvoiceResponse.md
 docs/LineItem.md
 docs/Matter.md
+docs/MatterBankDepositSyncEvent.md
+docs/MatterBankDepositSyncEventAllOf.md
+docs/MatterReceiptSyncEvent.md
 docs/MatterRequest.md
 docs/MatterResponse.md
 docs/MatterStatement.md
@@ -216,6 +219,9 @@ src/FeeWise.Test/Model/GetPartnerBranding200ResponseTests.cs
 src/FeeWise.Test/Model/InvoiceResponseTests.cs
 src/FeeWise.Test/Model/InvoiceTests.cs
 src/FeeWise.Test/Model/LineItemTests.cs
+src/FeeWise.Test/Model/MatterBankDepositSyncEventAllOfTests.cs
+src/FeeWise.Test/Model/MatterBankDepositSyncEventTests.cs
+src/FeeWise.Test/Model/MatterReceiptSyncEventTests.cs
 src/FeeWise.Test/Model/MatterRequestTests.cs
 src/FeeWise.Test/Model/MatterResponseTests.cs
 src/FeeWise.Test/Model/MatterStatementTests.cs
@@ -374,6 +380,9 @@ src/FeeWise/Model/Invoice.cs
 src/FeeWise/Model/InvoiceResponse.cs
 src/FeeWise/Model/LineItem.cs
 src/FeeWise/Model/Matter.cs
+src/FeeWise/Model/MatterBankDepositSyncEvent.cs
+src/FeeWise/Model/MatterBankDepositSyncEventAllOf.cs
+src/FeeWise/Model/MatterReceiptSyncEvent.cs
 src/FeeWise/Model/MatterRequest.cs
 src/FeeWise/Model/MatterResponse.cs
 src/FeeWise/Model/MatterStatement.cs

@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **InvoiceId** | **Guid** | This is the uuid of the invoice. This will be used for and &#39;GET&#39; of the invoice and in webhooks about this invoice NB this is generated and must not be supplied when creating an invoice.  | [optional] 
-**FirmId** | **Guid** |  | 
+**FirmId** | **Guid** | The firm ID | 
 **Matter** | [**Matter**](Matter.md) |  | [optional] 
 **Debtor** | [**Debtor**](Debtor.md) |  | [optional] 
 **ExternalId** | **string** | Unique ID for the firm, set by partners | 
@@ -23,7 +23,7 @@ Name | Type | Description | Notes
 **SurchargeChoiceOverride** | **SurchargeChoice** |  | [optional] 
 **Description** | **string** | Freeform text for channel partner / PMS. | [optional] 
 **PaymentUri** | **string** | The URI to send to customer.    They will follow this link to make a payment.    NB This must not be set when creating an invoice.  | [optional] 
-**Status** | **string** | The status of the bank account. Pending - awaiting validation, Valid - successfully validated, Invalid - bank account number validation failed. | 
+**Status** | **PayoutStatus** |  | 
 **ArtifactSubtype** | **ArtifactSubtype** |  | [optional] 
 **CreatedAt** | **DateTime** | The date the partner created the artifact. | [optional] 
 **SourceId** | **string** | The source ID that was passed in when creating the artifact. | [optional] 
@@ -44,16 +44,12 @@ Name | Type | Description | Notes
 **PayoutReference** | **string** | The unique reference of the payout. This will appear in the bank account statement the payout was made to. | 
 **PayoutTotal** | **string** | The total paid out to the firm. This is the sum of the transactions paid_out amounts. | 
 **Account** | [**BankAccountSummary**](BankAccountSummary.md) |  | 
-**ExternalFirmId** | **string** | The firm ID from the partner&#39;s system | [optional] 
+**ExternalFirmId** | **string** | The firm ID from the partner&#39;s system | 
 **Transactions** | [**List&lt;Payment&gt;**](Payment.md) | A list of the payments that are included in this payout | 
-**ReceiptIds** | [**List&lt;ReceiptObject&gt;**](ReceiptObject.md) | Receipt IDs from the partner system that associate the payments in this event to the partner artifacts (invoices, trust deposits, etc...)  | [optional] 
 **Artifacts** | [**List&lt;ArtifactReceipt&gt;**](ArtifactReceipt.md) |  | 
 **AmountPaid** | **string** | The amount paid | 
 **CardPayment** | [**CardPayment**](CardPayment.md) |  | [optional] 
 **DebitPayment** | [**DebitPayment**](DebitPayment.md) |  | [optional] 
-**SettlementAccountExternalId** | **Guid** | The id of the account the artifact settlement should be paid to, in the partner&#39;s system..  NB, This property is only for the partners reference, only the settlement_account_id property will be used by FeeWise  | [optional] 
-**PaymentDate** | **DateTime** | The date the payment was made | [optional] 
-**PayerName** | **string** | The name of the payer | [optional] 
 **PaymentMethod** | **PaymentMethod** |  | 
 **PaymentMethodDetail** | **string** | The payment method detail | [optional] 
 **LegalName** | **string** |  | [optional] 
@@ -74,6 +70,9 @@ Name | Type | Description | Notes
 **SurchargeSettings** | [**SurchargeSettings**](SurchargeSettings.md) |  | 
 **Products** | [**List&lt;Product&gt;**](Product.md) |  | 
 **AffiliateId** | **Guid** |  | 
+**ReceiptIds** | [**List&lt;ReceiptObject&gt;**](ReceiptObject.md) | Receipt IDs from the partner system that associate the payments in this event to the partner artifacts (invoices, trust deposits, etc...)  | 
+**PaymentDate** | **DateTime** |  | 
+**SettlementAccountExternalId** | **Guid** | The id of the account the artifact settlement will be receipted to, in the partner&#39;s system.  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
