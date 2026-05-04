@@ -134,6 +134,7 @@ namespace FeeWise.Model
         /// </summary>
         /// <value>The id of the account the artifact settlement should be paid to, in the partner&#39;s system..  NB, This property is only for the partners reference, only the settlement_account_id property will be used by FeeWise </value>
         [DataMember(Name = "settlement_account_external_id", EmitDefaultValue = false)]
+        [Obsolete]
         public Guid SettlementAccountExternalId { get; set; }
 
         /// <summary>
