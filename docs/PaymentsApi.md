@@ -13,8 +13,8 @@ All URIs are relative to *http://localhost*
 | [**CreateMatter**](PaymentsApi.md#creatematter) | **POST** /api/v3/partner/matters | Create a matter |
 | [**CreateSplitCharge**](PaymentsApi.md#createsplitcharge) | **POST** /api/v3/partner/firms/{firm_id}/charges/split | Create split charges, each charge is distributed to its own settlement account. |
 | [**CreateTrustDeposit**](PaymentsApi.md#createtrustdeposit) | **POST** /api/v3/partner/trust-deposits | Create a Trust Deposit |
-| [**GenerateBulkCRN**](PaymentsApi.md#generatebulkcrn) | **POST** /api/v3/partner/firms/{firm_id}/bpay/bulk | Generate bulk BPAY CRN numbers. Used in AU only |
-| [**GenerateCRN**](PaymentsApi.md#generatecrn) | **POST** /api/v3/partner/firms/{firm_id}/bpay | Generate a BPAY CRN number. Used in AU only |
+| [**GetArtifactByFirmExternalIDAndPaymentReferenceNumber**](PaymentsApi.md#getartifactbyfirmexternalidandpaymentreferencenumber) | **GET** /api/v3/partner/firms/external/{external_firm_id}/artifacts/{feewise_payment_reference_number} | Get a firm&#39;s artifact by its FeeWise payment reference number |
+| [**GetArtifactsByFirmExternalID**](PaymentsApi.md#getartifactsbyfirmexternalid) | **GET** /api/v3/partner/firms/external/{external_firm_id}/artifacts | Get a firm&#39;s artifacts by its external ID |
 | [**GetChannelPartnerPayments**](PaymentsApi.md#getchannelpartnerpayments) | **GET** /api/v3/partner/payments | DEPRECATED use /transactions - Search for payments for the channel partner |
 | [**GetDebtorMatterStatement**](PaymentsApi.md#getdebtormatterstatement) | **GET** /api/v3/partner/statements/debtors/{debtor_id}/matters/{matter_id} | Get a matter debtor statement |
 | [**GetDebtorStatement**](PaymentsApi.md#getdebtorstatement) | **GET** /api/v3/partner/statements/debtors/{debtor_id} | Get a debtor statement |
@@ -25,6 +25,8 @@ All URIs are relative to *http://localhost*
 | [**GetTrustDepositByExternalId**](PaymentsApi.md#gettrustdepositbyexternalid) | **GET** /api/v3/partner/trust-deposits/firm/{firm_id}/{external_id} | Get Trust Deposit by external_id |
 | [**GetTrustDepositById**](PaymentsApi.md#gettrustdepositbyid) | **GET** /api/v3/partner/trust-deposits/{trust_deposit_id} | Get a Trust Deposit by id. |
 | [**PostConfirmChargePayment**](PaymentsApi.md#postconfirmchargepayment) | **POST** /api/v3/partner/firms/{firm_id}/charges/{charge_id}/payments/{payment_id}/confirm | Confirm a pending charge payment. |
+| [**PostPaymentDetails**](PaymentsApi.md#postpaymentdetails) | **POST** /api/v3/partner/firms/{firm_id}/payment/details | Retrieve the payment details for a matter, debtor, invoice or trust request. |
+| [**PostPaymentDetailsBulk**](PaymentsApi.md#postpaymentdetailsbulk) | **POST** /api/v3/partner/firms/{firm_id}/payment/details/bulk | Retrieve payment details for multiple matters, debtors, invoices or trust requests in bulk. |
 | [**RecordExternalPayment**](PaymentsApi.md#recordexternalpayment) | **POST** /api/v3/partner/payments/external | Record external payment. |
 | [**UpdateArtifactAccount**](PaymentsApi.md#updateartifactaccount) | **POST** /api/v3/partner/firms/{firm_id}/artifacts/settlement-account/{settlement_account_id}/replace | Update the settlement account for unpaid artifacts. |
 | [**UpdateArtifactRedirectURL**](PaymentsApi.md#updateartifactredirecturl) | **PATCH** /api/v3/partner/firms/{firm_id}/artifacts/{artifact_id}/update-redirect | Update the payment redirect URL for an artifact |
@@ -988,13 +990,13 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="generatebulkcrn"></a>
-# **GenerateBulkCRN**
-> BpayBulkResponse GenerateBulkCRN (Guid firmId, List<BpayMapping> bpayMapping)
+<a name="getartifactbyfirmexternalidandpaymentreferencenumber"></a>
+# **GetArtifactByFirmExternalIDAndPaymentReferenceNumber**
+> FirmArtifactSummary GetArtifactByFirmExternalIDAndPaymentReferenceNumber (string externalFirmId, string feewisePaymentReferenceNumber)
 
-Generate bulk BPAY CRN numbers. Used in AU only
+Get a firm's artifact by its FeeWise payment reference number
 
-Generate Bulk CRNs for a firm 
+Internal-use endpoint for retrieving artifacts belonging to a firm identified by the partner's external firm ID & the FeeWise payment reference number.
 
 ### Example
 ```csharp
@@ -1006,7 +1008,7 @@ using FeeWise.Model;
 
 namespace Example
 {
-    public class GenerateBulkCRNExample
+    public class GetArtifactByFirmExternalIDAndPaymentReferenceNumberExample
     {
         public static void Main()
         {
@@ -1016,32 +1018,24 @@ namespace Example
             config.AddApiKey("X-API-KEY", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
             // config.AddApiKeyPrefix("X-API-KEY", "Bearer");
-            // Configure API key authorization: FirmApiKey
-            config.AddApiKey("X-FIRM-API-KEY", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("X-FIRM-API-KEY", "Bearer");
-            // Configure API key authorization: FirmAuth
-            config.AddApiKey("X-FIRM-ID", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("X-FIRM-ID", "Bearer");
             // Configure API key authorization: PartnerAuth
             config.AddApiKey("X-CHANNEL-PARTNER-ID", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
             // config.AddApiKeyPrefix("X-CHANNEL-PARTNER-ID", "Bearer");
 
             var apiInstance = new PaymentsApi(config);
-            var firmId = "firmId_example";  // Guid | 
-            var bpayMapping = new List<BpayMapping>(); // List<BpayMapping> | CRN details
+            var externalFirmId = "externalFirmId_example";  // string | The ID of the firm in the partner's system.
+            var feewisePaymentReferenceNumber = "feewisePaymentReferenceNumber_example";  // string | The FeeWise payment reference number of the artifact.
 
             try
             {
-                // Generate bulk BPAY CRN numbers. Used in AU only
-                BpayBulkResponse result = apiInstance.GenerateBulkCRN(firmId, bpayMapping);
+                // Get a firm's artifact by its FeeWise payment reference number
+                FirmArtifactSummary result = apiInstance.GetArtifactByFirmExternalIDAndPaymentReferenceNumber(externalFirmId, feewisePaymentReferenceNumber);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling PaymentsApi.GenerateBulkCRN: " + e.Message);
+                Debug.Print("Exception when calling PaymentsApi.GetArtifactByFirmExternalIDAndPaymentReferenceNumber: " + e.Message);
                 Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
@@ -1050,21 +1044,21 @@ namespace Example
 }
 ```
 
-#### Using the GenerateBulkCRNWithHttpInfo variant
+#### Using the GetArtifactByFirmExternalIDAndPaymentReferenceNumberWithHttpInfo variant
 This returns an ApiResponse object which contains the response data, status code and headers.
 
 ```csharp
 try
 {
-    // Generate bulk BPAY CRN numbers. Used in AU only
-    ApiResponse<BpayBulkResponse> response = apiInstance.GenerateBulkCRNWithHttpInfo(firmId, bpayMapping);
+    // Get a firm's artifact by its FeeWise payment reference number
+    ApiResponse<FirmArtifactSummary> response = apiInstance.GetArtifactByFirmExternalIDAndPaymentReferenceNumberWithHttpInfo(externalFirmId, feewisePaymentReferenceNumber);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
 }
 catch (ApiException e)
 {
-    Debug.Print("Exception when calling PaymentsApi.GenerateBulkCRNWithHttpInfo: " + e.Message);
+    Debug.Print("Exception when calling PaymentsApi.GetArtifactByFirmExternalIDAndPaymentReferenceNumberWithHttpInfo: " + e.Message);
     Debug.Print("Status Code: " + e.ErrorCode);
     Debug.Print(e.StackTrace);
 }
@@ -1074,38 +1068,40 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **firmId** | **Guid** |  |  |
-| **bpayMapping** | [**List&lt;BpayMapping&gt;**](BpayMapping.md) | CRN details |  |
+| **externalFirmId** | **string** | The ID of the firm in the partner&#39;s system. |  |
+| **feewisePaymentReferenceNumber** | **string** | The FeeWise payment reference number of the artifact. |  |
 
 ### Return type
 
-[**BpayBulkResponse**](BpayBulkResponse.md)
+[**FirmArtifactSummary**](FirmArtifactSummary.md)
 
 ### Authorization
 
-[APIAuth](../README.md#APIAuth), [FirmApiKey](../README.md#FirmApiKey), [FirmAuth](../README.md#FirmAuth), [PartnerAuth](../README.md#PartnerAuth)
+[APIAuth](../README.md#APIAuth), [PartnerAuth](../README.md#PartnerAuth)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Created CRN |  -  |
-| **409** | Invalid settlement account. |  -  |
+| **200** | Artifacts belonging to the firm. |  -  |
+| **400** | Bad request (invalid external firm ID, invalid FeeWise payment reference number, etc.) |  -  |
+| **404** | Firm not found. |  -  |
+| **500** | Error processing. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="generatecrn"></a>
-# **GenerateCRN**
-> BpayResponse GenerateCRN (Guid firmId, BpayMapping bpayMapping)
+<a name="getartifactsbyfirmexternalid"></a>
+# **GetArtifactsByFirmExternalID**
+> FirmArtifactsResponse GetArtifactsByFirmExternalID (string externalFirmId, DateTime? updatedFrom = null, DateTime? updatedTo = null, List<ArtifactType> artifactTypes = null)
 
-Generate a BPAY CRN number. Used in AU only
+Get a firm's artifacts by its external ID
 
-Generate CRN 
+Internal-use endpoint for retrieving artifacts belonging to a firm identified by the partner's external ID.
 
 ### Example
 ```csharp
@@ -1117,7 +1113,7 @@ using FeeWise.Model;
 
 namespace Example
 {
-    public class GenerateCRNExample
+    public class GetArtifactsByFirmExternalIDExample
     {
         public static void Main()
         {
@@ -1127,32 +1123,26 @@ namespace Example
             config.AddApiKey("X-API-KEY", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
             // config.AddApiKeyPrefix("X-API-KEY", "Bearer");
-            // Configure API key authorization: FirmApiKey
-            config.AddApiKey("X-FIRM-API-KEY", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("X-FIRM-API-KEY", "Bearer");
-            // Configure API key authorization: FirmAuth
-            config.AddApiKey("X-FIRM-ID", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("X-FIRM-ID", "Bearer");
             // Configure API key authorization: PartnerAuth
             config.AddApiKey("X-CHANNEL-PARTNER-ID", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
             // config.AddApiKeyPrefix("X-CHANNEL-PARTNER-ID", "Bearer");
 
             var apiInstance = new PaymentsApi(config);
-            var firmId = "firmId_example";  // Guid | 
-            var bpayMapping = new BpayMapping(); // BpayMapping | CRN details
+            var externalFirmId = "externalFirmId_example";  // string | The ID of the firm in the partner's system.
+            var updatedFrom = DateTime.Parse("2013-10-20T19:20:30+01:00");  // DateTime? | Return artifacts (invoices, trust deposits, etc...) updated at or after this timestamp. (optional) 
+            var updatedTo = DateTime.Parse("2013-10-20T19:20:30+01:00");  // DateTime? | Inclusively filter artifacts updated at or before this timestamp. (optional) 
+            var artifactTypes = new List<ArtifactType>(); // List<ArtifactType> | Inclusively filter by artifact type. Multiple values are comma-separated. (optional) 
 
             try
             {
-                // Generate a BPAY CRN number. Used in AU only
-                BpayResponse result = apiInstance.GenerateCRN(firmId, bpayMapping);
+                // Get a firm's artifacts by its external ID
+                FirmArtifactsResponse result = apiInstance.GetArtifactsByFirmExternalID(externalFirmId, updatedFrom, updatedTo, artifactTypes);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling PaymentsApi.GenerateCRN: " + e.Message);
+                Debug.Print("Exception when calling PaymentsApi.GetArtifactsByFirmExternalID: " + e.Message);
                 Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
@@ -1161,21 +1151,21 @@ namespace Example
 }
 ```
 
-#### Using the GenerateCRNWithHttpInfo variant
+#### Using the GetArtifactsByFirmExternalIDWithHttpInfo variant
 This returns an ApiResponse object which contains the response data, status code and headers.
 
 ```csharp
 try
 {
-    // Generate a BPAY CRN number. Used in AU only
-    ApiResponse<BpayResponse> response = apiInstance.GenerateCRNWithHttpInfo(firmId, bpayMapping);
+    // Get a firm's artifacts by its external ID
+    ApiResponse<FirmArtifactsResponse> response = apiInstance.GetArtifactsByFirmExternalIDWithHttpInfo(externalFirmId, updatedFrom, updatedTo, artifactTypes);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
 }
 catch (ApiException e)
 {
-    Debug.Print("Exception when calling PaymentsApi.GenerateCRNWithHttpInfo: " + e.Message);
+    Debug.Print("Exception when calling PaymentsApi.GetArtifactsByFirmExternalIDWithHttpInfo: " + e.Message);
     Debug.Print("Status Code: " + e.ErrorCode);
     Debug.Print(e.StackTrace);
 }
@@ -1185,28 +1175,32 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **firmId** | **Guid** |  |  |
-| **bpayMapping** | [**BpayMapping**](BpayMapping.md) | CRN details |  |
+| **externalFirmId** | **string** | The ID of the firm in the partner&#39;s system. |  |
+| **updatedFrom** | **DateTime?** | Return artifacts (invoices, trust deposits, etc...) updated at or after this timestamp. | [optional]  |
+| **updatedTo** | **DateTime?** | Inclusively filter artifacts updated at or before this timestamp. | [optional]  |
+| **artifactTypes** | [**List&lt;ArtifactType&gt;**](ArtifactType.md) | Inclusively filter by artifact type. Multiple values are comma-separated. | [optional]  |
 
 ### Return type
 
-[**BpayResponse**](BpayResponse.md)
+[**FirmArtifactsResponse**](FirmArtifactsResponse.md)
 
 ### Authorization
 
-[APIAuth](../README.md#APIAuth), [FirmApiKey](../README.md#FirmApiKey), [FirmAuth](../README.md#FirmAuth), [PartnerAuth](../README.md#PartnerAuth)
+[APIAuth](../README.md#APIAuth), [PartnerAuth](../README.md#PartnerAuth)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Created CRN |  -  |
-| **409** | Invalid settlement account. |  -  |
+| **200** | Artifacts belonging to the firm. |  -  |
+| **400** | Bad request (invalid date range, invalid artifact type, etc.) |  -  |
+| **404** | Firm not found. |  -  |
+| **500** | Error processing. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -2287,6 +2281,234 @@ catch (ApiException e)
 | **404** | Firm, charge or payment not found |  -  |
 | **409** | Charge has already been paid or payment is out of sync |  -  |
 | **500** | generic server error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="postpaymentdetails"></a>
+# **PostPaymentDetails**
+> PostPaymentDetails200Response PostPaymentDetails (string firmId, PaymentDetailsRequest paymentDetailsRequest, string accept = null)
+
+Retrieve the payment details for a matter, debtor, invoice or trust request.
+
+Generates and returns the payment details for a single item.  The response format is determined by the `Accept` request header:   - `Accept: application/json` (default) returns a structured JSON     payload containing the payment URL, QR code and the rendered footer     HTML (base64-encoded) as a property of the json.   - `Accept: text/html` is a convenience that returns the fully-rendered     footer HTML directly as the response body (no base64). 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using FeeWise.Api;
+using FeeWise.Client;
+using FeeWise.Model;
+
+namespace Example
+{
+    public class PostPaymentDetailsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "http://localhost";
+            // Configure API key authorization: APIAuth
+            config.AddApiKey("X-API-KEY", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("X-API-KEY", "Bearer");
+            // Configure API key authorization: FirmApiKey
+            config.AddApiKey("X-FIRM-API-KEY", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("X-FIRM-API-KEY", "Bearer");
+            // Configure API key authorization: FirmAuth
+            config.AddApiKey("X-FIRM-ID", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("X-FIRM-ID", "Bearer");
+            // Configure API key authorization: PartnerAuth
+            config.AddApiKey("X-CHANNEL-PARTNER-ID", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("X-CHANNEL-PARTNER-ID", "Bearer");
+
+            var apiInstance = new PaymentsApi(config);
+            var firmId = "firmId_example";  // string | Can be internal FeeWise ID or Partners Firm ID
+            var paymentDetailsRequest = new PaymentDetailsRequest(); // PaymentDetailsRequest | 
+            var accept = "application/json";  // string | Desired response content type. Defaults to `application/json`. (optional)  (default to application/json)
+
+            try
+            {
+                // Retrieve the payment details for a matter, debtor, invoice or trust request.
+                PostPaymentDetails200Response result = apiInstance.PostPaymentDetails(firmId, paymentDetailsRequest, accept);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling PaymentsApi.PostPaymentDetails: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the PostPaymentDetailsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Retrieve the payment details for a matter, debtor, invoice or trust request.
+    ApiResponse<PostPaymentDetails200Response> response = apiInstance.PostPaymentDetailsWithHttpInfo(firmId, paymentDetailsRequest, accept);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling PaymentsApi.PostPaymentDetailsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **firmId** | **string** | Can be internal FeeWise ID or Partners Firm ID |  |
+| **paymentDetailsRequest** | [**PaymentDetailsRequest**](PaymentDetailsRequest.md) |  |  |
+| **accept** | **string** | Desired response content type. Defaults to &#x60;application/json&#x60;. | [optional] [default to application/json] |
+
+### Return type
+
+[**PostPaymentDetails200Response**](PostPaymentDetails200Response.md)
+
+### Authorization
+
+[APIAuth](../README.md#APIAuth), [FirmApiKey](../README.md#FirmApiKey), [FirmAuth](../README.md#FirmAuth), [PartnerAuth](../README.md#PartnerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json, text/html
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The rendered payment footer |  -  |
+| **400** | Bad request |  -  |
+| **404** | Requested resource not found |  -  |
+| **500** | Error processing |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="postpaymentdetailsbulk"></a>
+# **PostPaymentDetailsBulk**
+> PostPaymentDetailsBulk200Response PostPaymentDetailsBulk (string firmId, List<PaymentDetailsRequest> paymentDetailsRequest)
+
+Retrieve payment details for multiple matters, debtors, invoices or trust requests in bulk.
+
+Generates and returns payment details for multiple items in a single request.  Always returns a structured JSON payload. Each item contains the payment URL, QR code and the rendered footer HTML (base64-encoded). This mirrors the single endpoint's `application/json` response; there is no `text/html` mode for bulk. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using FeeWise.Api;
+using FeeWise.Client;
+using FeeWise.Model;
+
+namespace Example
+{
+    public class PostPaymentDetailsBulkExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "http://localhost";
+            // Configure API key authorization: APIAuth
+            config.AddApiKey("X-API-KEY", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("X-API-KEY", "Bearer");
+            // Configure API key authorization: FirmApiKey
+            config.AddApiKey("X-FIRM-API-KEY", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("X-FIRM-API-KEY", "Bearer");
+            // Configure API key authorization: FirmAuth
+            config.AddApiKey("X-FIRM-ID", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("X-FIRM-ID", "Bearer");
+            // Configure API key authorization: PartnerAuth
+            config.AddApiKey("X-CHANNEL-PARTNER-ID", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("X-CHANNEL-PARTNER-ID", "Bearer");
+
+            var apiInstance = new PaymentsApi(config);
+            var firmId = "firmId_example";  // string | Can be internal FeeWise ID or Partners Firm ID
+            var paymentDetailsRequest = new List<PaymentDetailsRequest>(); // List<PaymentDetailsRequest> | 
+
+            try
+            {
+                // Retrieve payment details for multiple matters, debtors, invoices or trust requests in bulk.
+                PostPaymentDetailsBulk200Response result = apiInstance.PostPaymentDetailsBulk(firmId, paymentDetailsRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling PaymentsApi.PostPaymentDetailsBulk: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the PostPaymentDetailsBulkWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Retrieve payment details for multiple matters, debtors, invoices or trust requests in bulk.
+    ApiResponse<PostPaymentDetailsBulk200Response> response = apiInstance.PostPaymentDetailsBulkWithHttpInfo(firmId, paymentDetailsRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling PaymentsApi.PostPaymentDetailsBulkWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **firmId** | **string** | Can be internal FeeWise ID or Partners Firm ID |  |
+| **paymentDetailsRequest** | [**List&lt;PaymentDetailsRequest&gt;**](PaymentDetailsRequest.md) |  |  |
+
+### Return type
+
+[**PostPaymentDetailsBulk200Response**](PostPaymentDetailsBulk200Response.md)
+
+### Authorization
+
+[APIAuth](../README.md#APIAuth), [FirmApiKey](../README.md#FirmApiKey), [FirmAuth](../README.md#FirmAuth), [PartnerAuth](../README.md#PartnerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The payment details for each requested item |  -  |
+| **400** | Bad request |  -  |
+| **404** | Requested resource not found |  -  |
+| **500** | Error processing |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

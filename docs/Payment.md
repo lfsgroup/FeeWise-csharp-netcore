@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **Reference** | **string** | The artifact reference. | [optional] 
 **ArtifactType** | **ArtifactType** |  | 
 **ExternalId** | **string** | This is the id of the artifact supplied by the channel partner / PMS. | [optional] 
+**CustomerReferenceNumber** | **string** | The customer reference number (CRN) associated with the payment | [optional] 
 **ExternalPayment** | [**PaymentExternalPayment**](PaymentExternalPayment.md) |  | [optional] 
 **Received** | **string** | The amount received from the client. | [optional] 
 **Refunded** | **string** | The amount refunded (back to the client) against this payment. | [optional] 

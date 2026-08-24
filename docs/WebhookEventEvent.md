@@ -35,6 +35,7 @@ Name | Type | Description | Notes
 **ArtifactId** | **Guid** | The artifact (Invoice, TrustDeposit, ...) the payment is in relation to. | 
 **Reference** | **string** | The artifact reference. | [optional] 
 **ArtifactType** | **ArtifactType** |  | 
+**CustomerReferenceNumber** | **string** | The customer reference number (CRN) associated with the payment | [optional] 
 **ExternalPayment** | [**PaymentExternalPayment**](PaymentExternalPayment.md) |  | [optional] 
 **Received** | **string** | The amount received from the client. | [optional] 
 **Refunded** | **string** | The amount refunded (back to the client) against this payment. | [optional] 
